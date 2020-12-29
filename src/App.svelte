@@ -1,13 +1,34 @@
 <script>
-	export let name;
+	import axios from 'axios'
+	import 'smelte/src/tailwind.css'
+	import {get} from 'tiny-cookie'
+	import {onMount} from 'svelte'
+	import Icon from 'fa-svelte'
+	import {faUserCircle} from '@fortawesome/free-solid-svg-icons/faUserCircle'
+	import {Button} from 'smelte'
+	import {getURL} from './main'
+	import {userStore} from './store'
+	import Header from './components/Header.svelte'
+
+	import Router from 'svelte-spa-router'
+
+	const routes = {
+		// '/': MyComponent
+	}
 </script>
 
+<Header/>
+
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	Eto e'st main
+
+	<Router {routes}/>
 </main>
 
 <style>
+	body {
+		font-family: "Roboto", sans-serif;
+	}
 	main {
 		text-align: center;
 		padding: 1em;
@@ -15,11 +36,10 @@
 		margin: 0 auto;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+	:global(.user-avatar) {
+		font-size: 1.6rem;
+		color: #888888;
+		margin-right: 0.5rem;
 	}
 
 	@media (min-width: 640px) {
