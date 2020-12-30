@@ -9,19 +9,31 @@
 	import {getURL} from './main'
 	import {userStore} from './store'
 	import Header from './components/Header.svelte'
-
+	import Home from './components/Home.svelte'
+	import LiveCam from './components/LiveCam.svelte'
 	import Router from 'svelte-spa-router'
+	import Registration from './components/Registration.svelte'
+	import MyAccount from './components/MyAccount.svelte'
+	import Recipes from './components/Recipes.svelte'
+	import RecipeForm from './components/RecipeForm.svelte'
+
+
 
 	const routes = {
-		// '/': MyComponent
+		'/': Home,
+		'/live-cam': LiveCam,
+		'/registration': Registration,
+		'/account': MyAccount,
+		'/recipes': Recipes,
+		'/recipe/new': RecipeForm,
+		'/recipe/:id': RecipeForm,
+
+
+
 	}
 </script>
 
-<Header/>
-
 <main>
-	Eto e'st main
-
 	<Router {routes}/>
 </main>
 
