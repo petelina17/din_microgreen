@@ -26,8 +26,8 @@
 </main>
 
 <style>
-	body {
-		font-family: "Roboto", sans-serif;
+	:global(body) {
+		font-family: "Rubik", sans-serif;
 	}
 	main {
 		text-align: center;

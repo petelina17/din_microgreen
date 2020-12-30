@@ -7,7 +7,7 @@
 	<title>Din MicroGreen</title>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Prosto+One&family=Rubik:wght@300;400;500;600;700;800|Material+Icons&display=swap"
+	<link href="https://fonts.googleapis.com/css2?family=Prosto+One&family=Rubik:wght@300;400;500;600;700;800&display=swap"
 				rel="stylesheet">
 
 	<link rel='icon' type='image/png' href='/favicon.png'>
@@ -18,5 +18,32 @@
 </head>
 
 <body>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+<script>
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	var firebaseConfig = {
+		apiKey: "AIzaSyC3mZV6cWwVQVxmOzlDZ689HlKikKzygNk",
+		authDomain: "din-microgreen.firebaseapp.com",
+		projectId: "din-microgreen",
+		storageBucket: "din-microgreen.appspot.com",
+		messagingSenderId: "304924153846",
+		appId: "1:304924153846:web:7930ecc7146292201d19d7",
+		measurementId: "G-F05JJK8E91"
+	};
+	// Initialize Firebase
+	var app = firebase.initializeApp(firebaseConfig);
+	var db = firebase.firestore();
+	firebase.analytics();
+</script>
 </body>
 </html>
