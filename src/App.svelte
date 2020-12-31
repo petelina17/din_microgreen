@@ -43,8 +43,6 @@
 	}
 	main {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
@@ -52,6 +50,16 @@
 		font-size: 1.6rem;
 		color: #888888;
 		margin-right: 0.5rem;
+	}
+	:global(.wrapper) {
+		max-width: 1280px;
+		margin: auto;
+	}
+	:global(.header3) {
+		font-size: 2rem;
+	}
+	:global(.header4) {
+		font-size: 1.5rem;
 	}
 
 	@media (min-width: 640px) {
