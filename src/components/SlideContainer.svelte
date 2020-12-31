@@ -3,7 +3,7 @@
   import {quintInOut} from 'svelte/easing'
   import { createEventDispatcher } from 'svelte';
 
-  export let width = 1280
+  const width = 1280
 
   const dispatch = createEventDispatcher();
 
@@ -17,8 +17,8 @@
   This HTML code is customized component example from tailwind.css library
   https://tailwindui.com/components/application-ui/overlays/slide-overs
  -->
-<div class="fixed inset-0 overflow-hidden">
-  <div class="absolute inset-0 overflow-hidden">
+<div class="fixed inset-0 overflow-auto">
+  <div class="absolute inset-0 overflow-auto">
     <div in:blur="{{ duration: 100 }}" out:blur="{{ duration: 1000 }}"
          class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
          aria-hidden="true">
@@ -42,7 +42,7 @@
           </button>
         </div>
 
-        <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+        <div class="h-full flex flex-col bg-white shadow-xl overflow-y-auto">
 
           <!--
             Svelte will replace tag "slot" with SlideContainer's tag body, which is defined in parent component
