@@ -18,7 +18,7 @@
 
 <div class="bg-gray-600 bg-opacity-75 fixed w-full">
   <div class="header flex items-center justify-end wrapper">
-    <nav class="flex header4 text-white uppercase opacity-100">
+    <nav class="flex flex-wrap header4 text-white uppercase opacity-100">
       <div>Live kamera</div>
       <div>Butik</div>
       <div>Recept</div>
@@ -54,7 +54,9 @@
 
 <style>
   .header {
-    height: 3.5rem;
+    min-height: 3.5rem;
+      /*padding-top: 0.5rem;*/
+      /*padding-bottom: 0.5rem;*/
   }
 
   nav > div {
