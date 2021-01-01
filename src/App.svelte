@@ -61,6 +61,14 @@
 	:global(.header4) {
 		font-size: 1.5rem;
 	}
+	:global(.bg-logo) {
+		background-color: #9BE400;
+	}
+	:global(.logo) {
+		color: #9BE400;
+		font-family: "Prosto One", sans-serif;
+		font-size: 3rem;
+	}
 
 	@media (min-width: 640px) {
 		main {
