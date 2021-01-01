@@ -33,7 +33,7 @@
 	}
 </script>
 
-<main>
+<main class="text-offblack">
 	<Router {routes}/>
 </main>
 
@@ -67,6 +67,9 @@
 	:global(.header4) {
 		font-size: 1.5rem;
 	}
+	:global(.text1) {
+		font-size: 1.5rem;
+	}
 	:global(.bg-logo) {
 		background-color: #9BE400;
 	}
@@ -78,13 +81,16 @@
 	:global(.text-offwhite) {
 		color: #FDFDFD;
 	}
+	:global(.text-offblack) {
+		color: #303030;
+	}
 	:global(.titleA) {
 		font-size: 7.625rem;
 		font-family: "Rubik", sans-serif;
 		line-height: 1;
 	}
 
-	@media (max-width: 1280px) {
+	@media (max-width: 1320px) {
 		:global(.wrapper) {
 			padding-right: 1.5rem;
 			padding-left: 1.5rem;

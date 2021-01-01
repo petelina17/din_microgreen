@@ -3,6 +3,7 @@
   import SlideContainer from './SlideContainer.svelte'
   import Header from './Header.svelte'
   import TopBanner from './TopBanner.svelte'
+  import ArticleBanner from './ArticleBanner.svelte'
 
 
   let showCart = false
@@ -12,6 +13,8 @@
 <Header/>
 
 <TopBanner/>
+
+<ArticleBanner/>
 
 <!--
 <div style="height: 600px; background-color: #728e30">Home</div>
