@@ -2,7 +2,8 @@
   import {onMount} from 'svelte'
   import {API} from '../api.js'
   import Icon from 'fa-svelte'
-  import {faFileAlt, faUser} from '@fortawesome/free-regular-svg-icons'
+  import {faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
+  import {faFileAlt} from '@fortawesome/free-regular-svg-icons'
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
 
   let api = new API()
@@ -40,8 +41,14 @@
     </div>
   </div>
   <div class="absolute right-icons">
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200">konto</div>
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200">basket</div>
+    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+    justify-center">
+      <Icon icon={faUser} />
+    </div>
+    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+    justify-center">
+      <Icon icon={faShoppingCart} />
+    </div>
   </div>
 </div>
 
