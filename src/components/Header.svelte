@@ -1,6 +1,9 @@
 <script>
   import {onMount} from 'svelte'
   import {API} from '../api.js'
+  import Icon from 'fa-svelte'
+  import {faFileAlt, faUser} from '@fortawesome/free-regular-svg-icons'
+  import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
 
   let api = new API()
 
@@ -23,9 +26,18 @@
     </nav>
   </div>
   <div class="absolute social-icons">
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200">fb</div>
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200">twitter</div>
-    <div class="w-12 h-12 rounded-full bg-gray-200">insta</div>
+    <div class="w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+         style="background-color: #88a8ee">
+      <Icon icon={faFacebookF} />
+    </div>
+    <div class="w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+         style="background-color: #9ce4ef">
+      <Icon icon={faTwitter}/>
+    </div>
+    <div class="w-12 h-12 rounded-full text-white text-xl flex items-center justify-center"
+         style="background-color: #efa09c">
+      <Icon icon={faInstagram}/>
+    </div>
   </div>
   <div class="absolute right-icons">
     <div class="w-12 h-12 mb-3 rounded-full bg-gray-200">konto</div>
