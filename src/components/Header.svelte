@@ -41,11 +41,11 @@
     </div>
   </div>
   <div class="absolute right-icons">
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+    <div class="w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
     justify-center">
       <Icon icon={faUser} />
     </div>
-    <div class="w-12 h-12 mb-3 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+    <div class="w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
     justify-center">
       <Icon icon={faShoppingCart} />
     </div>
