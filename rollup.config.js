@@ -94,14 +94,15 @@ export default {
 					}
 				}, // Extend Tailwind theme
 				colors: {
-					primary: "#3f2f98",
-					secondary: "#6a68f5",
+					primary: "#57B138",
+					secondary: "#BDBDBD",
 					error: "#f44336",
 					success: "#4caf50",
 					alert: "#ff9800",
 					blue: "#2196f3",
 					dark: "#212121",
-					accent:"#F2C94C"
+					accent:"#F2C94C",
+					colorC:"#F2F2F2",
 				}, // Object of colors to generate a palette from, and then all the utility classes
 				darkMode: true,
 			}, // Any other props will be applied on top of default Smelte tailwind.config.js

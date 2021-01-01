@@ -27,7 +27,7 @@
 
 <style>
   .banner {
-    height: 600px;
+    min-height: 600px;
     background-color: #728e30;
   }
 </style>
