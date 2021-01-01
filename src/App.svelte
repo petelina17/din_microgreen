@@ -55,6 +55,12 @@
 		max-width: 1280px;
 		margin: auto;
 	}
+	:global(.header1) {
+		font-size: 4rem;
+	}
+	:global(.header2) {
+		font-size: 3rem;
+	}
 	:global(.header3) {
 		font-size: 2rem;
 	}
@@ -68,6 +74,21 @@
 		color: #9BE400;
 		font-family: "Prosto One", sans-serif;
 		font-size: 3rem;
+	}
+	:global(.text-offwhite) {
+		color: #FDFDFD;
+	}
+	:global(.titleA) {
+		font-size: 7.625rem;
+		font-family: "Rubik", sans-serif;
+		line-height: 1;
+	}
+
+	@media (max-width: 1280px) {
+		:global(.wrapper) {
+			padding-right: 1.5rem;
+			padding-left: 1.5rem;
+		}
 	}
 
 	@media (min-width: 640px) {
