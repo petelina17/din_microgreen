@@ -5,6 +5,7 @@
   import TopBanner from './TopBanner.svelte'
   import ArticleBanner from './ArticleBanner.svelte'
   import LinkBanner from './LinkBanner.svelte'
+  import ProductCard from './ProductCard.svelte'
 
 
   let showCart = false
@@ -18,7 +19,17 @@
 <ArticleBanner/>
 
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
-            img="fullmoon3-b.jpg" link="/live-cam" />
+            img="fullmoon3-b.jpg" link="/live-cam"/>
+
+
+<!-- TODO:move these to ProductBanner component -->
+<div class="flex">
+  <ProductCard img="senap.jpg"/>
+  <ProductCard img="redis.jpg"/>
+  <ProductCard img="goroh.jpg"/>
+  <ProductCard img="clover.jpg"/>
+</div>
+
 
 <!--
 <div style="height: 600px; background-color: #728e30">Home</div>

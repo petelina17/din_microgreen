@@ -30,7 +30,7 @@ import Button from 'smelte/src/components/Button'
     </div>
 
     <div class="w-1/3 text-center">
-     <img class="m-auto" src="./img/mikrogrin-redis-rozovyj.jpg" alt="rädisa mikrogrönt bild" height="292" width="320">
+     <img class="m-auto" src="./img/redis.jpg" alt="rädisa mikrogrönt bild" height="292" width="320">
     </div>
 
   </div>
