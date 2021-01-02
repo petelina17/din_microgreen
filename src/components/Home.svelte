@@ -17,7 +17,8 @@
 
 <ArticleBanner/>
 
-<LinkBanner title="Övervaka dina växter live" button="Visa mer" img="fullmoon3-b.jpg"/>
+<LinkBanner title="Övervaka dina växter live" button="Visa mer"
+            img="fullmoon3-b.jpg" link="/live-cam" />
 
 <!--
 <div style="height: 600px; background-color: #728e30">Home</div>

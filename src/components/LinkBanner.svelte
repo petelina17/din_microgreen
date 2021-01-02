@@ -1,11 +1,14 @@
 <script>
   import Button from 'smelte/src/components/Button'
-
+  import {push} from 'svelte-spa-router'
   export let img = ''
   export let title = 'default text'
   export let button = 'button'
   export let link = '#'
 
+  function linkHandler() {
+    push(link)
+  }
 </script>
 
 <!-- make style dynamic for background image from props -->
@@ -19,7 +22,8 @@
       </div>
     </div>
     <div class="header4 pb-8">
-      <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4">
+      <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4"
+      on:click={linkHandler}>
         {button}
       </Button>
     </div>
