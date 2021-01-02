@@ -2,7 +2,7 @@
 import Button from 'smelte/src/components/Button'
 </script>
 
-<div class="banner select-none">
+<div class="banner select-none bg-offwhite">
   <div class="wrapper h-full flex items-center">
     <div class="w-2/3 text-left">
       <div class="header1 mb-6">
@@ -40,6 +40,6 @@ import Button from 'smelte/src/components/Button'
     .banner {
         height: 43.75rem;
         /*background-color: #f2f2f2;*/
-        border-bottom: 1px solid #a0aec0;
+        /*border-bottom: 1px solid #a0aec0;*/
     }
 </style>

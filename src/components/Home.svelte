@@ -4,6 +4,7 @@
   import Header from './Header.svelte'
   import TopBanner from './TopBanner.svelte'
   import ArticleBanner from './ArticleBanner.svelte'
+  import LinkBanner from './LinkBanner.svelte'
 
 
   let showCart = false
@@ -15,6 +16,8 @@
 <TopBanner/>
 
 <ArticleBanner/>
+
+<LinkBanner title="Övervaka dina växter live" button="Visa mer" img="fullmoon3-b.jpg"/>
 
 <!--
 <div style="height: 600px; background-color: #728e30">Home</div>
