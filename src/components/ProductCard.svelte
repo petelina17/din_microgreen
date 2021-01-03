@@ -13,7 +13,7 @@
 
 </script>
 
-<div class="product-box text-center mx-4">
+<div class="product-box text-center mx-2 my-4 bg-gray-50">
   <div class="m-auto rounded-full h-64 w-64 bg-cover img-placeholder mt-12"
        style={"background-image: url('img/" + img + "');"}>
     &nbsp
@@ -44,7 +44,7 @@
 
 <style>
     .product-box {
-        height: 603px;
+        height: 673px;
         width: 300px;
         /*background: lightblue;*/
     }

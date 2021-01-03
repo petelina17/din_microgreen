@@ -5,6 +5,58 @@
 //
 // }
 
+const products = [
+  {
+    productId: '1',
+    title: 'Senap mikrogrönt',
+    subtitle: 'förp. 50g',
+    price: '13.00 kr',
+    img: 'senap.jpg'
+  },
+  {
+    productId: '2',
+    title: 'Rödkål mikrogrönt',
+    subtitle: 'förp. 45g',
+    price: '11.00 kr',
+    img: 'redis.jpg'
+  },
+  {
+    productId: '3',
+    title: 'Ärtor mikrogrönt',
+    subtitle: 'förp. 50g',
+    price: '12.65 kr',
+    img: 'goroh.jpg'
+  },
+  {
+    productId: '4',
+    title: 'Grönkål mikrogrönt',
+    subtitle: 'förp. 70g',
+    price: '15.00 kr',
+    img: 'clover.jpg'
+  },
+  {
+    productId: '5',
+    title: 'Vitkål mikrogrönt',
+    subtitle: 'förp. 60g',
+    price: '20.00 kr',
+    img: 'camera.jpg'
+  },
+  {
+    productId: '6',
+    title: 'Solros mikrogrönt',
+    subtitle: 'förp. 60g',
+    price: '14.50 kr',
+    img: 'camera.jpg'
+  },
+  {
+    productId: '7',
+    title: 'Koriander mikrogrönt',
+    subtitle: 'förp. 60g',
+    price: '15.50 kr',
+    img: 'camera.jpg'
+  },
+]
+
 export class API {
   constructor() {
     // TODO: use Firebase instead of hardcoded list
@@ -39,6 +91,10 @@ export class API {
 
   setUser(user) {
     this.users[user.email] = user
+  }
+
+  getProducts() {
+    return products
   }
 
 }

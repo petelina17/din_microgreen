@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="bg-gray-600 bg-opacity-75 fixed w-full">
+<div class="bg-gray-600 bg-opacity-75 fixed w-full z-50">
   <div class="header flex items-center justify-end wrapper">
     <nav class="flex flex-wrap header4 text-white uppercase opacity-100">
       <div>Live kamera</div>
