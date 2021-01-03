@@ -13,47 +13,46 @@
 
 </script>
 
-<div class="product-box text-center">
-  <div class="m-auto rounded-full h-64 w-64 bg-cover img-placeholder"
+<div class="product-box text-center mx-4">
+  <div class="m-auto rounded-full h-64 w-64 bg-cover img-placeholder mt-12"
        style={"background-image: url('img/" + img + "');"}>
     &nbsp
   </div>
 
-  <div>{title}</div>
+  <div class="header4 mt-12 mb-2">{title}</div>
 
-  <div>{subtitle}</div>
+  <div class="text2">{subtitle}</div>
 
-  <div>{price}</div>
+  <div class="header3 mt-5 mb-4">{price}</div>
 
-
-    <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4">
-      {button}
-    </Button>
-
+  <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4">
+    {button}
+  </Button>
 
   <div class="flex justify-center">
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
     justify-center text-gray-400 mx-2">
-      <Icon icon={faHeart} />
+      <Icon icon={faHeart}/>
     </div>
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
     justify-center text-blue-500 mx-2">
-      <Icon icon={faInfoCircle} />
+      <Icon icon={faInfoCircle}/>
     </div>
   </div>
 
 </div>
 
 <style>
-.product-box {
-    height: 603px;
-    width: 300px;
-    /*background: lightblue;*/
-}
-.img-placeholder {
-    background-position-x: center;
-    background-size: 115%;
-    /*background-position-y: 2rem;*/
-}
+    .product-box {
+        height: 603px;
+        width: 300px;
+        /*background: lightblue;*/
+    }
+
+    .img-placeholder {
+        background-position-x: center;
+        background-size: 115%;
+        /*background-position-y: 2rem;*/
+    }
 
 </style>

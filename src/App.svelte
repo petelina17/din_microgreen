@@ -62,13 +62,16 @@
 		font-size: 3rem;
 	}
 	:global(.header3) {
-		font-size: 2rem;
+		font-size: 2.25rem;
 	}
 	:global(.header4) {
 		font-size: 1.5rem;
 	}
 	:global(.text1) {
 		font-size: 1.5rem;
+	}
+	:global(.text2) {
+		font-size: 1rem;
 	}
 	:global(.bg-logo) {
 		background-color: #9BE400;
