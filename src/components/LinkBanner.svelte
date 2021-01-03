@@ -35,7 +35,7 @@
 <style>
     .banner {
         height: 43.75rem;
-        background-color: #7c8c6a;
+        background-color: #4d823c;
         /*border-bottom: 1px solid #a0aec0;*/
     }
 </style>
