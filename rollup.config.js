@@ -103,6 +103,7 @@ export default {
 					dark: "#212121",
 					accent:"#F2C94C",
 					colorC:"#F2F2F2",
+					red: "#ff0e4e",
 				}, // Object of colors to generate a palette from, and then all the utility classes
 				darkMode: true,
 			}, // Any other props will be applied on top of default Smelte tailwind.config.js

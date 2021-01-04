@@ -3,6 +3,7 @@ import { writable } from 'svelte/store'
 let user = {
   name: '',
   basketNumber: 0,
+  favoriteNumber:0,
   favoriteList: [],
   basketList: []
 };

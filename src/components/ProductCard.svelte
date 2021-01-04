@@ -3,6 +3,8 @@
   import Icon from 'fa-svelte'
   import {faHeart} from '@fortawesome/free-regular-svg-icons'
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+  import {push} from 'svelte-spa-router'
+  import {userStore} from '../store'
 
   export let img = ''
   export let title = 'produkt A'
@@ -10,6 +12,34 @@
   export let price = '99.00 kr'
   export let button = 'Lägg till'
   export let productId = ''
+
+  export let heartSelected = false
+
+
+  function addToCart() {
+    if (!$userStore.basketList.includes(productId)) {
+      $userStore.basketList.push(productId)
+      $userStore.basketNumber = $userStore.basketList.length
+    }
+  }
+
+  // Add or delete favorite product from favorite list
+  function favoritesHandler() {
+    if (!$userStore.favoriteList.includes(productId)) {
+      $userStore.favoriteList.push(productId)
+      $userStore.favoriteNumber = $userStore.favoriteList.length
+      heartSelected = true
+    } else {
+      $userStore.favoriteList = $userStore.favoriteList.filter(x => x !== productId)
+      $userStore.favoriteNumber = $userStore.favoriteList.length
+      heartSelected = false
+    }
+  }
+
+  function goToDetails() {
+    // URL parameter to open pop-up with product details
+    push('/?productId=' + productId)
+  }
 
 </script>
 
@@ -31,12 +61,13 @@
 
   <div class="flex justify-center">
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
-    justify-center text-gray-400 mx-2">
-      <Icon icon={faHeart}/>
+                justify-center text-gray-400 mx-2" on:click={favoritesHandler} >
+      <Icon icon={faHeart} class="{heartSelected ? 'text-red-400' : ''}"/>
     </div>
+
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
     justify-center text-blue-500 mx-2">
-      <Icon icon={faInfoCircle}/>
+      <Icon icon={faInfoCircle} />
     </div>
   </div>
 
@@ -53,6 +84,9 @@
         background-position-x: center;
         background-size: 115%;
         /*background-position-y: 2rem;*/
+    }
+    .active-favorite {
+      color: red;
     }
 
 </style>
