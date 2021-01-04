@@ -4,7 +4,7 @@
   import {faHeart} from '@fortawesome/free-regular-svg-icons'
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
-  import {userStore} from '../store'
+  import {userStore,addToCart} from '../store'
 
   export let img = ''
   export let title = 'produkt A'
@@ -15,33 +15,17 @@
 
   export let heartSelected = false
 
+  let productData = {
+    img: img,
+    title: title,
+    subtitle: subtitle,
+    price: price,
+    productId: productId,
+  }
 
-  function addToCart() {
-    const productData = {
-      img: img,
-      title: title,
-      subtitle: subtitle,
-      price: price,
-      productId: productId,
-    }
-    const cartItem = {
-      productData: productData,
-      qty: 1
-    }
-    // Find cart item index that has the same product id that has our product
-    // in this product cart. If not found, index would be -1
-    const foundIndex = $userStore.cartList
-        .findIndex(cartListItem => cartListItem.productData.productId === productId)
-    if (foundIndex === -1) {
-      $userStore.cartList.push(cartItem)
-    }else {
-      $userStore.cartList[foundIndex].qty += 1
-    }
-
-    // update quantity of items in cart
-    $userStore.cartNumber = $userStore.cartList.length
-
-    console.log('basket :', $userStore.cartList)
+  function cartHandler() {
+    addToCart(productData)
+    console.log('cart', $userStore.cartList)
   }
 
   // Add or delete favorite product from favorite list
@@ -77,7 +61,7 @@
   <div class="header3 mt-5 mb-4">{price}</div>
 
   <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
-          on:click={addToCart}>
+          on:click={cartHandler}>
     {button}
   </Button>
 
