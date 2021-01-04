@@ -13,8 +13,6 @@
   export let button = 'Lägg till'
   export let productId = ''
 
-  export let heartSelected = false
-
   $: productData = {
     img: img,
     title: title,
@@ -22,6 +20,9 @@
     price: price,
     productId: productId,
   }
+
+  // check if product already exists in favorite list in global state
+  $: isFavorite = $userStore.favoriteList.findIndex(x => x === productId) > -1
 
   function cartHandler() {
     addToCart(productData)
@@ -52,11 +53,9 @@
     if (!$userStore.favoriteList.includes(productId)) {
       $userStore.favoriteList.push(productId)
       $userStore.favoriteNumber = $userStore.favoriteList.length
-      heartSelected = true
     } else {
       $userStore.favoriteList = $userStore.favoriteList.filter(x => x !== productId)
       $userStore.favoriteNumber = $userStore.favoriteList.length
-      heartSelected = false
     }
   }
 
@@ -87,7 +86,7 @@
   <div class="flex justify-center">
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
                 justify-center text-gray-400 mx-2 icon" on:click={favoritesHandler}>
-      <Icon icon={faHeart} class="{heartSelected ? 'text-red-400' : ''}"/>
+      <Icon icon={faHeart} class="{isFavorite ? 'text-red-400' : ''}"/>
     </div>
 
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
