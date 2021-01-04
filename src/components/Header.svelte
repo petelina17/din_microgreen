@@ -6,6 +6,7 @@
   import {faFileAlt} from '@fortawesome/free-regular-svg-icons'
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
   import {push} from 'svelte-spa-router'
+  import {userStore} from '../store'
 
   let api = new API()
 
@@ -42,14 +43,25 @@
       <Icon icon={faInstagram}/>
     </div>
   </div>
-  <div class="absolute right-icons">
-    <div class="w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+
+  <div class="absolute right-icons text-center w-16">
+
+    <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
     justify-center">
-      <Icon icon={faUser} />
+      <Icon icon={faUser}/>
     </div>
-    <div class="w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
-    justify-center">
-      <Icon icon={faShoppingCart} />
+
+    <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
+                text-xl flex items-center justify-center relative
+                {$userStore.cartList.length > 0 ? ' active-cart ' : ''}">
+
+      {#if $userStore.cartList.length > 0}
+        <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
+          {$userStore.cartList.length}
+        </div>
+      {/if}
+
+      <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
     </div>
   </div>
 </div>
@@ -57,8 +69,8 @@
 <style>
   .header {
     min-height: 3.5rem;
-      /*padding-top: 0.5rem;*/
-      /*padding-bottom: 0.5rem;*/
+    /*padding-top: 0.5rem;*/
+    /*padding-bottom: 0.5rem;*/
   }
 
   nav > div {
@@ -84,8 +96,28 @@
   .menu-item {
     cursor: pointer;
   }
-  .menu-item:hover{
+
+  .menu-item:hover {
     transform: scale(1.03);
     color: white;
   }
+
+  .active-cart {
+    background-color: #f9f9f9;
+    width: 3.8rem;
+    height: 3.8rem;
+    font-size: 2.1rem;
+    transition: all .3s;
+  }
+  .active-cart:hover {
+    transform: scale(1.1);
+  }
+
+  .cart-badge {
+    top: -0.3rem;
+    left: -0.3rem;
+    font-size: 1rem;
+    /*border: 0.15rem solid white;*/
+  }
+
 </style>
