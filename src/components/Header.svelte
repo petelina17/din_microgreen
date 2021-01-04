@@ -27,16 +27,17 @@
       <div class="menu-item">Forum</div>
     </nav>
   </div>
-  <div class="absolute social-icons">
-    <div class="w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+
+  <div class="absolute social-icons text-center">
+    <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
          style="background-color: #88a8ee">
-      <Icon icon={faFacebookF} />
+      <Icon icon={faFacebookF}/>
     </div>
-    <div class="w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+    <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
          style="background-color: #9ce4ef">
       <Icon icon={faTwitter}/>
     </div>
-    <div class="w-12 h-12 rounded-full text-white text-xl flex items-center justify-center"
+    <div class="mx-auto w-12 h-12 rounded-full text-white text-xl flex items-center justify-center"
          style="background-color: #efa09c">
       <Icon icon={faInstagram}/>
     </div>
@@ -67,6 +68,12 @@
   .social-icons {
     left: 2rem;
     top: 15rem;
+  }
+  .social-icons > div {
+    transition: all 0.1s ease-out;
+  }
+  .social-icons > div:hover {
+    transform: scale(1.1);
   }
 
   .right-icons {
