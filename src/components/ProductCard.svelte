@@ -17,10 +17,31 @@
 
 
   function addToCart() {
-    if (!$userStore.basketList.includes(productId)) {
-      $userStore.basketList.push(productId)
-      $userStore.basketNumber = $userStore.basketList.length
+    const productData = {
+      img: img,
+      title: title,
+      subtitle: subtitle,
+      price: price,
+      productId: productId,
     }
+    const cartItem = {
+      productData: productData,
+      qty: 1
+    }
+    // Find cart item index that has the same product id that has our product
+    // in this product cart. If not found, index would be -1
+    const foundIndex = $userStore.cartList
+        .findIndex(cartListItem => cartListItem.productData.productId === productId)
+    if (foundIndex === -1) {
+      $userStore.cartList.push(cartItem)
+    }else {
+      $userStore.cartList[foundIndex].qty += 1
+    }
+
+    // update quantity of items in cart
+    $userStore.cartNumber = $userStore.cartList.length
+
+    console.log('basket :', $userStore.cartList)
   }
 
   // Add or delete favorite product from favorite list
@@ -55,38 +76,40 @@
 
   <div class="header3 mt-5 mb-4">{price}</div>
 
-  <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4">
+  <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
+          on:click={addToCart}>
     {button}
   </Button>
 
   <div class="flex justify-center">
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
-                justify-center text-gray-400 mx-2" on:click={favoritesHandler} >
+                justify-center text-gray-400 mx-2" on:click={favoritesHandler}>
       <Icon icon={faHeart} class="{heartSelected ? 'text-red-400' : ''}"/>
     </div>
 
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
     justify-center text-blue-500 mx-2">
-      <Icon icon={faInfoCircle} />
+      <Icon icon={faInfoCircle}/>
     </div>
   </div>
 
 </div>
 
 <style>
-    .product-box {
-        height: 673px;
-        width: 300px;
-        /*background: lightblue;*/
-    }
+  .product-box {
+    height: 673px;
+    width: 300px;
+    /*background: lightblue;*/
+  }
 
-    .img-placeholder {
-        background-position-x: center;
-        background-size: 115%;
-        /*background-position-y: 2rem;*/
-    }
-    .active-favorite {
-      color: red;
-    }
+  .img-placeholder {
+    background-position-x: center;
+    background-size: 115%;
+    /*background-position-y: 2rem;*/
+  }
+
+  .active-favorite {
+    color: red;
+  }
 
 </style>

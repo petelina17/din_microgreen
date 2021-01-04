@@ -2,10 +2,10 @@ import { writable } from 'svelte/store'
 
 let user = {
   name: '',
-  basketNumber: 0,
+  cartNumber: 0,
   favoriteNumber:0,
   favoriteList: [],
-  basketList: []
+  cartList: []
 };
 export let userStore = writable(user)
 
