@@ -4,7 +4,7 @@
   import {faHeart} from '@fortawesome/free-regular-svg-icons'
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
-  import {userStore,addToCart} from '../store'
+  import {userStore} from '../store'
 
   export let img = ''
   export let title = 'produkt A'
@@ -15,7 +15,7 @@
 
   export let heartSelected = false
 
-  let productData = {
+  $: productData = {
     img: img,
     title: title,
     subtitle: subtitle,
@@ -25,7 +25,26 @@
 
   function cartHandler() {
     addToCart(productData)
+    console.log('add id: ', productData.productId, productId)
     console.log('cart', $userStore.cartList)
+  }
+
+  function addToCart(productData) {
+    const cartItem = {
+      productData: productData,
+      qty: 1
+    }
+    // Find cart item index that has the same product id that has our product
+    // in this product cart. If not found, index would be -1
+    const foundIndex = $userStore.cartList
+        .findIndex(cartListItem => cartListItem.productData.productId === productData.productId)
+    if (foundIndex === -1) {
+      $userStore.cartList.push(cartItem)
+    }else {
+      $userStore.cartList[foundIndex].qty += 1
+    }
+    // update quantity of items in cart
+    $userStore.cartNumber = $userStore.cartList.length
   }
 
   // Add or delete favorite product from favorite list
@@ -67,12 +86,12 @@
 
   <div class="flex justify-center">
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
-                justify-center text-gray-400 mx-2" on:click={favoritesHandler}>
+                justify-center text-gray-400 mx-2 icon" on:click={favoritesHandler}>
       <Icon icon={faHeart} class="{heartSelected ? 'text-red-400' : ''}"/>
     </div>
 
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
-    justify-center text-blue-500 mx-2">
+    justify-center text-blue-500 mx-2 icon">
       <Icon icon={faInfoCircle}/>
     </div>
   </div>
@@ -84,6 +103,10 @@
     height: 673px;
     width: 300px;
     /*background: lightblue;*/
+    /*transition: all .1s;*/
+  }
+  .product-box:hover {
+    /*transform: scale(1.02);*/
   }
 
   .img-placeholder {
@@ -92,8 +115,12 @@
     /*background-position-y: 2rem;*/
   }
 
-  .active-favorite {
-    color: red;
+  .icon {
+    transition: all .1s;
+  }
+
+  .icon:hover {
+    transform: scale(1.1);
   }
 
 </style>
