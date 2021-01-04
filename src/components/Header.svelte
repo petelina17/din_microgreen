@@ -5,6 +5,7 @@
   import {faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
   import {faFileAlt} from '@fortawesome/free-regular-svg-icons'
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
+  import {push} from 'svelte-spa-router'
 
   let api = new API()
 
@@ -16,14 +17,14 @@
 
 </script>
 
-<div class="bg-gray-600 bg-opacity-75 fixed w-full z-50">
+<div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
   <div class="header flex items-center justify-end wrapper">
-    <nav class="flex flex-wrap header4 text-white uppercase opacity-100">
-      <div>Live kamera</div>
-      <div>Butik</div>
-      <div>Recept</div>
-      <div>Artiklar</div>
-      <div>Forum</div>
+    <nav class="flex flex-wrap header4 text-gray-200 uppercase opacity-100">
+      <div class="menu-item">Live kamera</div>
+      <div class="menu-item">Butik</div>
+      <div class="menu-item">Recept</div>
+      <div class="menu-item">Artiklar</div>
+      <div class="menu-item">Forum</div>
     </nav>
   </div>
   <div class="absolute social-icons">
@@ -71,5 +72,13 @@
   .right-icons {
     right: 2rem;
     top: 15rem;
+  }
+
+  .menu-item {
+    cursor: pointer;
+  }
+  .menu-item:hover{
+    transform: scale(1.03);
+    color: white;
   }
 </style>

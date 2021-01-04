@@ -4,7 +4,6 @@
   export let img = ''
   export let title = 'default text'
   export let button = 'button'
-  export let link = '#'
 
   function linkHandler() {
     push(link)

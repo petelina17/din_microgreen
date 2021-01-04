@@ -1,6 +1,9 @@
 <script>
   import ProductCard from './ProductCard.svelte'
   import {API} from '../api.js'
+  import Icon from 'fa-svelte'
+  import {faChevronLeft,faChevronCircleLeft,faChevronRight,faChevronCircleRight} from '@fortawesome/free-solid-svg-icons'
+  import {push} from 'svelte-spa-router'
 
   const api = new API()
   const carouselSize = 4
@@ -29,8 +32,9 @@
 <div class="">
   <div class="wrapper flex relative">
 
-    <div class="h-16 w-16 rounded-full absolute bg-gray-200 left-icon cursor-pointer"
-         on:click={back}>7
+    <div class="h-16 w-16 rounded-full absolute bg-gray-100 text-xl
+    flex items-center justify-center left-icon cursor-pointer" on:click={back}>
+      <Icon class="" icon={faChevronLeft} />
     </div>
 
     {#each carousel as product}
@@ -43,8 +47,10 @@
       />
     {/each}
 
-    <div class="h-16 w-16 rounded-full absolute bg-gray-200 right-icon cursor-pointer"
-         on:click={next}>7
+    <div class="h-16 w-16 rounded-full absolute bg-gray-100 text-xl
+    flex items-center justify-center right-icon cursor-pointer"
+         on:click={next}>
+      <Icon icon={faChevronRight} />
     </div>
 
   </div>
@@ -54,6 +60,7 @@
     .left-icon {
         left: -5rem;
         top: 19rem;
+        color: #0b0b0b;
     }
 
     .right-icon {
