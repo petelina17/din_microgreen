@@ -11,7 +11,7 @@
 </script>
 
 <!-- make style dynamic for background image from props -->
-<div class="banner select-none text-center bg-cover"
+<div class="banner select-none text-center bg-cover bg-center"
      style={"background-image: url('img/" + img + "')"}>
 
   <div class="wrapper h-full flex flex-col">
@@ -35,6 +35,8 @@
     .banner {
         height: 43.75rem;
         background-color: #4d823c;
+      /*background-attachment: fixed;*/
+      /*background-repeat: no-repeat;*/
         /*border-bottom: 1px solid #a0aec0;*/
     }
 </style>

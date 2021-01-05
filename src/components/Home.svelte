@@ -25,6 +25,10 @@
 
 <ProductBanner/>
 
+<LinkBanner title="" button="Receptbok"
+            img="smoky.jpg" link="/recipes"/>
+
+
 <Footer />
 
 
