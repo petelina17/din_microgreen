@@ -18,7 +18,7 @@
 	import RecipeForm from './components/RecipeForm.svelte'
 
 
-
+  // Routs for website
 	const routes = {
 		'/': Home,
 		'/live-cam': LiveCam,

@@ -11,6 +11,7 @@
 </script>
 
 <div class="banner select-none bg-offwhite">
+  <!-- dynamic style to show left or right orientation of the block on homepage-->
   <div class="wrapper h-full flex items-center {orient === 'left' ? 'flex-row' : 'flex-row-reverse'}">
 
     <div class="w-2/3 text-left">

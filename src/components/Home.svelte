@@ -25,13 +25,13 @@
   }
 
   let forum = {
-    img: 'forum5.jpg',
-    title: 'Doremipsum',
+    img: 'forunNew.jpg',
+    title: 'Fusce laoreet',
     text: `Volutpat enim nibh, sit amet eleifend velit congue ac. Suspendisse maximus
            felis sed nulla cursus facilisis. Vivamus sollicitudin augue vel nisi rutrum,
            non varius ipsum molestie. Proin auctor est sit amet justo laoreet,
            ultricies faucibus libero tincidunt. Praesent elementum tellus sit amet ligula
-           fermentum, eu tempus purus commodo. Nunc nibh sapien.`,
+           fermentum, eu tempus purus commodo.`,
     buttonPrimary: {label: 'Till forum', link: ''}
   }
 
