@@ -7,6 +7,7 @@
   import LinkBanner from './LinkBanner.svelte'
   import ProductCard from './ProductCard.svelte'
   import ProductBanner from './ProductBanner.svelte'
+  import Footer from './Footer.svelte'
 
 
   let showCart = false
@@ -23,6 +24,8 @@
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
 <ProductBanner/>
+
+<Footer />
 
 
 <!--

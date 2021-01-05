@@ -18,7 +18,8 @@ import Button from 'smelte/src/components/Button'
       </div>
 
       <div class="header4 mt-12">
-        <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4">
+        <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4
+        mr-8 mb-4">
           Läs mer
         </Button>
         <Button light color="colorC"
