@@ -24,6 +24,8 @@ export function checkIfUserLoggedIn() {
 
   if (cookie == null) {
     user.data = null
+    user.cartList = []
+    user.favoriteList = []
   } else {
     user.data = {}
   }
