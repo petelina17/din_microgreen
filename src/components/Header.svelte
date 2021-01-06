@@ -8,7 +8,9 @@
   import {push} from 'svelte-spa-router'
   import {userStore} from '../store'
   import {setUserLoggedIn, setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
+  import { createEventDispatcher } from 'svelte';
 
+  const dispatch = createEventDispatcher();
   let api = new API()
 
   let user = null
@@ -20,7 +22,8 @@
   })
 
   function login() {
-    setUserLoggedIn('bob@gmail.com')
+    dispatch('login')
+    // setUserLoggedIn('bob@gmail.com')
   }
 
   function logout() {
@@ -30,8 +33,6 @@
 
 <div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
   <div class="header flex items-center justify-end wrapper">
-
-
 
     <nav class="flex flex-wrap items-center header4 text-gray-200 uppercase opacity-100">
       <div class="menu-item">Live kamera</div>
@@ -46,7 +47,6 @@
         <div class="menu-item text-primary-200" on:click={login}>Login</div>
       {/if}
     </nav>
-
 
   </div>
 

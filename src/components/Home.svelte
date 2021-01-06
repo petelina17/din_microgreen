@@ -8,9 +8,11 @@
   import ProductCard from './ProductCard.svelte'
   import ProductBanner from './ProductBanner.svelte'
   import Footer from './Footer.svelte'
+  import Login from './Login.svelte'
 
 
   let showCart = false
+  let showLoginForm = false
 
   let article = {
     img: 'redis.jpg',
@@ -37,7 +39,7 @@
 
 </script>
 
-<Header/>
+<Header on:login={() => {showLoginForm = true}}/>
 
 <TopBanner/>
 
@@ -56,6 +58,8 @@
             buttonPrimary={forum.buttonPrimary} orient="right" />
 
 <Footer/>
+
+<Login bind:showDialog={showLoginForm} />
 
 
 <!--
