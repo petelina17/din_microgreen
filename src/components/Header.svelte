@@ -7,19 +7,33 @@
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
   import {push} from 'svelte-spa-router'
   import {userStore} from '../store'
+  import {setUserLoggedIn, setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
 
   let api = new API()
 
   let user = null
 
   onMount(async () => {
-    user = await api.getUser('bob@gmail.com')
+    checkIfUserLoggedIn()
+    // user = await api.getUser('bob@gmail.com')
   })
 
+  function login() {
+    setUserLoggedIn('bob@gmail.com')
+  }
+
+  function logout() {
+    setUserLoggedOut()
+  }
 </script>
 
 <div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
   <div class="header flex items-center justify-end wrapper">
+
+    <div on:click={login}>login</div>
+    &nbsp;
+    <div on:click={logout}>logout</div>
+
     <nav class="flex flex-wrap header4 text-gray-200 uppercase opacity-100">
       <div class="menu-item">Live kamera</div>
       <div class="menu-item">Butik</div>
@@ -47,8 +61,8 @@
   <div class="absolute right-icons text-center w-16">
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
-    justify-center">
-      <Icon icon={faUser}/>
+    justify-center {$userStore.data != null ? 'active-cart': ''}">
+      <Icon icon={faUser} class={$userStore.data != null ? 'text-primary-900': ''} />
     </div>
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
