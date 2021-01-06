@@ -12,6 +12,7 @@
   let api = new API()
 
   let user = null
+  $: userLoggedIn = $userStore.data != null
 
   onMount(async () => {
     checkIfUserLoggedIn()
@@ -30,17 +31,23 @@
 <div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
   <div class="header flex items-center justify-end wrapper">
 
-    <div on:click={login}>login</div>
-    &nbsp;
-    <div on:click={logout}>logout</div>
 
-    <nav class="flex flex-wrap header4 text-gray-200 uppercase opacity-100">
+
+    <nav class="flex flex-wrap items-center header4 text-gray-200 uppercase opacity-100">
       <div class="menu-item">Live kamera</div>
       <div class="menu-item">Butik</div>
       <div class="menu-item">Recept</div>
       <div class="menu-item">Artiklar</div>
       <div class="menu-item">Forum</div>
+
+      {#if userLoggedIn}
+        <div class="menu-item text-gray-500" on:click={logout}>logout</div>
+      {:else}
+        <div class="menu-item text-primary-200" on:click={login}>Login</div>
+      {/if}
     </nav>
+
+
   </div>
 
   <div class="absolute social-icons text-center">
@@ -61,8 +68,8 @@
   <div class="absolute right-icons text-center w-16">
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
-    justify-center {$userStore.data != null ? 'active-cart': ''}">
-      <Icon icon={faUser} class={$userStore.data != null ? 'text-primary-900': ''} />
+    justify-center {userLoggedIn ? 'active-cart': ''}">
+      <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''} />
     </div>
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
