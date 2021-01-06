@@ -57,7 +57,14 @@
 
       {#if $userStore.cartList.length > 0}
         <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
-          {$userStore.cartList.length}
+
+          <!--
+            Use reduce function to calculate sum of quantity of all items in cart
+            ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+          -->
+          {$userStore.cartList.reduce((sum, value) => {
+            return sum + value.qty
+          }, 0)}
         </div>
       {/if}
 
@@ -81,9 +88,11 @@
     left: 2rem;
     top: 15rem;
   }
+
   .social-icons > div {
     transition: all 0.1s ease-out;
   }
+
   .social-icons > div:hover {
     transform: scale(1.1);
   }
@@ -109,6 +118,7 @@
     font-size: 2.1rem;
     transition: all .3s;
   }
+
   .active-cart:hover {
     transform: scale(1.1);
   }
