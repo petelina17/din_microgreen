@@ -8,9 +8,9 @@
   import {push} from 'svelte-spa-router'
   import {userStore} from '../store'
   import {setUserLoggedIn, setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
-  import { createEventDispatcher } from 'svelte';
+  import {createEventDispatcher} from 'svelte'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
   let api = new API()
 
   let user = null
@@ -29,6 +29,18 @@
   function logout() {
     setUserLoggedOut()
   }
+
+  function facebookHandler() {
+    window.open('http://www.facebook.com','_blank')
+  }
+
+  function twitterHandler() {
+    window.open('http://www.twitter.com','_blank')
+  }
+  function instagramHandler() {
+    window.open('http://www.instagram.com','_blank')
+  }
+
 </script>
 
 <div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
@@ -52,15 +64,18 @@
 
   <div class="absolute social-icons text-center">
     <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
-         style="background-color: #88a8ee">
+         style="background-color: #88a8ee"
+         on:click={facebookHandler}>
       <Icon icon={faFacebookF}/>
     </div>
     <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
-         style="background-color: #9ce4ef">
+         style="background-color: #9ce4ef"
+         on:click={twitterHandler}>
       <Icon icon={faTwitter}/>
     </div>
     <div class="mx-auto w-12 h-12 rounded-full text-white text-xl flex items-center justify-center"
-         style="background-color: #efa09c">
+         style="background-color: #efa09c"
+         on:click={instagramHandler}>
       <Icon icon={faInstagram}/>
     </div>
   </div>
@@ -69,7 +84,7 @@
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
     justify-center {userLoggedIn ? 'active-cart': ''}">
-      <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''} />
+      <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''}/>
     </div>
 
     <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
@@ -116,6 +131,7 @@
 
   .social-icons > div:hover {
     transform: scale(1.1);
+    cursor: pointer;
   }
 
   .right-icons {
