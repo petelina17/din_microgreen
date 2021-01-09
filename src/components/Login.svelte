@@ -3,6 +3,7 @@
   import {Dialog, Button, TextField} from 'smelte'
   import {API} from '../api.js'
   import {setUserLoggedIn} from '../authorization'
+  import {link, push} from 'svelte-spa-router'
 
   export let showDialog = false
 
@@ -45,6 +46,10 @@
     showDialog = false
   }
 
+  function registrationHandler () {
+    push('/registration')
+  }
+
   // https://www.codespot.org/javascript-email-validation/
   function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -69,7 +74,9 @@
 
     eller
 
-    <div class="text-blue-500 underline cursor-pointer">Registrera dig</div>
+    <div class="text-blue-500 underline cursor-pointer">
+      <div on:click={registrationHandler}>Registrera dig</div>
+    </div>
   </div>
 
   <div slot="actions" class="text-center w-full">
