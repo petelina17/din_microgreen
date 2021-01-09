@@ -1,13 +1,19 @@
 import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
 import {userStore} from './store'
 import { get } from 'svelte/store'
+import { API } from './api'
 
 // create cookie and update store
-export function setUserLoggedIn(email) {
+export function setUserLoggedIn(email, firebaseUserData) {
+  // create cookie with email
   const now = new Date()
   now.setDate(now.getDate() + 1)
   setCookie('userId', email, {path: '/', expires: now.toGMTString()})
-  checkIfUserLoggedIn()
+
+  // update firebaseUserData data in store from firebaseUserData
+  const user = get(userStore)
+  user.data = firebaseUserData
+  userStore.set(user)
 }
 
 
@@ -18,17 +24,32 @@ export function setUserLoggedOut() {
 }
 
 // function connects store and cookie
-export function checkIfUserLoggedIn() {
+export async function checkIfUserLoggedIn() {
   const cookie = getCookie('userId')
   const user = get(userStore)
 
+  // if there is no cookie, clean store
   if (cookie == null) {
     user.data = null
     user.cartList = []
     user.favoriteList = []
   } else {
-    user.data = {}
+    // if cookie exists, get firebaseUserData data from firebase
+    const api = new API()
+    user.data = await api.getUser(cookie)
   }
-  // and put updated user object to store
+
+  // and put updated firebaseUserData object to store
   userStore.set(user)
+}
+
+// crypto-js -- JavaScript library of crypto standards.
+// https://github.com/brix/crypto-js
+//
+// SHA-256 is a cryptographic (one-way) hash function,
+// so there is no direct way to decode it
+//
+export function getHash(password) {
+  const hash = CryptoJS.SHA256(password).toString()
+  return hash
 }

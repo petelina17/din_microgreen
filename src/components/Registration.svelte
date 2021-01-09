@@ -6,6 +6,8 @@
   import SimpleHeader from './SimpleHeader.svelte'
   import Button from 'smelte/src/components/Button'
   import {TextField, Snackbar, Dialog, ProgressCircular} from 'smelte'
+  import {setUserLoggedIn, getHash} from '../authorization'
+  import {userStore} from '../store'
 
   let email = ''
   let firstName = ''
@@ -131,13 +133,23 @@
       return
     }
 
-
-    // put data in state
-
     // put data in firebase
+    const firebaseUserData = {
+      email: email,
+      firstName: firstName,
+      secondName: secondName,
+      address: address,
+      city: city,
+      zip: zip,
+      hash: getHash(password)
+    }
+    // TODO: send to firebase ...
+    // ...
 
-    // setUserLoggedIn
+    // setUserLoggedIn (create cookie, put data in state)
+    setUserLoggedIn(email, firebaseUserData)
 
+    console.log('userStore', $userStore)
     dialog.show = true
   }
 

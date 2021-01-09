@@ -11,7 +11,7 @@
   let email = ''
   let password = ''
   let isEmailValid = true
-  let user = {
+  let firebaseUserData = {
     email: null
   }
 
@@ -26,22 +26,22 @@
 
   async function loginHandler() {
     // check firebase
-    user = await api.getUser(email)
-    console.log('user from firebase', user)
+    firebaseUserData = await api.getUser(email)
+    console.log('firebaseUserData from firebase', firebaseUserData)
 
-    if (user.email == null) {
+    if (firebaseUserData.email == null) {
       loginError = 'Användare eller lösenord är fel, prova igen, tack.'
       return
     }
 
     // check password
-    if (user.hash !== getHash(password)) {
+    if (firebaseUserData.hash !== getHash(password)) {
       loginError = 'Användare eller lösenord är fel, prova igen, tack.'
       return
     }
 
     // update store
-    setUserLoggedIn(email)
+    setUserLoggedIn(email, firebaseUserData)
 
     showDialog = false
   }

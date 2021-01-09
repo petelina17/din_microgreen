@@ -7,7 +7,7 @@
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
   import {push} from 'svelte-spa-router'
   import {userStore} from '../store'
-  import {setUserLoggedIn, setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
+  import {setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
   import {createEventDispatcher} from 'svelte'
 
   const dispatch = createEventDispatcher()
@@ -17,8 +17,7 @@
   $: userLoggedIn = $userStore.data != null
 
   onMount(async () => {
-    checkIfUserLoggedIn()
-    // user = await api.getUser('bob@gmail.com')
+    await checkIfUserLoggedIn()
   })
 
   function login() {
