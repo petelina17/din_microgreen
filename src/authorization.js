@@ -43,6 +43,12 @@ export async function checkIfUserLoggedIn() {
   userStore.set(user)
 }
 
+export async function saveUser(userData) {
+  const api = new API()
+  const result = await api.setUser(userData)
+  return result
+}
+
 // crypto-js -- JavaScript library of crypto standards.
 // https://github.com/brix/crypto-js
 //

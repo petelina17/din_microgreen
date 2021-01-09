@@ -6,7 +6,7 @@
   import SimpleHeader from './SimpleHeader.svelte'
   import Button from 'smelte/src/components/Button'
   import {TextField, Snackbar, Dialog, ProgressCircular} from 'smelte'
-  import {setUserLoggedIn, getHash} from '../authorization'
+  import {setUserLoggedIn, getHash, saveUser} from '../authorization'
   import {userStore} from '../store'
 
   let email = ''
@@ -26,6 +26,8 @@
   let addressError = false
   let cityError = false
   let zipError = false
+
+  let serverError = ''
 
   let snackbar = {
     show: false,
@@ -143,8 +145,14 @@
       zip: zip,
       hash: getHash(password)
     }
-    // TODO: send to firebase ...
-    // ...
+
+    // send to firebase ...
+    const success = await saveUser(firebaseUserData)
+    if (!success) {
+      serverError = 'Något gick fel, vänligen försök igen'
+      return
+    }
+    serverError = ''
 
     // setUserLoggedIn (create cookie, put data in state)
     setUserLoggedIn(email, firebaseUserData)
@@ -212,6 +220,9 @@
             on:click={finishHandler}>
       Bekräfta
     </Button>
+
+    <div class="text-red-600 text-lg w-full text-center pt-5">{serverError}</div>
+
   </div>
 </div>
 

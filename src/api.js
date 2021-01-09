@@ -58,26 +58,11 @@ const products = [
 ]
 
 export class API {
-  constructor() {
-    // TODO: use Firebase instead of hardcoded list
-    this.users = {
-      'blake@gmail.com': {
-        firstName: 'blake', secondName: 'seamson', email: 'blake@gmail.com'
-      },
-      'bob@gmail.com': {
-        firstName: 'bob', secondName: 'dillan', email: 'bob@gmail.com'
-      },
-      'jessica@gmail.com': {
-        firstName: 'jessica', secondName: 'jones', email: 'jessica@gmail.com'
-      }
-    }
-  }
 
-  getUserMock(email) {
-    const user = this.users[email]
-    return user
-  }
-
+  //
+  // Get data with Cloud Firestore
+  //
+  // https://firebase.google.com/docs/firestore/query-data/get-data
   async getUser(email) {
     let user = {}
     const userRef = db.collection('users').doc(email)
@@ -89,8 +74,28 @@ export class API {
     return user
   }
 
-  setUser(user) {
-    this.users[user.email] = user
+  //
+  // Add data to Cloud Firestore
+  //
+  // https://firebase.google.com/docs/firestore/manage-data/add-data
+  async setUser(user) {
+    return false
+    try {
+      // check if user with same email is already exists
+      let firebaseUserData = await this.getUser(user.email)
+      if (firebaseUserData.email != null) {
+        // error, user already exists !
+        return false
+      }
+
+      // write to firebase
+      await db.collection('users').doc(user.email).set(user)
+      return true
+
+    } catch (err) {
+      console.log('ERROR:', err)
+      return false
+    }
   }
 
   getProducts() {
