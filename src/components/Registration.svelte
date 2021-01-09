@@ -147,9 +147,9 @@
     }
 
     // send to firebase ...
-    const success = await saveUser(firebaseUserData)
-    if (!success) {
-      serverError = 'Något gick fel, vänligen försök igen'
+    const error = await saveUser(firebaseUserData)
+    if (error) {
+      serverError = error
       return
     }
     serverError = ''

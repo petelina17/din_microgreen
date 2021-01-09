@@ -18,6 +18,7 @@
 
   onMount(async () => {
     await checkIfUserLoggedIn()
+    console.log('userStore', $userStore)
   })
 
   function login() {
