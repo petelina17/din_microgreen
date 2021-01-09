@@ -2,7 +2,7 @@
   // https://smeltejs.com/components/dialogs
   import {Dialog, Button, TextField} from 'smelte'
   import {API} from '../api.js'
-  import {setUserLoggedIn} from '../authorization'
+  import {setUserLoggedIn, getHash} from '../authorization'
   import {link, push} from 'svelte-spa-router'
 
   export let showDialog = false
@@ -16,13 +16,6 @@
   }
 
   let loginError = ''
-
-  // validateEmail(email)
-
-  function getHash(password) {
-    // TODO: fix it ...
-    return 'qwerty'
-  }
 
   async function loginHandler() {
     // check firebase
