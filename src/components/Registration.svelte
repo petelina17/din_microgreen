@@ -50,6 +50,7 @@
     return re.test(email.toLowerCase())
   }
 
+
   function isUserInputError() {
     let isError = false
 
@@ -206,6 +207,7 @@
       error={cityError}/>
 
       <TextField outlined label="Postort" bind:value={zip}
+                 type="number" max="99999" min="0"
       error={zipError}/>
 
       <TextField outlined label="Lösenord" bind:value={password}
