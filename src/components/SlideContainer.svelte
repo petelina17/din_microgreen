@@ -1,7 +1,8 @@
 <script>
   import {slide,blur,fly} from 'svelte/transition'
   import {quintInOut} from 'svelte/easing'
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
+  import Button from 'smelte/src/components/Button'
 
   const width = 1280
 
@@ -17,7 +18,7 @@
   This HTML code is customized component example from tailwind.css library
   https://tailwindui.com/components/application-ui/overlays/slide-overs
  -->
-<div class="fixed inset-0 overflow-auto">
+<div class="fixed inset-0 overflow-auto z-30">
   <div class="absolute inset-0 overflow-auto">
     <div in:blur="{{ duration: 100 }}" out:blur="{{ duration: 1000 }}"
          class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
@@ -31,6 +32,9 @@
 
       <div class="relative w-screen my-slide" >
 
+        <!--
+          icon CLOSE=====================================
+        -->
         <div class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
           <button class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                   on:click={close}>
