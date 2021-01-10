@@ -5,10 +5,11 @@
   import {faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
   import {faFileAlt} from '@fortawesome/free-regular-svg-icons'
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
-  import {push} from 'svelte-spa-router'
+  import {push,link} from 'svelte-spa-router'
   import {userStore} from '../store'
   import {setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
   import {createEventDispatcher} from 'svelte'
+
 
   const dispatch = createEventDispatcher()
   let api = new API()
@@ -47,11 +48,11 @@
   <div class="header flex items-center justify-end wrapper">
 
     <nav class="flex flex-wrap items-center header4 text-gray-200 uppercase opacity-100">
-      <div class="menu-item">Live kamera</div>
-      <div class="menu-item">Butik</div>
-      <div class="menu-item">Recept</div>
-      <div class="menu-item">Artiklar</div>
-      <div class="menu-item">Forum</div>
+      <div class="menu-item"><a href="/#/live-cam">Live kamera</a></div>
+      <div class="menu-item"><a href="/#shop">Butik</a></div>
+      <div class="menu-item"><a href="/#/recipes">Recept</a></div>
+      <div class="menu-item"><a href="/#/articles">Artiklar</a></div>
+      <div class="menu-item"><a href="/#/forum">Forum</a></div>
 
       {#if userLoggedIn}
         <div class="menu-item text-gray-500" on:click={logout}>logout</div>

@@ -51,7 +51,7 @@
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
-<ProductBanner/>
+<div id="shop"><ProductBanner/></div>
 
 <LinkBanner title="" button="Receptbok"
             img="smoky.jpg" link="/recipes"/>
