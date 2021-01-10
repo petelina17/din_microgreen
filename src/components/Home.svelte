@@ -39,44 +39,37 @@
 
 </script>
 
-<Header on:login={() => {showLoginForm = true}}/>
+<Header on:login={() => {showLoginForm = true}}
+        on:cart={()=> {showCart=true}}/>
 
 <TopBanner/>
 
 <ExpoBanner img={article.img} title={article.title} text={article.text}
             buttonPrimary={article.buttonPrimary}
             buttonSecondary={article.buttonSecondary}
-            />
+/>
 
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
-<div id="shop"><ProductBanner/></div>
+<div id="shop">
+  <ProductBanner/>
+</div>
 
 <LinkBanner title="" button="Receptbok"
             img="smoky.jpg" link="/recipes"/>
 
 <ExpoBanner img={forum.img} title={forum.title} text={forum.text}
-            buttonPrimary={forum.buttonPrimary} orient="right" />
+            buttonPrimary={forum.buttonPrimary} orient="right"/>
+
+{#if showCart === true}
+  <SlideContainer on:close={() => {showCart = false}}>
+    <Cart/>
+  </SlideContainer>
+{/if}
 
 <Footer/>
 
-<Login bind:showDialog={showLoginForm} />
+<Login bind:showDialog={showLoginForm}/>
 
 
-<!--
-<div style="height: 600px; background-color: #728e30">Home</div>
-
-<div style="height: 2000px; background-color: white">
-  <div on:click={() => {showCart = true}}>show cart</div>
-
-  <div>{showCart}</div>
-
-  {#if showCart === true}
-    <SlideContainer on:close={() => {showCart = false}}>
-      <Cart/>
-    </SlideContainer>
-  {/if}
-
-</div>
--->

@@ -1,13 +1,10 @@
 <script>
-  import {onMount} from 'svelte'
   import {API} from '../api.js'
   import Icon from 'fa-svelte'
   import {faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
-  import {faFileAlt} from '@fortawesome/free-regular-svg-icons'
   import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
-  import {push,link} from 'svelte-spa-router'
   import {userStore} from '../store'
-  import {setUserLoggedOut, checkIfUserLoggedIn} from '../authorization'
+  import {setUserLoggedOut} from '../authorization'
   import {createEventDispatcher} from 'svelte'
 
 
@@ -17,10 +14,6 @@
   let user = null
   $: userLoggedIn = $userStore.data != null
 
-  onMount(async () => {
-    await checkIfUserLoggedIn()
-    console.log('userStore', $userStore)
-  })
 
   function login() {
     dispatch('login')
@@ -32,19 +25,24 @@
   }
 
   function facebookHandler() {
-    window.open('http://www.facebook.com','_blank')
+    window.open('http://www.facebook.com', '_blank')
   }
 
   function twitterHandler() {
-    window.open('http://www.twitter.com','_blank')
+    window.open('http://www.twitter.com', '_blank')
   }
+
   function instagramHandler() {
-    window.open('http://www.instagram.com','_blank')
+    window.open('http://www.instagram.com', '_blank')
+  }
+
+  function cartHandler() {
+    dispatch('cart')
   }
 
 </script>
 
-<div class="bg-gray-600 bg-opacity-75 fixed w-full z-50 select-none">
+<div class="bg-gray-600 bg-opacity-75 fixed w-full z-20 select-none">
   <div class="header flex items-center justify-end wrapper">
 
     <nav class="flex flex-wrap items-center header4 text-gray-200 uppercase opacity-100">
@@ -83,30 +81,40 @@
 
   <div class="absolute right-icons text-center w-16">
 
-    <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
-    justify-center {userLoggedIn ? 'active-cart': ''}">
-      <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''}/>
-    </div>
+    <!--
+      ICON USER ========================================
+    -->
+    <a href="/#/account">
+      <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+                 justify-center {userLoggedIn ? 'active-cart': ''}">
+        <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''}/>
+      </div>
+    </a>
 
-    <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
+    <!--
+      ICON CART ========================================
+    -->
+      <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
                 text-xl flex items-center justify-center relative
-                {$userStore.cartList.length > 0 ? ' active-cart ' : ''}">
+                {$userStore.cartList.length > 0 ? ' active-cart ' : ''}"
+      on:click={cartHandler}>
 
-      {#if $userStore.cartList.length > 0}
-        <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
+        {#if $userStore.cartList.length > 0}
+          <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
 
-          <!--
-            Use reduce function to calculate sum of quantity of all items in cart
-            ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-          -->
-          {$userStore.cartList.reduce((sum, value) => {
-            return sum + value.qty
-          }, 0)}
-        </div>
-      {/if}
+            <!--
+              Use reduce function to calculate sum of quantity of all items in cart
+              ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+            -->
+            {$userStore.cartList.reduce((sum, value) => {
+              return sum + value.qty
+            }, 0)}
+          </div>
+        {/if}
 
-      <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
-    </div>
+        <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
+
+      </div>
   </div>
 </div>
 
