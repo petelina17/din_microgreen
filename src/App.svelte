@@ -7,7 +7,7 @@
 	import {faUserCircle} from '@fortawesome/free-solid-svg-icons/faUserCircle'
 	import {Button} from 'smelte'
 	import {getURL} from './main'
-	import {userStore} from './store'
+	import {userStore, loadCartFromCookie} from './store'
 	import Header from './components/Header.svelte'
 	import Home from './components/Home.svelte'
 	import LiveCam from './components/LiveCam.svelte'
@@ -17,23 +17,29 @@
 	import Recipes from './components/Recipes.svelte'
 	import RecipeForm from './components/RecipeForm.svelte'
 	import UnderConstruction from './components/UnderConstruction.svelte'
+	import Cart from './components/Cart.svelte'
+	import {checkIfUserLoggedIn} from './authorization'
 
   // Routs for website
 	const routes = {
 		'/': Home,
 		'/live-cam': UnderConstruction,
 		'/registration': Registration,
-		'/account': MyAccount,
+		'/account': UnderConstruction,
+		'/cart': Cart,
 		'/recipes': UnderConstruction,
 		'/recipe/new': RecipeForm,
 		'/recipe/:id': RecipeForm,
 		'/articles': UnderConstruction,
 		'/articles/:id':UnderConstruction,
 		'/forum':UnderConstruction
-
-
-
 	}
+
+	onMount(async () => {
+		await checkIfUserLoggedIn()
+		loadCartFromCookie()
+		console.log('userStore', $userStore)
+	})
 </script>
 
 <main class="text-offblack">
