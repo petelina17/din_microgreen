@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store'
-import {img, price, productId, subtitle, title} from './components/ProductCard.svelte'
+import {get, writable} from 'svelte/store'
+import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
 
 let user = {
   data: null,
@@ -18,3 +18,20 @@ export let productList = writable(list)
 
 export let selectedProduct = writable({})
 
+export function saveCartToCookie() {
+  const user = get(userStore)
+  setCookie('cartList', JSON.stringify(user.cartList))
+}
+
+export function loadCartFromCookie() {
+  const cookie = getCookie('cartList')
+  if (cookie == null) {
+    return
+  }
+
+  const cartList = JSON.parse(cookie)
+
+  const user = get(userStore)
+  user.cartList = cartList
+  userStore.set(user)
+}
