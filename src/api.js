@@ -10,49 +10,49 @@ const products = [
     productId: '1',
     title: 'Senap mikrogrönt',
     subtitle: 'förp. 50g',
-    price: '13.00 kr',
+    price: 13.00,
     img: 'senap.jpg'
   },
   {
     productId: '2',
     title: 'Rödkål mikrogrönt',
     subtitle: 'förp. 45g',
-    price: '11.00 kr',
+    price: 11.00,
     img: 'redis.jpg'
   },
   {
     productId: '3',
     title: 'Ärtor mikrogrönt',
     subtitle: 'förp. 50g',
-    price: '12.65 kr',
+    price: 12.65,
     img: 'goroh.jpg'
   },
   {
     productId: '4',
     title: 'Grönkål mikrogrönt',
     subtitle: 'förp. 70g',
-    price: '15.00 kr',
+    price: 15.00,
     img: 'clover.jpg'
   },
   {
     productId: '5',
     title: 'Vitkål mikrogrönt',
     subtitle: 'förp. 60g',
-    price: '20.00 kr',
+    price: 20.00,
     img: 'camera.jpg'
   },
   {
     productId: '6',
     title: 'Solros mikrogrönt',
     subtitle: 'förp. 60g',
-    price: '14.50 kr',
+    price: 14.50,
     img: 'camera.jpg'
   },
   {
     productId: '7',
     title: 'Koriander mikrogrönt',
     subtitle: 'förp. 60g',
-    price: '15.50 kr',
+    price: 15.50,
     img: 'camera.jpg'
   },
 ]
