@@ -16,17 +16,20 @@
 	import MyAccount from './components/MyAccount.svelte'
 	import Recipes from './components/Recipes.svelte'
 	import RecipeForm from './components/RecipeForm.svelte'
-
+	import UnderConstruction from './components/UnderConstruction.svelte'
 
   // Routs for website
 	const routes = {
 		'/': Home,
-		'/live-cam': LiveCam,
+		'/live-cam': UnderConstruction,
 		'/registration': Registration,
 		'/account': MyAccount,
-		'/recipes': Recipes,
+		'/recipes': UnderConstruction,
 		'/recipe/new': RecipeForm,
 		'/recipe/:id': RecipeForm,
+		'/articles': UnderConstruction,
+		'/articles/:id':UnderConstruction,
+		'/forum':UnderConstruction
 
 
 

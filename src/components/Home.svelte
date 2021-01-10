@@ -22,8 +22,8 @@
            non varius ipsum molestie. Proin auctor est sit amet justo laoreet,
            ultricies faucibus libero tincidunt. Praesent elementum tellus sit amet ligula
            fermentum, eu tempus purus commodo. Nunc nibh sapien.`,
-    buttonPrimary: {label: 'Läs mer', link: ''},
-    buttonSecondary: {label: 'Till artiklar', link: ''}
+    buttonPrimary: {label: 'Läs mer', link: '/articles/1'},
+    buttonSecondary: {label: 'Till artiklar', link: '/articles'}
   }
 
   let forum = {
@@ -34,7 +34,7 @@
            non varius ipsum molestie. Proin auctor est sit amet justo laoreet,
            ultricies faucibus libero tincidunt. Praesent elementum tellus sit amet ligula
            fermentum, eu tempus purus commodo.`,
-    buttonPrimary: {label: 'Till forum', link: ''}
+    buttonPrimary: {label: 'Till forum', link: '/forum'}
   }
 
 </script>
@@ -44,7 +44,9 @@
 <TopBanner/>
 
 <ExpoBanner img={article.img} title={article.title} text={article.text}
-            buttonPrimary={article.buttonPrimary} buttonSecondary={article.buttonSecondary} />
+            buttonPrimary={article.buttonPrimary}
+            buttonSecondary={article.buttonSecondary}
+            />
 
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>

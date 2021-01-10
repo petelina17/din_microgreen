@@ -1,5 +1,6 @@
 <script>
   import Button from 'smelte/src/components/Button'
+  import {push} from 'svelte-spa-router'
 
   export let img = 'img'
   export let title = 'title'
@@ -26,7 +27,8 @@
       <div class="header4 mt-12">
         <!-- show button if only prop for button is defined-->
         {#if buttonPrimary != null}
-          <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4">
+          <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4"
+          on:click={()=> {push(buttonPrimary.link)}}>
             {buttonPrimary.label}
           </Button>
         {/if}
@@ -34,7 +36,8 @@
         {#if buttonSecondary != null}
           <Button light color="colorC"
                   remove="text-sm text-white uppercase"
-                  add="rounded-full w-64 h-16 header4 text-offblack mb-4">
+                  add="rounded-full w-64 h-16 header4 text-offblack mb-4"
+                  on:click={()=> {push(buttonSecondary.link)}}>
             {buttonSecondary.label}
           </Button>
         {/if}

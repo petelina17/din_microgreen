@@ -1,9 +1,11 @@
 <script>
   import Button from 'smelte/src/components/Button'
-  import {link, push} from 'svelte-spa-router'
+  import {push} from 'svelte-spa-router'
+
   export let img = ''
   export let title = 'default text'
   export let button = 'button'
+  export let link = ''
 
   function linkHandler() {
     push(link)
