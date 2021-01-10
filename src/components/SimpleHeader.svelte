@@ -1,10 +1,11 @@
 <script>
   import Icon from 'fa-svelte'
-  import { createEventDispatcher } from 'svelte'
+  import {createEventDispatcher} from 'svelte'
 
   export let title = 'no title'
   export let icon = null
   export let bgColor = 'bg-primary-600'
+  export let noClose = false
 
   let dispatch = createEventDispatcher()
 
@@ -14,15 +15,18 @@
 </script>
 
 <div class={"h-32 text-offwhite " + bgColor}>
-  <div class="wrapper h-full flex items-center">
+  <div class="wrapper h-full flex items-center pl-8 ">
 
-    <div class="rounded-full w-16 h-16 bg-gray-200 flex items-center justify-center
+    {#if icon != null}
+      <div class="rounded-full w-16 h-16 bg-gray-200 flex items-center justify-center
                 text-2xl text-gray-500 hover:bg-gray-50">
-      <Icon icon={icon}/>
-    </div>
+        <Icon icon={icon}/>
+      </div>
+    {/if}
 
     <div class="flex-grow header2">{title}</div>
 
+    {#if noClose === false}
     <div class="rounded-full w-16 h-16 bg-gray-200 flex items-center justify-center
                 text-2xl text-gray-500 hover:bg-gray-50"
          on:click={closeHandler}>
@@ -31,6 +35,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </div>
+      {/if}
 
   </div>
 </div>
