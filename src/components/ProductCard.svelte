@@ -4,12 +4,12 @@
   import {faHeart} from '@fortawesome/free-regular-svg-icons'
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
-  import {userStore} from '../store'
+  import {saveCartToCookie, userStore} from '../store'
 
   export let img = ''
   export let title = 'produkt A'
   export let subtitle = 'förpakning'
-  export let price = '99.00 kr'
+  export let price = '99.00'
   export let button = 'Lägg till'
   export let productId = ''
 
@@ -46,6 +46,7 @@
     }
     // update quantity of items in cart
     $userStore.cartNumber = $userStore.cartList.length
+    saveCartToCookie()
   }
 
   // Add or delete favorite product from favorite list
@@ -76,7 +77,7 @@
 
   <div class="text2">{subtitle}</div>
 
-  <div class="header3 mt-5 mb-4">{price}</div>
+  <div class="header3 mt-5 mb-4">{price.toFixed(2)} kr</div>
 
   <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
           on:click={cartHandler}>
