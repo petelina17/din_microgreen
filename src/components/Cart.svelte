@@ -57,7 +57,7 @@
 
       <Button remove="text-sm uppercase"
               add="rounded-full w-64 h-16 header4 mb-4"
-              disabled={$userStore.data == null}
+              disabled={$userStore.data == null || $userStore.cartList.length === 0}
               on:click={nextHandler}>
         Till kassan
       </Button>

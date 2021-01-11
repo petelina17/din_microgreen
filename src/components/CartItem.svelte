@@ -1,4 +1,5 @@
 <script>
+  import {userStore} from '../store'
   import {faTrashAlt} from '@fortawesome/free-regular-svg-icons'
   import Icon from 'fa-svelte'
 
@@ -13,7 +14,7 @@
   $: totalPrice = qty * unitPrice
 
   function deleteHandler() {
-
+    $userStore.cartList = $userStore.cartList.filter(item => item.productData.productId !== productId)
   }
 
 </script>
@@ -21,7 +22,8 @@
 <div class="flex py-6 border-b body-1 border-gray-400">
   <div class="w-24 text-center pl-3">
     <div class="w-16 h-16 rounded-full bg-red-500 bg-cover img-placeholder"
-         style={"background-image: url('img/" + img + "');"}>&nbsp</div>
+         style={"background-image: url('img/" + img + "');"}>&nbsp
+    </div>
   </div>
 
   <div class="text-left px-3 w-1/2">
@@ -41,7 +43,7 @@
   <div>
     <div class="cursor-pointer w-10 h-10 rounded-full hover:bg-gray-200
                 flex items-center justify-center"
-    on:click={deleteHandler}>
+         on:click={deleteHandler}>
       <Icon icon={faTrashAlt}/>
     </div>
   </div>
