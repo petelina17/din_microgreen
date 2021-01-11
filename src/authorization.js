@@ -41,6 +41,7 @@ export async function checkIfUserLoggedIn() {
 
   // and put updated firebaseUserData object to store
   userStore.set(user)
+  return user.data != null
 }
 
 export async function saveUser(userData) {
