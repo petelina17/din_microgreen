@@ -6,7 +6,9 @@ let user = {
   cartNumber: 0,
   favoriteNumber:0,
   favoriteList: [],
-  cartList: []
+  cartList: [],
+  buyProcess: null
+
 };
 export let userStore = writable(user)
 
