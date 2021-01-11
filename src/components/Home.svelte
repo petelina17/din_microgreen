@@ -9,10 +9,16 @@
   import ProductBanner from './ProductBanner.svelte'
   import Footer from './Footer.svelte'
   import Login from './Login.svelte'
+  import Registration from './Registration.svelte'
+  import CartPayment from './CartPayment.svelte'
+  import CartFinal from './CartFinal.svelte'
+  import {checkIfUserLoggedIn} from '../authorization'
+  import {userStore} from '../store'
 
 
   let showCart = false
   let showLoginForm = false
+
 
   let article = {
     img: 'redis.jpg',
@@ -37,10 +43,16 @@
     buttonPrimary: {label: 'Till forum', link: '/forum'}
   }
 
+  async function cartNextHandler() {
+    // const loggedIn = await checkIfUserLoggedIn()
+
+    $userStore.buyProcess = 'payment'
+  }
+
 </script>
 
 <Header on:login={() => {showLoginForm = true}}
-        on:cart={()=> {showCart=true}}/>
+        on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
 
 <TopBanner/>
 
@@ -62,9 +74,26 @@
 <ExpoBanner img={forum.img} title={forum.title} text={forum.text}
             buttonPrimary={forum.buttonPrimary} orient="right"/>
 
-{#if showCart === true}
-  <SlideContainer on:close={() => {showCart = false}}>
-    <Cart/>
+{#if $userStore.buyProcess != null}
+  <SlideContainer on:close={() => {$userStore.buyProcess = null}}>
+
+    {#if $userStore.buyProcess === 'cart'}
+
+      <Cart on:next={cartNextHandler}/>
+
+    <!--{:else if $userStore.buyProcess === 'registration'}-->
+
+<!--      <Registration on:success={()=>{$userStore.buyProcess = 'payment'}}/>-->
+
+    {:else if $userStore.buyProcess === 'payment'}
+
+      <CartPayment on:success={()=>{$userStore.buyProcess = 'final'}} />
+
+    {:else if $userStore.buyProcess === 'final'}
+
+      <CartFinal/>
+    {/if}
+
   </SlideContainer>
 {/if}
 

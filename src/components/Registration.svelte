@@ -1,13 +1,15 @@
 <script>
   import Icon from 'fa-svelte'
   import {faUser} from '@fortawesome/free-solid-svg-icons'
-  import {push} from 'svelte-spa-router'
+  import {push,location} from 'svelte-spa-router'
   import {createEventDispatcher} from 'svelte'
   import SimpleHeader from './SimpleHeader.svelte'
   import Button from 'smelte/src/components/Button'
   import {TextField, Snackbar, Dialog, ProgressCircular} from 'smelte'
   import {setUserLoggedIn, getHash, saveUser} from '../authorization'
   import {userStore} from '../store'
+
+  const dispatch = createEventDispatcher()
 
   let email = ''
   let firstName = ''
@@ -159,11 +161,21 @@
     setUserLoggedIn(email, firebaseUserData)
 
     console.log('userStore', $userStore)
-    dialog.show = true
+
+    // component Registration decides here the format of showing
+    // registration form, based on path:
+    if ($location === '/registration') {
+      dialog.show = true
+    } else {
+      dispatch('success')
+    }
   }
 
   function closeHandler() {
-    push('/')
+    if ($userStore.buyProcess === 'cart') {
+      $userStore.buyProcess = 'payment'
+    }
+     push('/')
   }
 
 </script>

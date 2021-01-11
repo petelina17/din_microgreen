@@ -3,20 +3,26 @@
   import {userStore} from '../store'
   import CartItem from './CartItem.svelte'
   import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
-  import Button  from 'smelte/src/components/Button'
+  import Button from 'smelte/src/components/Button'
+  import {createEventDispatcher} from 'svelte'
+  import Login from './Login.svelte'
 
-  $: cartTotal = $userStore.cartList.reduce((sum,item)=>{
+  const dispatch = createEventDispatcher()
+
+  let showLoginForm = false
+
+  $: cartTotal = $userStore.cartList.reduce((sum, item) => {
     return sum + item.productData.price * item.qty
   }, 0)
 
   function nextHandler() {
-
+    dispatch('next')
   }
 </script>
 
 <div class="w-full h-full main">
   <SimpleHeader noClose={true} title="Din varukorg" icon={faShoppingCart}
-    bgColor="bg-gray-700"
+                bgColor="bg-gray-700"
   />
 
   <div class="flex flex-wrap pt-12">
@@ -36,11 +42,22 @@
         />
       {/each}
     </div>
+
     <div class="text-center lg:w-1/3 w-full">
 
       <div class="header2 mb-8">{cartTotal.toFixed(2)} kr</div>
 
-      <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
+      {#if $userStore.data == null}
+        <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
+                on:click={()=>{showLoginForm = true}}>
+          Logga in
+        </Button>
+
+      {/if}
+
+      <Button remove="text-sm uppercase"
+              add="rounded-full w-64 h-16 header4 mb-4"
+              disabled={$userStore.data == null}
               on:click={nextHandler}>
         Till kassan
       </Button>
@@ -50,6 +67,8 @@
 
 
 </div>
+
+<Login bind:showDialog={showLoginForm}/>
 
 <style>
   .main {
