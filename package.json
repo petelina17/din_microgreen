@@ -22,6 +22,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "axios": "^0.21.1",
+    "material-icons": "^0.5.2",
     "sirv-cli": "^1.0.0",
     "smelte": "^1.0.16",
     "svelte-spa-router": "^3.0.3",

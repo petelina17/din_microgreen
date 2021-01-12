@@ -48,7 +48,8 @@
       <div class="header2 mb-8">{cartTotal.toFixed(2)} kr</div>
 
       {#if $userStore.data == null}
-        <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-4"
+        <Button remove="text-sm uppercase"
+                add="rounded-full w-64 h-16 header4 mb-4"
                 on:click={()=>{showLoginForm = true}}>
           Logga in
         </Button>
