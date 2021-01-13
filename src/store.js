@@ -7,9 +7,9 @@ let user = {
   favoriteNumber:0,
   favoriteList: [],
   cartList: [],
-  buyProcess: null
+  buyProcess: null,
+}
 
-};
 export let userStore = writable(user)
 
 let searchText = ''
@@ -19,6 +19,8 @@ let list = []
 export let productList = writable(list)
 
 export let selectedProduct = writable({})
+
+export let orderNumber = writable('')
 
 export function saveCartToCookie() {
   const user = get(userStore)
@@ -36,4 +38,14 @@ export function loadCartFromCookie() {
   const user = get(userStore)
   user.cartList = cartList
   userStore.set(user)
+}
+
+export function clearCart() {
+  // 1. clear cart list in store
+  const user = get(userStore)
+  user.cartList = []
+  userStore.set(user)
+
+  // 2. clear cookie with cart list
+  removeCookie('cartList')
 }
