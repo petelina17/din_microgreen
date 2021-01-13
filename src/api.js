@@ -5,6 +5,8 @@
 //
 // }
 
+import {userStore} from './store'
+
 const products = [
   {
     productId: '1',
@@ -64,18 +66,24 @@ export class API {
   //
   // https://firebase.google.com/docs/firestore/query-data/get-data
   async getUser(email) {
-    let user = {}
+    // data is for userStore.data
+    let data = {}
     const userRef = db.collection('users').doc(email)
 
     let doc = await userRef.get()
     if (doc.exists) {
-      user = doc.data()
+      data = doc.data()
+
+      if (data.orders == null) {
+        data.orders = []
+      }
     }
-    return user
+
+    return data
   }
 
   //
-  // Add data to Cloud Firestore
+  // Add NEW USER data to Cloud Firestore
   //
   // https://firebase.google.com/docs/firestore/manage-data/add-data
   async setUser(user) {
@@ -88,7 +96,25 @@ export class API {
       }
 
       // write to firebase
-      await db.collection('users').doc(user.email).set(user)
+      const result = await db.collection('users').doc(user.email).set(user)
+      console.log('firebase save result:', result)
+      return null
+
+    } catch (err) {
+      console.log('ERROR:', err)
+      return err.message
+    }
+  }
+
+  //
+  // update USER data to Cloud Firestore
+  //
+  // https://firebase.google.com/docs/firestore/manage-data/add-data
+  async updateUser(user) {
+    try {
+      // write to firebase
+      const result = await db.collection('users').doc(user.email).set(user)
+      console.log('firebase save result:', result)
       return null
 
     } catch (err) {

@@ -44,11 +44,20 @@ export async function checkIfUserLoggedIn() {
   return user.data != null
 }
 
-export async function saveUser(userData) {
+export async function createNewUser(userData) {
   const api = new API()
+  console.log('sending new user to firebase:', userData)
   const result = await api.setUser(userData)
   return result
 }
+
+export async function updateUser(userData) {
+  const api = new API()
+  console.log('sending update user to firebase:', userData)
+  const result = await api.updateUser(userData)
+  return result
+}
+
 
 // crypto-js -- JavaScript library of crypto standards.
 // https://github.com/brix/crypto-js
