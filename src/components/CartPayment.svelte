@@ -33,6 +33,8 @@
     mobil: ''
   }
 
+  let mobilErr = false
+
   let visaData = {
     number: '',
     month: '',
@@ -41,7 +43,78 @@
     cvv: ''
   }
 
+  let numberErr = false
+  let monthErr = false
+  let yearErr = false
+  let holderErr = false
+  let cvvErr = false
+
+  function isUserInputError() {
+    let isError = false
+
+    if (swish === true) {
+      // verify mobile number
+      if (swishData.mobil === '') {
+        mobilErr = 'vänligen ange mobilnummer'
+        isError = true
+      } else {
+        mobilErr = false
+      }
+    }
+
+    if (visa === true) {
+
+
+      // verify card number
+      if (visaData.number === '') {
+        numberErr = 'vänligen ange kortnummer 10 siffror'
+        isError = true
+      } else {
+        numberErr = false
+      }
+
+      // verify month
+      if (visaData.month === '') {
+        monthErr = 'prova igen'
+        isError = true
+      } else {
+        monthErr = false
+      }
+
+      // verify year
+      if (visaData.year === '') {
+        yearErr = 'prova igen'
+        isError = true
+      } else {
+        yearErr = false
+      }
+
+      // verify cardholder
+      if (visaData.holder === '') {
+        holderErr = 'vänligen ange namn och efternamn'
+        isError = true
+      } else {
+        holderErr = false
+      }
+
+      // verify cvv
+      if (visaData.cvv === '') {
+        cvvErr = 'vänligen ange cvv'
+        isError = true
+      } else {
+        cvvErr = false
+      }
+    }
+
+    return isError
+  }
+
+
   function finishHandler() {
+    // if any field is incorrect than stop and return
+    if (isUserInputError() === true) {
+      return
+    }
     spinner = true
     setTimeout(() => {
       spinner = false
@@ -108,20 +181,25 @@
 
       <div class="pl-6 text-left flex py-3">
         <Checkbox class="header4" color="primary"
-                  label="Betala direkt - SWISH"
+                  label="Betala med SWISH"
                   bind:checked={swish}
                   on:change={() => { visa = false }}
         />
       </div>
       {#if swish === true}
         <div class="py-3 w-full p-8">
-          <TextField bind:value={swishData.mobil} label="Mobilnummer" outlined />
+          <TextField bind:value={swishData.mobil}
+                     label="Mobilnummer"
+                     placeholder="+46 XXX XX XX XX"
+                     type="number"
+                     error={mobilErr}
+                     outlined/>
         </div>
       {/if}
 
       <div class="pl-6 text-left flex py-3">
         <Checkbox class="header4" color="primary"
-                  label="Betalkort - VISA"
+                  label="Betala med Visa"
                   bind:checked={visa}
                   on:change={() => { swish = false }}
         />
@@ -129,20 +207,49 @@
       {#if visa === true}
         <div class="py-3 w-full px-8">
           <div>
-            <TextField bind:value={visaData.number} label="Kortnummer" outlined />
+            <TextField bind:value={visaData.number}
+                       label="Kortnummer"
+                       placeholder="XXXX-XXXX-XXXX-XXXX"
+                       type="number"
+                       error={numberErr}
+                       outlined/>
           </div>
           <div class="flex">
-            <TextField class="mr-8" bind:value={visaData.month} label="Månad" outlined />
-            <TextField bind:value={visaData.year} label="År" outlined />
+            <TextField class="mr-8" bind:value={visaData.month}
+                       label="Månad"
+                       placeholder="XX/--"
+                       type="number"
+                       min="1"
+                       max="12"
+                       outlined
+                       error={monthErr}/>
+            <TextField bind:value={visaData.year}
+                       label="År"
+                       placeholder="--/XX"
+                       type="number"
+                       error={yearErr}
+                       outlined/>
           </div>
           <div>
-            <TextField bind:value={visaData.number} label="Kortenehavare" outlined />
+            <TextField bind:value={visaData.holder}
+                       label="Kortinnehavare"
+                       placeholder="Namn Efternamn"
+                       type=""
+                       error={holderErr}
+                       outlined/>
           </div>
           <div>
-            <TextField bind:value={visaData.number} label="CVV" outlined />
+            <TextField bind:value={visaData.cvv}
+                       label="CVV"
+                       placeholder="XXX"
+                       type="number"
+                       error={cvvErr}
+                       outlined/>
           </div>
         </div>
       {/if}
+
+      <!--      <div class="kassa header4">Välj beställningsalternativ</div>-->
 
     </div>
 
@@ -160,7 +267,7 @@
       <div>
         <Button remove="text-sm uppercase"
                 add="rounded-full w-64 h-16 header4 mb-4"
-                disabled={spinner === true}
+                disabled={spinner === true || (swish === false && visa === false)}
                 on:click={finishHandler}>
           Slutför köp
         </Button>
