@@ -22,24 +22,27 @@
 
   let article = {
     img: 'redis.jpg',
-    title: 'Lorem ipsum',
-    text: `Donec volutpat enim nibh, sit amet eleifend velit congue ac. Suspendisse maximus
-           felis sed nulla cursus facilisis. Vivamus sollicitudin augue vel nisi rutrum,
-           non varius ipsum molestie. Proin auctor est sit amet justo laoreet,
-           ultricies faucibus libero tincidunt. Praesent elementum tellus sit amet ligula
-           fermentum, eu tempus purus commodo. Nunc nibh sapien.`,
+    title: 'Mikrogrönt - guide till ett friskare & smalare liv',
+    text: ` Mikrogrönt är små hälsobomber man kan odla enkelt hemma i köksfönstret
+           och skotten börjar ofta växa på bara några dagar. Skott är fullproppade med
+           vitaminer och mineraler. De unga små plantorna är extra näringsrika eftersom plantan
+          behöver all näringen den kan få för att kunna gro växa sig stor. När vi skördar
+          plantan när den är så pass ung är all näringen koncentrerad och ett litet skott
+          kan innehålla upp till 40 gånger mer näring än om plantan skulle få växa sig stor.
+
+    `,
     buttonPrimary: {label: 'Läs mer', link: '/articles/1'},
     buttonSecondary: {label: 'Till artiklar', link: '/articles'}
   }
 
   let forum = {
     img: 'forunNew.jpg',
-    title: 'Fusce laoreet',
-    text: `Volutpat enim nibh, sit amet eleifend velit congue ac. Suspendisse maximus
-           felis sed nulla cursus facilisis. Vivamus sollicitudin augue vel nisi rutrum,
-           non varius ipsum molestie. Proin auctor est sit amet justo laoreet,
-           ultricies faucibus libero tincidunt. Praesent elementum tellus sit amet ligula
-           fermentum, eu tempus purus commodo.`,
+    title: 'Din Microgreen forum',
+    text: `1/11, 2020 kl. 22:06
+
+         "Carl, Skåne:   Min erfarenhet av odling... valt att satsa på vertikal inomhusodling med främsta
+          odlingsmetod som hydroponi. I februari 2019 startade jag på riktigt med odlingen och har aven sålt en del till lokala restauranger!
+          Är det nån som vet..." `,
     buttonPrimary: {label: 'Till forum', link: '/forum'}
   }
 
@@ -81,13 +84,13 @@
 
       <Cart on:next={cartNextHandler}/>
 
-    <!--{:else if $userStore.buyProcess === 'registration'}-->
+      <!--{:else if $userStore.buyProcess === 'registration'}-->
 
-<!--      <Registration on:success={()=>{$userStore.buyProcess = 'payment'}}/>-->
+      <!--      <Registration on:success={()=>{$userStore.buyProcess = 'payment'}}/>-->
 
     {:else if $userStore.buyProcess === 'payment'}
 
-      <CartPayment on:success={()=>{$userStore.buyProcess = 'final'}} />
+      <CartPayment on:success={()=>{$userStore.buyProcess = 'final'}}/>
 
     {:else if $userStore.buyProcess === 'final'}
 
