@@ -98,7 +98,7 @@ export default {
 					secondary: "#BDBDBD",
 					error: "#f44336",
 					success: "#4caf50",
-					alert: "#ff9800",
+					alert: "#ffeea9",
 					blue: "#2196f3",
 					dark: "#212121",
 					accent:"#F2C94C",

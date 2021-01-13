@@ -5,7 +5,7 @@
 	import {onMount} from 'svelte'
 	import Icon from 'fa-svelte'
 	import {faUserCircle} from '@fortawesome/free-solid-svg-icons/faUserCircle'
-	import {Button} from 'smelte'
+	import {Button, Snackbar} from 'smelte'
 	import {getURL} from './main'
 	import {userStore, loadCartFromCookie} from './store'
 	import Header from './components/Header.svelte'
@@ -35,12 +35,27 @@
 		'/forum':UnderConstruction
 	}
 
+	let showAlert = false
+
 	onMount(async () => {
+		showAlert = true
 		await checkIfUserLoggedIn()
 		loadCartFromCookie()
 		console.log('userStore', $userStore)
 	})
 </script>
+
+
+<Snackbar color="alert" top timeout={10000} bind:value={showAlert} noAction={false}
+					class="pointer-events-auto flex absolute py-2 px-4 z-30 mb-4 content-between mx-auto
+      rounded items-center elevation-2 h-32 px-10">
+	<div class="text-lg text-offblack" >
+		OBS! Detta är demoprojekt skapat för utbildningsändamål och är inte avsett för annat bruk
+	</div>
+	<div slot="action">
+		<Button  text on:click={() => (showAlert = false)}>Stäng</Button>
+	</div>
+</Snackbar>
 
 <main class="text-offblack">
 	<Router {routes}/>
