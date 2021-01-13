@@ -1,12 +1,13 @@
 <script>
   import SimpleHeader from './SimpleHeader.svelte'
-  import {userStore} from '../store'
+  import {userStore, orderNumber} from '../store'
   import CartItem from './CartItem.svelte'
   import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
   import Button from 'smelte/src/components/Button'
   import Checkbox from 'smelte/src/components/Checkbox/Checkbox.svelte'
   import {createEventDispatcher} from 'svelte'
   import {ProgressCircular, TextField} from 'smelte'
+  import {updateUser} from '../authorization'
 
   const dispatch = createEventDispatcher()
 
@@ -115,12 +116,29 @@
     if (isUserInputError() === true) {
       return
     }
+
     spinner = true
-    setTimeout(() => {
+    setTimeout(async () => {
+      await createOrder()
       spinner = false
       dispatch('success')
     }, 4000)
 
+  }
+  async function createOrder() {
+    const number = Date.now().toString()
+    $orderNumber = number.substr(6, 20)
+
+    const order = {
+      date: new Date().toISOString(),
+      number: number,
+      // make "hard" copy cart items ==========================
+      items: JSON.parse(JSON.stringify($userStore.cartList))
+    }
+    $userStore.data.orders = [...$userStore.data.orders, order]
+
+    // send user data with orders to firebase
+    await updateUser($userStore.data)
   }
 
   // Make possible one check box active in a time

@@ -6,7 +6,7 @@
   import SimpleHeader from './SimpleHeader.svelte'
   import Button from 'smelte/src/components/Button'
   import {TextField, Snackbar, Dialog, ProgressCircular} from 'smelte'
-  import {setUserLoggedIn, getHash, saveUser} from '../authorization'
+  import {setUserLoggedIn, getHash, createNewUser} from '../authorization'
   import {userStore} from '../store'
 
   const dispatch = createEventDispatcher()
@@ -150,7 +150,7 @@
     }
 
     // send to firebase ...
-    const error = await saveUser(firebaseUserData)
+    const error = await createNewUser(firebaseUserData)
     if (error) {
       serverError = error
       return

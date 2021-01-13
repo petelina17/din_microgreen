@@ -94,7 +94,7 @@
 
     {:else if $userStore.buyProcess === 'final'}
 
-      <CartFinal/>
+      <CartFinal on:close={() => {$userStore.buyProcess = null}}/>
     {/if}
 
   </SlideContainer>
