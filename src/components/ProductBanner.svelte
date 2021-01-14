@@ -43,15 +43,19 @@
       <Icon class="text-gray-600" icon={faChevronLeft}/>
     </div>
 
-    {#each carousel as product}
-      <ProductCard img={product.img}
-                   title={product.title}
-                   subtitle={product.subtitle}
-                   price={product.price}
-                   button="Lägg till"
-                   productId={product.productId}
-      />
-    {/each}
+    <div class="flex flex-wrap">
+      {#each carousel as product}
+        <div class="">
+          <ProductCard img={product.img}
+                       title={product.title}
+                       subtitle={product.subtitle}
+                       price={product.price}
+                       button="Lägg till"
+                       productId={product.productId}
+          />
+        </div>
+      {/each}
+    </div>
 
     <div class="h-16 w-16 rounded-full absolute bg-gray-100 hover:bg-gray-200
       text-xl flex items-center justify-center right-icon cursor-pointer"
