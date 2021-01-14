@@ -4,6 +4,7 @@
   import {API} from '../api.js'
   import {setUserLoggedIn, getHash} from '../authorization'
   import {link, push} from 'svelte-spa-router'
+  import {userStore} from '../store'
 
   export let showDialog = false
 
@@ -40,6 +41,11 @@
   }
 
   function registrationHandler () {
+    if ($userStore.buyProcess === 'cart') {
+      $userStore.buyProcess = 'registration'
+      showDialog = false
+      return
+    }
     push('/registration')
   }
 

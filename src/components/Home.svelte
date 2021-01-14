@@ -67,6 +67,7 @@
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
+
 <div id="shop">
   <ProductBanner/>
 </div>
@@ -77,6 +78,8 @@
 <ExpoBanner img={forum.img} title={forum.title} text={forum.text}
             buttonPrimary={forum.buttonPrimary} orient="right"/>
 
+<!--
+
 {#if $userStore.buyProcess != null}
   <SlideContainer on:close={() => {$userStore.buyProcess = null}}>
 
@@ -84,9 +87,9 @@
 
       <Cart on:next={cartNextHandler}/>
 
-      <!--{:else if $userStore.buyProcess === 'registration'}-->
+    {:else if $userStore.buyProcess === 'registration'}
 
-      <!--      <Registration on:success={()=>{$userStore.buyProcess = 'payment'}}/>-->
+      <Registration on:success={()=>{$userStore.buyProcess = 'payment'}}/>
 
     {:else if $userStore.buyProcess === 'payment'}
 
@@ -99,6 +102,8 @@
 
   </SlideContainer>
 {/if}
+
+-->
 
 <Footer/>
 
