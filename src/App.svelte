@@ -1,12 +1,9 @@
 <script>
-	import axios from 'axios'
 	import 'smelte/src/tailwind.css'
-	import {get} from 'tiny-cookie'
 	import {onMount} from 'svelte'
 	import Icon from 'fa-svelte'
 	import {faUserCircle} from '@fortawesome/free-solid-svg-icons/faUserCircle'
 	import {Button, Snackbar} from 'smelte'
-	import {getURL} from './main'
 	import {userStore, loadCartFromCookie} from './store'
 	import Header from './components/Header.svelte'
 	import Home from './components/Home.svelte'
@@ -122,11 +119,12 @@
 			padding-right: 1.5rem;
 			padding-left: 1.5rem;
 		}
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
+		:global(.titleA) {
+			font-size: 3.625rem;
+			font-family: "Rubik", sans-serif;
+			line-height: 1;
 		}
 	}
+
+
 </style>
