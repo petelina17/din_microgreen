@@ -54,7 +54,7 @@
 
 <style>
   .banner {
-    height: 43.75rem;
+    min-height: 43.75rem;
     /*background-color: #f2f2f2;*/
     /*border-bottom: 1px solid #a0aec0;*/
   }

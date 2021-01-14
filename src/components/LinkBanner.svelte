@@ -22,7 +22,7 @@
         {title}
       </div>
     </div>
-    <div class="header4 pb-8">
+    <div class="header4">
       <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4"
       on:click={linkHandler}>
         {button}
@@ -35,7 +35,7 @@
 
 <style>
     .banner {
-        height: 43.75rem;
+        min-height: 43.75rem;
         background-color: #4d823c;
       /*background-attachment: fixed;*/
       /*background-repeat: no-repeat;*/
