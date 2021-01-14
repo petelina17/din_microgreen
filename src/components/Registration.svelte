@@ -146,7 +146,8 @@
       address: address,
       city: city,
       zip: zip,
-      hash: getHash(password)
+      hash: getHash(password),
+      orders: []
     }
 
     // send to firebase ...
@@ -164,18 +165,21 @@
 
     // component Registration decides here the format of showing
     // registration form, based on path:
-    if ($location === '/registration') {
-      dialog.show = true
-    } else {
+    if ($userStore.buyProcess === 'registration') {
       dispatch('success')
+    } else {
+      // dialog.show = true
+      push('/')
     }
   }
 
   function closeHandler() {
-    if ($userStore.buyProcess === 'cart') {
-      $userStore.buyProcess = 'payment'
-    }
-     push('/')
+    // if ($userStore.buyProcess === 'cart') {
+    //   $userStore.buyProcess = 'payment'
+    // }
+    //
+    // dialog.show = false
+    // push('/')
   }
 
 </script>
@@ -222,10 +226,10 @@
                  type="number" max="99999" min="0"
       error={zipError}/>
 
-      <TextField outlined label="Lösenord" bind:value={password}
+      <TextField outlined label="Lösenord" type="password" bind:value={password}
       error={passwordError}/>
 
-      <TextField outlined label="Bekräfta lösenord" bind:value={password2}
+      <TextField outlined label="Bekräfta lösenord" type="password" bind:value={password2}
       error={passwordError2}/>
 
     </div>
