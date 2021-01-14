@@ -20,6 +20,7 @@ export function setUserLoggedIn(email, firebaseUserData) {
 // remove cookies and update store
 export function setUserLoggedOut() {
   removeCookie('userId')
+  removeCookie('cartList')
   checkIfUserLoggedIn()
 }
 
