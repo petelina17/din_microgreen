@@ -6,7 +6,7 @@
 <div class="banner">
   <div class="wrapper pt-20 text-offwhite">
     <Logo/>
-    <div class="header1 mt-10">Superfood på endast 6-10 dagar</div>
+    <div class="header1 mt-10">#Superfood på endast 6-10 dagar</div>
     <div class="header3">Odla själv hemma VS beställ hos oss och se det växa LIVE</div>
     <div class="flex justify-between" style="margin-top:4.5rem;">
       <div>

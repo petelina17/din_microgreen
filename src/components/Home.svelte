@@ -57,6 +57,7 @@
 <Header on:login={() => {showLoginForm = true}}
         on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
 
+<!--
 <TopBanner/>
 
 <ExpoBanner img={article.img} title={article.title} text={article.text}
@@ -78,7 +79,7 @@
 <ExpoBanner img={forum.img} title={forum.title} text={forum.text}
             buttonPrimary={forum.buttonPrimary} orient="right"/>
 
-<!--
+
 
 {#if $userStore.buyProcess != null}
   <SlideContainer on:close={() => {$userStore.buyProcess = null}}>
@@ -103,9 +104,10 @@
   </SlideContainer>
 {/if}
 
--->
+
 
 <Footer/>
+-->
 
 <Login bind:showDialog={showLoginForm}/>
 

@@ -42,7 +42,7 @@
 	})
 </script>
 
-
+<!--
 <Snackbar color="alert" top timeout={10000} bind:value={showAlert} noAction={false}
 					class="pointer-events-auto flex absolute py-2 px-4 z-30 mb-4 content-between mx-auto
       rounded items-center elevation-2 h-32 px-10">
@@ -53,6 +53,7 @@
 		<Button  text on:click={() => (showAlert = false)}>Stäng</Button>
 	</div>
 </Snackbar>
+-->
 
 <main class="text-offblack">
 	<Router {routes}/>
@@ -61,6 +62,7 @@
 <style>
 	:global(body) {
 		font-family: "Rubik", sans-serif;
+		background-color: lightgray;
 	}
 	main {
 		text-align: center;
@@ -113,6 +115,7 @@
 		font-family: "Rubik", sans-serif;
 		line-height: 1;
 	}
+
 
 	@media (max-width: 1320px) {
 		:global(.wrapper) {
