@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import css from 'rollup-plugin-css-only';
+// import css from 'rollup-plugin-css-only';
 const smelte = require("smelte/rollup-plugin-smelte");
 
 const production = !process.env.ROLLUP_WATCH;
@@ -39,13 +39,12 @@ export default {
 	},
 	plugins: [
 		svelte({
-			compilerOptions: {
-				// enable run-time checks when not in production
-				dev: !production,
-				css: css => {
-					css.write('public/build/bundle.css');
-				}
-			}
+			// enable run-time checks when not in production
+			dev: !production,
+			css: css => {
+				css.write('public/build/bundle.css');
+			},
+			//emitCss: false,
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
@@ -81,7 +80,7 @@ export default {
 			postcss: [], // Your PostCSS plugins
 			whitelist: [], // Array of classnames whitelisted from purging
 			whitelistPatterns: [
-				/bg-/, /text-/
+				/bg-/, /w-/, /text-/
 			], // Same as above, but list of regexes
 			tailwind: {
 				theme: {
@@ -89,7 +88,8 @@ export default {
 						spacing: {
 							72: "18rem",
 							84: "21rem",
-							96: "24rem"
+							96: "24rem",
+							140: "40rem"
 						}
 					}
 				}, // Extend Tailwind theme
