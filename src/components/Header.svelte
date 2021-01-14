@@ -6,7 +6,7 @@
   import {userStore} from '../store'
   import {setUserLoggedOut} from '../authorization'
   import {createEventDispatcher} from 'svelte'
-  import { fade, fly, slide } from 'svelte/transition'
+  import {fade, fly, slide} from 'svelte/transition'
 
 
   const dispatch = createEventDispatcher()
@@ -76,8 +76,8 @@
   </div>
 
   {#if showHamburger === true}
-    <div class="bg-white text-gray-800 absolute origin-top-left header4 w-full text-left px-5 py-3"
-    transition:slide>
+    <div class="bg-white text-gray-800 absolute origin-top-left header4 w-full text-left px-5 py-3 z-10"
+         transition:slide>
       <div class="py-2"><a href="/#/live-cam">Live kamera</a></div>
       <div class="py-2"><a href="/#shop">Butik</a></div>
       <div class="py-2"><a href="/#/recipes">Recept</a></div>
@@ -87,68 +87,62 @@
   {/if}
 
   <!--
-  <div class="absolute social-icons text-center">
-    <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+    SOCIAL ICONS ========================================
+  -->
+  <div class="absolute social-icons text-center w-12 sm:w-16">
+    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-3 rounded-full
+    text-white text-lg sm:text-xl flex items-center justify-center"
          style="background-color: #88a8ee"
          on:click={facebookHandler}>
       <Icon icon={faFacebookF}/>
     </div>
-    <div class="mx-auto w-12 h-12 mb-3 rounded-full text-white text-xl flex items-center justify-center"
+    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-3 rounded-full
+    text-white text-lg sm:text-xl flex items-center justify-center"
          style="background-color: #9ce4ef"
          on:click={twitterHandler}>
       <Icon icon={faTwitter}/>
     </div>
-    <div class="mx-auto w-12 h-12 rounded-full text-white text-xl flex items-center justify-center"
+    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white
+    text-lg sm:text-xl flex items-center justify-center"
          style="background-color: #efa09c"
          on:click={instagramHandler}>
       <Icon icon={faInstagram}/>
     </div>
   </div>
 
-  <div class="absolute right-icons text-center w-16">
-  -->
-
-  <!--
-    ICON USER ========================================
-  -->
-
-  <!--
+  <div class="absolute right-icons text-center w-12 sm:w-16">
+    <!--
+      ICON USER ========================================
+    -->
     <a href="/#/account">
-      <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500 text-xl flex items-center
+      <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-6 rounded-full bg-gray-200 text-gray-500
+                  text-lg sm:text-xl flex items-center
                  justify-center {userLoggedIn ? 'active-cart': ''}">
         <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''}/>
       </div>
     </a>
-  -->
-  <!--
-    ICON CART ========================================
-  -->
-  <!--
-      <div class="mx-auto w-12 h-12 mb-6 rounded-full bg-gray-200 text-gray-500
-                text-xl flex items-center justify-center relative
+    <!--
+      ICON CART ========================================
+    -->
+    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-6 rounded-full bg-gray-200 text-gray-500
+                text-lg sm:text-xl flex items-center justify-center relative
                 {$userStore.cartList.length > 0 ? ' active-cart ' : ''}"
-      on:click={cartHandler}>
-
-        {#if $userStore.cartList.length > 0}
-          <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
--->
-  <!--
-    Use reduce function to calculate sum of quantity of all items in cart
-    ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-  -->
-  <!--
-              {$userStore.cartList.reduce((sum, value) => {
-                return sum + value.qty
-              }, 0)}
-            </div>
-          {/if}
-
-          <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
-
+         on:click={cartHandler}>
+      {#if $userStore.cartList.length > 0}
+        <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
+          <!--
+            Use reduce function to calculate sum of quantity of all items in cart
+            ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+          -->
+          {$userStore.cartList.reduce((sum, value) => {
+            return sum + value.qty
+          }, 0)}
         </div>
+      {/if}
+      <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
     </div>
 
-  -->
+  </div>
 </div>
 
 <style>
@@ -159,7 +153,7 @@
   }
 
   .social-icons {
-    left: 2rem;
+    left: 0.5rem;
     top: 15rem;
   }
 
@@ -173,7 +167,7 @@
   }
 
   .right-icons {
-    right: 2rem;
+    right: 0.5rem;
     top: 15rem;
   }
 
