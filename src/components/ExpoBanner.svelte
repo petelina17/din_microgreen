@@ -11,23 +11,31 @@
 
 </script>
 
-<div class="banner select-none bg-offwhite">
+<div class=" select-none bg-white">
   <!-- dynamic style to show left or right orientation of the block on homepage-->
-  <div class="wrapper h-full flex items-center {orient === 'left' ? 'flex-row' : 'flex-row-reverse'}">
+  <div class="wrapper banner flex flex-wrap items-center">
 
-    <div class="w-2/3 text-left">
-      <div class="header1 mb-6">
+    <div class="w-full sm:w-1/3 text-center">
+      <img class="m-auto" src="./img/{img}" alt="bild" width="80%">
+    </div>
+
+    <div class="w-full sm:w-2/3 text-left">
+      <div class="text-header3 mb-2 mt-3 mb-6
+                 lg:text-header1">
         {title}
       </div>
 
-      <div class="text1">
+      <div class="text-lg lg:text-text1">
         {text}
       </div>
 
-      <div class="header4 mt-12">
+      <div class="text-header4 w-full mt-12">
         <!-- show button if only prop for button is defined-->
         {#if buttonPrimary != null}
-          <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4"
+          <Button remove="text-sm uppercase"
+                  add="rounded-full w-full h-10 text-base mb-4
+                  md:w-48 md:mr-8
+                  lg:h-16 lg:w-64 lg:text-header4"
           on:click={()=> {push(buttonPrimary.link)}}>
             {buttonPrimary.label}
           </Button>
@@ -36,17 +44,16 @@
         {#if buttonSecondary != null}
           <Button light color="colorC"
                   remove="text-sm text-white uppercase"
-                  add="rounded-full w-64 h-16 header4 text-offblack mb-4"
+                  add="rounded-full w-full h-10 text-base
+                  md:w-48
+                  lg:h-16 lg:w-64 lg:text-header4
+                  text-offblack mb-4"
                   on:click={()=> {push(buttonSecondary.link)}}>
             {buttonSecondary.label}
           </Button>
         {/if}
 
       </div>
-    </div>
-
-    <div class="w-1/3 text-center">
-      <img class="m-auto" src="./img/{img}" alt="bild" height="292" width="320">
     </div>
 
   </div>
