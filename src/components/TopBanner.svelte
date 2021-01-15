@@ -6,20 +6,22 @@
 <div class="banner">
   <div class="wrapper pt-20 text-offwhite">
     <Logo/>
-    <div class="header1 mt-10">#Superfood på endast 6-10 dagar</div>
-    <div class="header3">Odla själv hemma VS beställ hos oss och se det växa LIVE</div>
-    <div class="flex justify-between" style="margin-top:4.5rem;">
-      <div>
-        <div class="titleA">20+</div>
-        <div class="header4">typer av mikrogrönt</div>
+    <div class="text-header3 mt-3 px-16 sm:text-header1 sm:mt-20">#Superfood på endast 6-10 dagar</div>
+
+    <div class="text-lg px-16 mt-4 sm:mt-0 sm:text-header3">Odla själv hemma VS beställ hos oss och se det växa LIVE</div>
+
+    <div class="flex flex-wrap mt-8 sm:justify-between pb-5">
+      <div class="w-full sm:w-auto mb-4">
+        <div class="text-header3 md:text-header2 lg:text-titleA leading-none">20+</div>
+        <div class="text-base sm:text-header4">typer av mikrogrönt</div>
       </div>
-      <div>
-        <div class="titleA">4</div>
-        <div class="header4">webbkameror</div>
+      <div class="w-full sm:w-auto mb-4">
+        <div class="text-header3 md:text-header2 lg:text-titleA leading-none">4</div>
+        <div class="text-base sm:text-header4">webbkameror</div>
       </div>
-      <div>
-        <div class="titleA">76</div>
-        <div class="header4">enkla recept</div>
+      <div class="w-full sm:w-auto mb-4">
+        <div class="text-header3 md:text-header2 lg:text-titleA leading-none">76</div>
+        <div class="text-base sm:text-header4">enkla recept</div>
       </div>
     </div>
   </div>
