@@ -17,13 +17,13 @@
      style={"background-image: url('img/" + img + "')"}>
 
   <div class="wrapper h-full flex flex-col">
-    <div class="header1 text-offwhite flex-grow flex items-center">
+    <div class="text-header1 text-offwhite flex-grow flex items-center">
       <div class="w-full">
         {title}
       </div>
     </div>
-    <div class="header4">
-      <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mr-8 mb-4"
+    <div class="text-header4">
+      <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 text-header4 mr-8 mb-4"
       on:click={linkHandler}>
         {button}
       </Button>

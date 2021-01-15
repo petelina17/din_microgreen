@@ -21,11 +21,11 @@
 />
 
 <div class="p-20">
-  <div class="header2 text-primary-500">
+  <div class="text-header2 text-primary-500">
     TACK {$userStore.data.firstName}!
   </div>
 
-  <div class="py-10 header4 text-gray-700">
+  <div class="py-10 text-header4 text-gray-700">
     Din ordernummer är: <span class="text-offblack">{$orderNumber}</span>
   </div>
 

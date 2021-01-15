@@ -12,7 +12,7 @@
          style="background-image: url('/img/forum4.jpg')">
       &nbsp
     </div>
-    <div class="w-2/3 py-32 text-center header3 text-white">Kommer snart!</div>
+    <div class="w-2/3 py-32 text-center text-header3 text-white">Kommer snart!</div>
   </div>
 
   <div class="text-center hover:underline text-blue-500 cursor-pointer text-xl"

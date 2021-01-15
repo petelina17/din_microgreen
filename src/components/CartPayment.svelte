@@ -165,7 +165,7 @@
     <!--   -->
     <div class="lg:w-2/3 w-full px-5">
 
-      <div class=" kassa header4">Beställningsuppgifter</div>
+      <div class=" kassa text-header4">Beställningsuppgifter</div>
 
       {#each $userStore.cartList as item}
         <CartItem title={item.productData.title}
@@ -177,28 +177,28 @@
         />
       {/each}
 
-      <div class="kassa header4 mt-8">Välj leveranssätt</div>
+      <div class="kassa text-header4 mt-8">Välj leveranssätt</div>
 
       {#each deliveryOptions as item, i}
         <div class="pl-6 text-left flex py-3">
           <div class="w-2/3">
-            <Checkbox class="header4" color="primary"
+            <Checkbox class="text-header4" color="primary"
                       label={item.title}
                       bind:checked={item.checked}
                       on:change={(checked) => { deliveryCheckHandler(checked, i) }}
             />
           </div>
 
-          <div class="w-1/3 header4 text-right" style="padding-right: 4.3rem">
+          <div class="w-1/3 text-header4 text-right" style="padding-right: 4.3rem">
             {item.price.toFixed(2)} <span class="text-base">kr</span>
           </div>
         </div>
       {/each}
 
-      <div class="kassa header4">Välj betalsätt</div>
+      <div class="kassa text-header4">Välj betalsätt</div>
 
       <div class="pl-6 text-left flex py-3">
-        <Checkbox class="header4" color="primary"
+        <Checkbox class="text-header4" color="primary"
                   label="Betala med SWISH"
                   bind:checked={swish}
                   on:change={() => { visa = false }}
@@ -216,7 +216,7 @@
       {/if}
 
       <div class="pl-6 text-left flex py-3">
-        <Checkbox class="header4" color="primary"
+        <Checkbox class="text-header4" color="primary"
                   label="Betala med Visa"
                   bind:checked={visa}
                   on:change={() => { swish = false }}
@@ -267,13 +267,13 @@
         </div>
       {/if}
 
-      <!--      <div class="kassa header4">Välj beställningsalternativ</div>-->
+      <!--      <div class="kassa text-header4">Välj beställningsalternativ</div>-->
 
     </div>
 
     <div class="text-center lg:w-1/3 w-full">
 
-      <div class="header3 mb-8">
+      <div class="text-header3 mb-8">
 
         <div>Total:</div>
 
@@ -284,7 +284,7 @@
 
       <div>
         <Button remove="text-sm uppercase"
-                add="rounded-full w-64 h-16 header4 mb-4"
+                add="rounded-full w-64 h-16 text-header4 mb-4"
                 disabled={spinner === true || (swish === false && visa === false)}
                 on:click={finishHandler}>
           Slutför köp

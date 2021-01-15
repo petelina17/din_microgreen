@@ -78,6 +78,8 @@
 		max-width: 1280px;
 		margin: auto;
 	}
+
+	/*
 	:global(.header1) {
 		font-size: 4rem;
 	}
@@ -90,6 +92,8 @@
 	:global(.header4) {
 		font-size: 1.5rem;
 	}
+
+	 */
 	:global(.text1) {
 		font-size: 1.5rem;
 	}
@@ -102,7 +106,7 @@
 	:global(.logo) {
 		color: #9BE400;
 		font-family: "Prosto One", sans-serif;
-		font-size: 3rem;
+		/*font-size: 3rem;*/
 	}
 	:global(.text-offwhite) {
 		color: #FDFDFD;
@@ -122,11 +126,13 @@
 			padding-right: 1.5rem;
 			padding-left: 1.5rem;
 		}
+		/*
 		:global(.titleA) {
 			font-size: 3.625rem;
 			font-family: "Rubik", sans-serif;
 			line-height: 1;
 		}
+	 */
 	}
 
 

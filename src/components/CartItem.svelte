@@ -27,17 +27,17 @@
   </div>
 
   <div class="text-left px-3 w-1/2">
-    <div class="header4">{title}</div>
+    <div class="text-header4">{title}</div>
     <div class="text1">{subtitle}</div>
   </div>
 
   <div class="px-3 w-1/6">
-    <div class="header4">{unitPrice.toFixed(2)} <span class="text-base">kr</span></div>
-    <div class="header4">{qty} <span class="text-base">st.</span></div>
+    <div class="text-header4">{unitPrice.toFixed(2)} <span class="text-base">kr</span></div>
+    <div class="text-header4">{qty} <span class="text-base">st.</span></div>
   </div>
 
   <div class="px-3 w-1/6">
-    <div class="header4">{totalPrice.toFixed(2)} <span class="text-base">kr</span></div>
+    <div class="text-header4">{totalPrice.toFixed(2)} <span class="text-base">kr</span></div>
   </div>
 
   <div>

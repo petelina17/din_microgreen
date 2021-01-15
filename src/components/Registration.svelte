@@ -234,7 +234,7 @@
 
     </div>
 
-    <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 header4 mb-12"
+    <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 text-header4 mb-12"
             on:click={finishHandler}>
       Bekräfta
     </Button>

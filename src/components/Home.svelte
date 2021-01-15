@@ -57,14 +57,14 @@
 <Header on:login={() => {showLoginForm = true}}
         on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
 
-<!--
 <TopBanner/>
+
 
 <ExpoBanner img={article.img} title={article.title} text={article.text}
             buttonPrimary={article.buttonPrimary}
             buttonSecondary={article.buttonSecondary}
 />
-
+<!--
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>
 

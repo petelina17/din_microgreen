@@ -14,7 +14,7 @@
     </div>
 
     <div class="w-1/3 text-left flex mt-6">
-      <nav class="flex flex-col header4 text-gray-200 uppercase opacity-100">
+      <nav class="flex flex-col text-header4 text-gray-200 uppercase opacity-100">
         <div class="menu-item">Live kamera</div>
         <div class="menu-item">Butik</div>
         <div class="menu-item">Recept</div>

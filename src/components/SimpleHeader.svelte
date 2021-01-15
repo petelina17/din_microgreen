@@ -24,7 +24,7 @@
       </div>
     {/if}
 
-    <div class="flex-grow header2">{title}</div>
+    <div class="flex-grow text-header2">{title}</div>
 
     {#if noClose === false}
     <div class="rounded-full w-16 h-16 bg-gray-200 flex items-center justify-center

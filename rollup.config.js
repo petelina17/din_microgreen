@@ -90,6 +90,15 @@ export default {
 							84: "21rem",
 							96: "24rem",
 							140: "40rem"
+						},
+						fontSize:{
+							header1: '4rem',
+							header2: '3rem',
+							header3: '2.25rem',
+							header4: '1.5rem',
+							titleA: '7.625rem',
+							text1: '1.5rem',
+							text2: '1rem'
 						}
 					}
 				}, // Extend Tailwind theme

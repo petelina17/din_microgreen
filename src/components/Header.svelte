@@ -46,9 +46,9 @@
 
 <div class="bg-gray-600 bg-opacity-75 fixed w-full z-20 select-none">
 
-  <div class="header flex items-center header4 justify-end wrapper">
+  <div class="header flex items-center text-header4 justify-end wrapper">
 
-    <div class="flex-grow text-left sm:hidden">
+    <div class="flex-grow text-left md:hidden">
       {#if showHamburger === true}
         <div class="text-white" on:click={() => { showHamburger = !showHamburger }}>
           CLOSE
@@ -76,7 +76,7 @@
   </div>
 
   {#if showHamburger === true}
-    <div class="bg-white text-gray-800 absolute origin-top-left header4 w-full text-left px-5 py-3 z-10"
+    <div class="bg-white text-gray-800 absolute origin-top-left text-header4 w-full text-left px-5 py-3 z-10"
          transition:slide>
       <div class="py-2"><a href="/#/live-cam">Live kamera</a></div>
       <div class="py-2"><a href="/#shop">Butik</a></div>
@@ -89,7 +89,8 @@
   <!--
     SOCIAL ICONS ========================================
   -->
-  <div class="absolute social-icons text-center w-12 sm:w-16">
+  <div class="absolute text-center
+              sm:w-16">
     <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-3 rounded-full
     text-white text-lg sm:text-xl flex items-center justify-center"
          style="background-color: #88a8ee"
@@ -152,10 +153,12 @@
     /*padding-bottom: 0.5rem;*/
   }
 
+  /*
   .social-icons {
     left: 0.5rem;
     top: 15rem;
   }
+   */
 
   .social-icons > div {
     transition: all 0.1s ease-out;
