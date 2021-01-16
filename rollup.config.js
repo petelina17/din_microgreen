@@ -89,6 +89,8 @@ export default {
 							72: "18rem",
 							84: "21rem",
 							96: "24rem",
+							108: "27rem",
+							120: "30rem",
 							140: "40rem"
 						},
 						fontSize:{
