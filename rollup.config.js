@@ -80,9 +80,12 @@ export default {
 			postcss: [], // Your PostCSS plugins
 			whitelist: [], // Array of classnames whitelisted from purging
 			whitelistPatterns: [
-				/bg-/, /w-/, /text-/, /lg:/
+				/bg-/, /w-/, /text-/, /lg:bg-/
 			], // Same as above, but list of regexes
 			tailwind: {
+				variants: {
+					backgroundColor: ['responsive', 'hover', 'focus'],
+				},
 				theme: {
 					extend: {
 						spacing: {

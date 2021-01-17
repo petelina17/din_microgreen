@@ -6,6 +6,7 @@
   import {push} from 'svelte-spa-router'
   import {saveCartToCookie, userStore} from '../store'
   import {Dialog, TextField} from 'smelte'
+  import {fade} from 'svelte/transition'
 
   export let img = ''
   export let title = 'produkt A'
@@ -103,7 +104,7 @@
   <Dialog bind:value={productDetails} class="overflow-y-auto max-h-screen lg:mx-10">
     <h5 class="mt-4" slot="title">{productData.title}</h5>
 
-    <div class="flex flex-row flex-wrap text-center">
+    <div class="flex flex-row flex-wrap text-center"  transition:fade>
       <div class="w-full sm:w-1/3">
         <div class="pb-5"><img src="./img/{productData.img}" alt="bild"></div>
 

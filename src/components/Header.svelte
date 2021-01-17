@@ -59,7 +59,7 @@
     </div>
 
     <div class="lg:hidden">
-      <UserBlock/>
+      <UserBlock on:login={login} on:cart={cartHandler}/>
     </div>
 
     <nav class="hidden lg:flex items-center text-gray-200 uppercase opacity-100">
