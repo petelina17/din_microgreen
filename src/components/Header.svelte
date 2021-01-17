@@ -6,7 +6,7 @@
   import {fade, fly, slide} from 'svelte/transition'
   import SocialBlock from './SocialBlock.svelte'
   import UserBlock from './UserBlock.svelte'
-  import {faBars, } from '@fortawesome/free-solid-svg-icons'
+  import {faBars,} from '@fortawesome/free-solid-svg-icons'
   import Icon from 'fa-svelte'
 
   const dispatch = createEventDispatcher()
@@ -17,12 +17,18 @@
 
 
   function login() {
+    console.log('login handler 2')
     dispatch('login')
     // setUserLoggedIn('bob@gmail.com')
   }
 
   function logout() {
     setUserLoggedOut()
+  }
+
+  function cartHandler() {
+    console.log('cart handler 2')
+    dispatch('cart')
   }
 
   let showHamburger = false
@@ -49,11 +55,11 @@
     </div>
 
     <div class="lg:hidden">
-      <SocialBlock />
+      <SocialBlock/>
     </div>
 
     <div class="lg:hidden">
-      <UserBlock />
+      <UserBlock/>
     </div>
 
     <nav class="hidden lg:flex items-center text-gray-200 uppercase opacity-100">
@@ -79,7 +85,13 @@
       <div class="py-2"><a href="/#/recipes">Recept</a></div>
       <div class="py-2"><a href="/#/articles">Artiklar</a></div>
       <div class="py-2"><a href="/#/forum">Forum</a></div>
-      <div class="py-2 text-red-600" on:click={logout}>Logout</div>
+
+      {#if userLoggedIn}
+        <div class="py-2 text-red-600" on:click={logout}>Logga ut</div>
+      {:else}
+        <div class="py-2 text-red-600" on:click={login}>Logga in</div>
+      {/if}
+
     </div>
   {/if}
 
@@ -88,7 +100,7 @@
   </div>
 
   <div class="hidden lg:block absolute right-0">
-    <UserBlock/>
+    <UserBlock on:login={login} on:cart={cartHandler}/>
   </div>
 
 </div>
@@ -108,7 +120,6 @@
    */
 
 
-
   .menu-item {
     cursor: pointer;
   }
@@ -117,7 +128,6 @@
     transform: scale(1.03);
     color: white;
   }
-
 
 
 </style>
