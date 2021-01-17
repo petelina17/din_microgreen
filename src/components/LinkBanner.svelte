@@ -38,7 +38,7 @@
 
 
 </div>
-
+<div class="h-24 bg-white text-white text-left ">.</div>
 <style>
   .banner {
     /*min-height: 43.75rem;*/
