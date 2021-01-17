@@ -62,7 +62,7 @@
 <style>
 	:global(body) {
 		font-family: "Rubik", sans-serif;
-		background-color: lightgray;
+		/*background-color: lightgray;*/
 	}
 	main {
 		text-align: center;

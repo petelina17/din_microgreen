@@ -1,13 +1,13 @@
 <script>
   import {API} from '../api.js'
-  import Icon from 'fa-svelte'
-  import {faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
-  import {faFacebookF, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
   import {userStore} from '../store'
   import {setUserLoggedOut} from '../authorization'
   import {createEventDispatcher} from 'svelte'
   import {fade, fly, slide} from 'svelte/transition'
-
+  import SocialBlock from './SocialBlock.svelte'
+  import UserBlock from './UserBlock.svelte'
+  import {faBars, } from '@fortawesome/free-solid-svg-icons'
+  import Icon from 'fa-svelte'
 
   const dispatch = createEventDispatcher()
   let api = new API()
@@ -25,42 +25,38 @@
     setUserLoggedOut()
   }
 
-  function facebookHandler() {
-    window.open('http://www.facebook.com', '_blank')
-  }
-
-  function twitterHandler() {
-    window.open('http://www.twitter.com', '_blank')
-  }
-
-  function instagramHandler() {
-    window.open('http://www.instagram.com', '_blank')
-  }
-
-  function cartHandler() {
-    dispatch('cart')
-  }
-
   let showHamburger = false
 </script>
 
-<div class="bg-gray-600 bg-opacity-75 fixed w-full z-20 select-none">
+<div class="bg-white lg:bg-gray-600 lg:bg-opacity-75 fixed w-full z-20 select-none">
 
-  <div class="header flex items-center text-header4 justify-end wrapper">
+  <div class="header flex items-center text-header4 justify-between lg:justify-end wrapper shadow-md lg:shadow-none">
 
-    <div class="flex-grow text-left md:hidden">
+    <div class="flex items-center justify-center text-gray-800 text-left w-12 h-12 rounded lg:hidden"
+         style="font-size: 1.6rem">
       {#if showHamburger === true}
         <div class="text-white" on:click={() => { showHamburger = !showHamburger }}>
-          CLOSE
+          <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke="#3A3A3A" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </div>
       {:else}
-        <div on:click={() => { showHamburger = !showHamburger }}>
-          MENU
+        <div style="margin-top: -0.4rem" on:click={() => { showHamburger = !showHamburger }}>
+          <Icon icon={faBars}/>
         </div>
       {/if}
     </div>
 
-    <nav class="hidden md:flex items-center text-gray-200 uppercase opacity-100">
+    <div class="lg:hidden">
+      <SocialBlock />
+    </div>
+
+    <div class="lg:hidden">
+      <UserBlock />
+    </div>
+
+    <nav class="hidden lg:flex items-center text-gray-200 uppercase opacity-100">
       <div class="menu-item ml-5"><a href="/#/live-cam">Live kamera</a></div>
       <div class="menu-item ml-5"><a href="/#shop">Butik</a></div>
       <div class="menu-item ml-5"><a href="/#/recipes">Recept</a></div>
@@ -69,9 +65,9 @@
     </nav>
 
     {#if userLoggedIn}
-      <div class="uppercase menu-item text-gray-500 ml-5" on:click={logout}>logout</div>
+      <div class="hidden lg:block uppercase menu-item text-gray-500 ml-5" on:click={logout}>logout</div>
     {:else}
-      <div class="uppercase menu-item text-primary-200 ml-5" on:click={login}>Login</div>
+      <div class="hidden lg:block uppercase menu-item text-primary-200 ml-5" on:click={login}>Login</div>
     {/if}
   </div>
 
@@ -83,67 +79,18 @@
       <div class="py-2"><a href="/#/recipes">Recept</a></div>
       <div class="py-2"><a href="/#/articles">Artiklar</a></div>
       <div class="py-2"><a href="/#/forum">Forum</a></div>
+      <div class="py-2 text-red-600" on:click={logout}>Logout</div>
     </div>
   {/if}
 
-  <!--
-    SOCIAL ICONS ========================================
-  -->
-  <div class="absolute text-center
-              sm:w-16">
-    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-3 rounded-full
-    text-white text-lg sm:text-xl flex items-center justify-center"
-         style="background-color: #88a8ee"
-         on:click={facebookHandler}>
-      <Icon icon={faFacebookF}/>
-    </div>
-    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-3 rounded-full
-    text-white text-lg sm:text-xl flex items-center justify-center"
-         style="background-color: #9ce4ef"
-         on:click={twitterHandler}>
-      <Icon icon={faTwitter}/>
-    </div>
-    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white
-    text-lg sm:text-xl flex items-center justify-center"
-         style="background-color: #efa09c"
-         on:click={instagramHandler}>
-      <Icon icon={faInstagram}/>
-    </div>
+  <div class="hidden lg:block absolute">
+    <SocialBlock/>
   </div>
 
-  <div class="absolute right-icons text-center w-12 sm:w-16">
-    <!--
-      ICON USER ========================================
-    -->
-    <a href="/#/account">
-      <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-6 rounded-full bg-gray-200 text-gray-500
-                  text-lg sm:text-xl flex items-center
-                 justify-center {userLoggedIn ? 'active-cart': ''}">
-        <Icon icon={faUser} class={userLoggedIn ? 'text-primary-900': ''}/>
-      </div>
-    </a>
-    <!--
-      ICON CART ========================================
-    -->
-    <div class="mx-auto w-10 h-10 sm:w-12 sm:h-12 mb-6 rounded-full bg-gray-200 text-gray-500
-                text-lg sm:text-xl flex items-center justify-center relative
-                {$userStore.cartList.length > 0 ? ' active-cart ' : ''}"
-         on:click={cartHandler}>
-      {#if $userStore.cartList.length > 0}
-        <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
-          <!--
-            Use reduce function to calculate sum of quantity of all items in cart
-            ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-          -->
-          {$userStore.cartList.reduce((sum, value) => {
-            return sum + value.qty
-          }, 0)}
-        </div>
-      {/if}
-      <Icon icon={faShoppingCart} class="{$userStore.cartList.length > 0 ? 'text-primary-500' : ''}"/>
-    </div>
-
+  <div class="hidden lg:block absolute right-0">
+    <UserBlock/>
   </div>
+
 </div>
 
 <style>
@@ -160,19 +107,7 @@
   }
    */
 
-  .social-icons > div {
-    transition: all 0.1s ease-out;
-  }
 
-  .social-icons > div:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
-
-  .right-icons {
-    right: 0.5rem;
-    top: 15rem;
-  }
 
   .menu-item {
     cursor: pointer;
@@ -183,23 +118,6 @@
     color: white;
   }
 
-  .active-cart {
-    background-color: #f9f9f9;
-    width: 3.8rem;
-    height: 3.8rem;
-    font-size: 2.1rem;
-    transition: all .3s;
-  }
 
-  .active-cart:hover {
-    transform: scale(1.1);
-  }
-
-  .cart-badge {
-    top: -0.3rem;
-    left: -0.3rem;
-    font-size: 1rem;
-    /*border: 0.15rem solid white;*/
-  }
 
 </style>

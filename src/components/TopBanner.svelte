@@ -10,7 +10,7 @@
 
     <div class="px-4 text-lg mt-4 sm:mt-3 sm:text-header3 mb:mt-8">Odla själv hemma VS beställ hos oss och se det växa LIVE</div>
 
-    <div class="flex flex-wrap mt-8 sm:justify-between pb-5">
+    <div class="flex flex-wrap mt-8 sm:justify-between pb-5 lg:px-16">
       <div class="w-full sm:w-auto mb-4">
         <div class="text-header3 md:text-header2 lg:text-titleA leading-none">20+</div>
         <div class="text-base sm:text-header4">typer av mikrogrönt</div>
