@@ -8,7 +8,13 @@
   $: userLoggedIn = $userStore.data != null
 
   function cartHandler() {
+    console.log('cart handler 1')
     dispatch('cart')
+  }
+
+  function login() {
+    console.log('login handler 1')
+    dispatch('login')
   }
 </script>
 
@@ -21,15 +27,15 @@
     <div class="flex justify-center items-center w-10 h-10 rounded-full mx-1
                 lg:mx-auto lg:w-12 lg:h-12 lg:bg-gray-200 lg:mt-3
                 {userLoggedIn ? ' text-primary-900': ' text-gray-400'}">
-      <Icon icon={faUser} />
+      <Icon icon={faUser}/>
     </div>
   </a>
   <!--
     ICON CART ========================================
   -->
-  <div class="flex justify-center items-center w-10 h-10 rounded-full mx-1 relative
-              lg:mx-auto lg:w-12 lg:h-12 lg:mt-3 lg:bg-gray-200
-              {$userStore.cartList.length > 0 ? ' lg:text-primary-600 ' : ' text-gray-400'}"
+  <div class="animate-none flex justify-center items-center w-10 h-10 rounded-full mx-1 mt-1 relative
+              lg:mx-auto lg:w-12 lg:h-12 lg:mt-3 lg:bg-gray-200 cursor-pointer
+              {$userStore.cartList.length > 0 ? ' lg:text-primary-600 md:animate-pulse ' : ' text-gray-400'}"
        on:click={cartHandler}>
     {#if $userStore.cartList.length > 0}
       <div class="absolute rounded-full w-6 h-6 bg-red-500 text-white cart-badge">
@@ -42,9 +48,10 @@
         }, 0)}
       </div>
     {/if}
-    <Icon icon={faShoppingCart} />
+    <Icon icon={faShoppingCart}/>
   </div>
   <div class="lg:bg-primary-500 lg:text-white h-px w-px">&nbsp;</div>
+  <div class=" lg:bg-gray-600 lg:text-white h-px w-px">&nbsp;</div>
 
 </div>
 

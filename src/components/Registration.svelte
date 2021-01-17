@@ -9,6 +9,8 @@
   import {setUserLoggedIn, getHash, createNewUser} from '../authorization'
   import {userStore} from '../store'
 
+  $:inSlider = $userStore.buyProcess === 'registration'
+
   const dispatch = createEventDispatcher()
 
   let email = ''
@@ -165,7 +167,7 @@
 
     // component Registration decides here the format of showing
     // registration form, based on path:
-    if ($userStore.buyProcess === 'registration') {
+    if (inSlider) {
       dispatch('success')
     } else {
       // dialog.show = true
@@ -179,7 +181,7 @@
     // }
     //
     // dialog.show = false
-    // push('/')
+     push('/')
   }
 
 </script>
@@ -200,7 +202,7 @@
 </Snackbar>
 -->
 
-<SimpleHeader title="Registrera dig" icon={faUser} bgColor={"bg-primary-500"}
+<SimpleHeader title="Registrera dig" icon={faUser} bgColor={"bg-primary-500"} noClose={inSlider}
               on:close={closeHandler}/>
 
 <div class="">
