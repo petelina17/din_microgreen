@@ -73,7 +73,7 @@
   <ProductBanner/>
 </div>
 
-<!--
+
 <LinkBanner title="" button="Receptbok"
             img="smoky.jpg" link="/recipes"/>
 
@@ -106,9 +106,8 @@
 {/if}
 
 
-
 <Footer/>
--->
+
 
 
 <Login bind:showDialog={showLoginForm}/>
