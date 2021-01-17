@@ -37,11 +37,13 @@
 <div class="">
   <div class="wrapper flex relative">
 
+    <!--
     <div class="h-16 w-16 rounded-full absolute bg-gray-100 hover:bg-gray-200
       text-xl flex items-center justify-center left-icon cursor-pointer"
          on:click={back}>
       <Icon class="text-gray-600" icon={faChevronLeft}/>
     </div>
+    -->
 
     <div class="flex flex-wrap">
       {#each carousel as product}
@@ -57,12 +59,13 @@
       {/each}
     </div>
 
+    <!--
     <div class="h-16 w-16 rounded-full absolute bg-gray-100 hover:bg-gray-200
       text-xl flex items-center justify-center right-icon cursor-pointer"
          on:click={next}>
       <Icon class="text-gray-600" icon={faChevronRight}/>
     </div>
-
+    -->
   </div>
 </div>
 

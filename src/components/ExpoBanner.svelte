@@ -29,14 +29,14 @@
         {text}
       </div>
 
-      <div class="text-header4 w-full mt-12">
+      <div class="text-header4 w-full mt-12 mb-10">
         <!-- show button if only prop for button is defined-->
         {#if buttonPrimary != null}
           <Button remove="text-sm uppercase"
-                  add="rounded-full w-full h-10 text-base mb-4
+                  add="rounded-full w-full h-12 text-base mb-4
                   md:w-48 md:mr-8
                   lg:h-16 lg:w-64 lg:text-header4"
-          on:click={()=> {push(buttonPrimary.link)}}>
+                  on:click={()=> {push(buttonPrimary.link)}}>
             {buttonPrimary.label}
           </Button>
         {/if}
@@ -44,7 +44,7 @@
         {#if buttonSecondary != null}
           <Button light color="colorC"
                   remove="text-sm text-white uppercase"
-                  add="rounded-full w-full h-10 text-base
+                  add="rounded-full w-full h-12 text-base
                   md:w-48
                   lg:h-16 lg:w-64 lg:text-header4
                   text-offblack mb-4"

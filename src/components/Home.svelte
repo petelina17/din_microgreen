@@ -15,10 +15,8 @@
   import {checkIfUserLoggedIn} from '../authorization'
   import {userStore} from '../store'
 
-
   let showCart = false
   let showLoginForm = false
-
 
   let article = {
     img: 'redis.jpg',
@@ -54,6 +52,8 @@
 
 </script>
 
+
+
 <Header on:login={() => {showLoginForm = true}}
         on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
 
@@ -64,7 +64,7 @@
             buttonPrimary={article.buttonPrimary}
             buttonSecondary={article.buttonSecondary}
 />
-<!--
+
 <LinkBanner title="Övervaka dina växter live" button="Visa mer"
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
@@ -73,6 +73,7 @@
   <ProductBanner/>
 </div>
 
+<!--
 <LinkBanner title="" button="Receptbok"
             img="smoky.jpg" link="/recipes"/>
 
@@ -108,6 +109,7 @@
 
 <Footer/>
 -->
+
 
 <Login bind:showDialog={showLoginForm}/>
 

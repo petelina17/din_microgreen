@@ -27,8 +27,8 @@
     </div>
     <div class="h-32 text-header4">
       <Button remove="text-sm uppercase"
-              add="rounded-full w-full h-12 text-base mb-4
-              md:w-48 md:mr-8
+              add="rounded-full w-48 h-12 text-base mb-4
+              md:mr-8
               lg:h-16 lg:w-64 lg:text-header4"
               on:click={linkHandler}>
         {button}
