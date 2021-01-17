@@ -21,7 +21,7 @@
 </script>
 
 <div class="w-full h-full main">
-  <SimpleHeader noClose={true} title="Din varukorg" icon={faShoppingCart}
+  <SimpleHeader noClose={true} title="Du är på rätt väg!" icon={faShoppingCart}
                 bgColor="bg-gray-700"
   />
 
