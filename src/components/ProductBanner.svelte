@@ -45,7 +45,7 @@
     </div>
     -->
 
-    <div class="flex flex-wrap">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mx-auto">
       {#each carousel as product}
         <div class="">
           <ProductCard img={product.img}
