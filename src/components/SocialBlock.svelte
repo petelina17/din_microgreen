@@ -41,17 +41,20 @@
 <!-- SOCIAL ICONS FOR DESKTOP -->
 <div class="hidden lg:flex flex-col justify-end items-center h-120 w-16 text-center
             text-white text-xl ml-6 social-icons">
-  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3"
+  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3
+              sm:opacity-75"
        style="background-color: #88a8ee"
        on:click={facebookHandler}>
     <Icon icon={faFacebookF}/>
   </div>
-  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3"
+  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3
+             sm:opacity-75"
        style="background-color: #9ce4ef"
        on:click={twitterHandler}>
     <Icon icon={faTwitter}/>
   </div>
-  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3"
+  <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mt-3
+              sm:opacity-75"
        style="background-color: #efa09c"
        on:click={instagramHandler}>
     <Icon icon={faInstagram}/>
@@ -62,6 +65,7 @@
   .social-icons > div {
     transition: all 0.1s ease-out;
   }
+
   .social-icons > div:hover {
     transform: scale(1.1);
     cursor: pointer;
