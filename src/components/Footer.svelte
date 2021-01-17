@@ -13,13 +13,13 @@
       <Logo class="logo"/>
     </div>
 
-    <div class="w-1/3 text-left flex mt-6">
-      <nav class="flex flex-col text-header4 text-gray-200 uppercase opacity-100">
-        <div class="menu-item">Live kamera</div>
-        <div class="menu-item">Butik</div>
-        <div class="menu-item">Recept</div>
-        <div class="menu-item">Artiklar</div>
-        <div class="menu-item">Forum</div>
+    <div class="w-1/3 text-left flex mt-6 select-none">
+      <nav class="flex flex-col text-header5 md:text-header4  text-gray-200 uppercase opacity-100">
+        <div class="menu-item"><a href="/#/live-cam">Live kamera</a></div>
+        <div class="menu-item"><a href="/#shop">Butik</a></div>
+        <div class="menu-item"><a href="/#/recipes">Recept</a></div>
+        <div class="menu-item"><a href="/#/articles">Artiklar</a></div>
+        <div class="menu-item"><a href="/#/forum">Forum</a></div>
       </nav>
     </div>
   </div>
