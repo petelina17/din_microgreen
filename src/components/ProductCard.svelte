@@ -5,6 +5,7 @@
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
   import {saveCartToCookie, userStore} from '../store'
+  import {Dialog, TextField} from 'smelte'
 
   export let img = ''
   export let title = 'produkt A'
@@ -12,6 +13,8 @@
   export let price = '99.00'
   export let button = 'Lägg till'
   export let productId = ''
+
+  let productDetails = false
 
   $: productData = {
     img: img,
@@ -41,7 +44,7 @@
         .findIndex(cartListItem => cartListItem.productData.productId === productData.productId)
     if (foundIndex === -1) {
       $userStore.cartList.push(cartItem)
-    }else {
+    } else {
       $userStore.cartList[foundIndex].qty += 1
     }
     // update quantity of items in cart
@@ -91,12 +94,40 @@
     </div>
 
     <div class="w-16 h-16 mb-6 rounded-full bg-gray-200 text-2xl flex items-center
-    justify-center text-blue-500 mx-2 icon">
+    justify-center text-blue-500 mx-2 icon"
+         on:click={() => {productDetails=true}}>
       <Icon icon={faInfoCircle}/>
     </div>
   </div>
 
+  <Dialog bind:value={productDetails} class="overflow-y-auto max-h-screen lg:mx-10">
+    <h5 class="mt-4" slot="title">{productData.title}</h5>
+
+    <div class="flex flex-row flex-wrap text-center">
+      <div class="w-full sm:w-1/3">
+        <div class="pb-5"><img src="./img/{productData.img}" alt="bild"></div>
+
+      </div>
+
+      <div class="w-full mb-4 text-left
+                  sm:w-2/3 lg:pt-10 lg:flex lg:items-center lg:px-8">
+        <div>Suspendisse eget turpis eu libero tempor dapibus. Nulla nunc justo, fermentum
+          ac ultrices eu, volutpat nec dui. Nullam venenatis et sem ut rutrum. Donec maximus
+          imperdiet nunc, ullamcorper facilisis ex interdum nec. Nulla efficitur quam tempus
+          ex lacinia, non dapibus nisi ultricies.
+          Phasellus dictum lorem nec bibendum rhoncus. Cras porttitor efficitur lorem
+          nec scelerisque.
+          Nulla efficitur quam tempus
+          ex lacinia, non dapibus nisi ultricies.
+          Phasellus dictum lorem nec bibendum rhoncus. Cras porttitor efficitur lorem
+          nec scelerisque.</div>
+      </div>
+
+    </div>
+    <Button text on:click={() => productDetails = false}>Stäng</Button>
+  </Dialog>
 </div>
+
 
 <style>
   .product-box {
@@ -105,6 +136,7 @@
     /*background: lightblue;*/
     /*transition: all .1s;*/
   }
+
   .product-box:hover {
     /*transform: scale(1.02);*/
   }

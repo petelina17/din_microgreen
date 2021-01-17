@@ -80,7 +80,7 @@ export default {
 			postcss: [], // Your PostCSS plugins
 			whitelist: [], // Array of classnames whitelisted from purging
 			whitelistPatterns: [
-				/bg-/, /w-/, /text-/
+				/bg-/, /w-/, /text-/, /lg:/
 			], // Same as above, but list of regexes
 			tailwind: {
 				theme: {
