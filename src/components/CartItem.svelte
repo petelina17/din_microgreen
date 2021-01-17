@@ -21,7 +21,7 @@
 
 <div class="flex py-6 border-b body-1 border-gray-400">
   <div class="w-24 text-center pl-3">
-    <div class="w-16 h-16 rounded-full bg-red-500 bg-cover img-placeholder"
+    <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
          style={"background-image: url('img/" + img + "');"}>&nbsp
     </div>
   </div>
