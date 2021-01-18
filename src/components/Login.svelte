@@ -5,8 +5,11 @@
   import {setUserLoggedIn, getHash} from '../authorization'
   import {link, push} from 'svelte-spa-router'
   import {userStore} from '../store'
+  import {createEventDispatcher} from 'svelte'
 
   export let showDialog = false
+
+  const dispatch = createEventDispatcher()
 
   let api = new API()
   let email = ''
@@ -49,6 +52,11 @@
     push('/registration')
   }
 
+  function closeHandler() {
+    showDialog = false
+    dispatch('close')
+  }
+
   // https://www.codespot.org/javascript-email-validation/
   function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -80,6 +88,6 @@
 
   <div slot="actions" class="text-center w-full">
       <Button text on:click={loginHandler}>Logga in</Button>
-      <Button text on:click={() => showDialog = false}>Stäng</Button>
+      <Button text on:click={closeHandler}>Stäng</Button>
   </div>
 </Dialog>

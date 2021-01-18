@@ -4,15 +4,20 @@
   import {faUser} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
   import Button from 'smelte/src/components/Button'
+  import Login from './Login.svelte'
 
+
+  $: showLoginForm = $userStore.data == null
 
   function closeHandler() {
     push('/')
   }
-
-
 </script>
 
+<Login bind:showDialog={showLoginForm} on:close={closeHandler}/>
+
+
+{#if $userStore.data != null}
 
 <SimpleHeader title="Mitt konto" icon={faUser} bgColor={"bg-primary-500"}
               on:close={closeHandler}/>
@@ -64,3 +69,4 @@
     </Button>
   </div>
 </div>
+  {/if}
