@@ -23,7 +23,7 @@
     '/': Home,
     '/live-cam': UnderConstruction,
     '/registration': Registration,
-    '/account': UnderConstruction,
+    '/account': MyAccount,
     '/cart': Cart,
     '/recipes': UnderConstruction,
     '/recipe/new': RecipeForm,
@@ -72,7 +72,7 @@
 <!--
     ICON PAGEUP ========================================
      -->
-<div class="fixed bottom-0 right-0 mr-2 mb-3 {pageUpShow}">
+<div class="fixed bottom-0 right-0 pr-4 mb-3 {pageUpShow}">
   <div class="w-12 h-12 cursor-pointer font-light rounded-full
               h-12 w-12 text-header5 text-gray-900 select-none
               opacity-50 flex justify-center items-center bg-gray-200" on:click={pageUpHandler}>

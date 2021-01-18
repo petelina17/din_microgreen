@@ -14,6 +14,7 @@
   import CartFinal from './CartFinal.svelte'
   import {checkIfUserLoggedIn} from '../authorization'
   import {userStore} from '../store'
+  import MyAccount from './MyAccount.svelte'
 
   let showCart = false
   let showLoginForm = false
@@ -56,6 +57,7 @@
 
 <Header on:login={() => {showLoginForm = true}}
         on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
+
 
 <TopBanner/>
 
