@@ -8,6 +8,7 @@
   import UserBlock from './UserBlock.svelte'
   import {faBars,} from '@fortawesome/free-solid-svg-icons'
   import Icon from 'fa-svelte'
+  import {push} from 'svelte-spa-router'
 
   const dispatch = createEventDispatcher()
   let api = new API()
@@ -15,6 +16,7 @@
   let user = null
   $: userLoggedIn = $userStore.data != null
 
+  let showHamburger = false
 
   function login() {
     console.log('login handler 2')
@@ -31,7 +33,7 @@
     dispatch('cart')
   }
 
-  let showHamburger = false
+
 </script>
 
 <div class="bg-white lg:bg-gray-600 lg:bg-opacity-75 fixed w-full z-20 select-none">
@@ -78,8 +80,10 @@
   </div>
 
   {#if showHamburger === true}
-    <div class="bg-white text-gray-800 absolute origin-top-left text-header4 w-full text-left px-5 py-3 z-10"
-         transition:slide>
+    <div class="bg-white text-gray-800 absolute origin-top-left text-header4
+                w-full text-left px-5 py-3 z-10"
+         transition:slide
+          on:click={()=> {showHamburger = false}}>
       <div class="py-2"><a href="/#/live-cam">Live kamera</a></div>
       <div class="py-2"><a href="/#shop">Butik</a></div>
       <div class="py-2"><a href="/#/recipes">Recept</a></div>
