@@ -4,7 +4,7 @@
   import {faHeart} from '@fortawesome/free-regular-svg-icons'
   import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
-  import {saveCartToCookie, userStore} from '../store'
+  import {saveCartToCookie, saveFavorites, userStore} from '../store'
   import {Dialog, TextField} from 'smelte'
   import {fade} from 'svelte/transition'
 
@@ -62,6 +62,8 @@
       $userStore.favoriteList = $userStore.favoriteList.filter(x => x !== productId)
       $userStore.favoriteNumber = $userStore.favoriteList.length
     }
+
+    saveFavorites()
   }
 
   function goToDetails() {

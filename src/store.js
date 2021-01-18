@@ -1,5 +1,8 @@
 import {get, writable} from 'svelte/store'
 import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
+import {API} from './api'
+
+const api = new API()
 
 let user = {
   data: null,
@@ -48,4 +51,37 @@ export function clearCart() {
 
   // 2. clear cookie with cart list
   removeCookie('cartList')
+}
+
+export function saveFavorites() {
+  const user = get(userStore)
+  // setCookie('favorites', JSON.stringify(user.favoriteList))
+  user.data.favorites = user.favoriteList
+  api.updateUser(user.data)
+}
+
+export function loadFavorites() {
+  // const cookie = getCookie('favorites')
+  // if (cookie == null) {
+  //   return
+  // }
+  //
+  // const favorites = JSON.parse(cookie)
+
+  const user = get(userStore)
+  user.favoriteList = []
+  if (user.data.favorites != null) {
+    user.favoriteList = user.data.favorites
+  }
+  userStore.set(user)
+}
+
+export function clearFavorites() {
+  // 1. clear fav list in store
+  const user = get(userStore)
+  user.favoriteList = []
+  userStore.set(user)
+
+  // 2. clear cookie with  fav list
+  removeCookie('favorites')
 }

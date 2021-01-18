@@ -4,7 +4,7 @@
   import Icon from 'fa-svelte'
   import {faUserCircle} from '@fortawesome/free-solid-svg-icons/faUserCircle'
   import {Button, Snackbar} from 'smelte'
-  import {userStore, loadCartFromCookie} from './store'
+  import {userStore, loadCartFromCookie, loadFavorites} from './store'
   import Header from './components/Header.svelte'
   import Home from './components/Home.svelte'
   import LiveCam from './components/LiveCam.svelte'
@@ -40,6 +40,7 @@
     showAlert = true
     await checkIfUserLoggedIn()
     loadCartFromCookie()
+    loadFavorites()
     console.log('userStore', $userStore)
   })
 
