@@ -126,8 +126,8 @@
 
   }
   async function createOrder() {
-    const number = Date.now().toString()
-    $orderNumber = number.substr(6, 20)
+    const number = Date.now().toString().substr(-6)
+    $orderNumber = number
 
     const order = {
       date: new Date().toISOString(),
