@@ -9,20 +9,62 @@
   import {API} from '../api'
   import {onMount} from 'svelte'
   import {slide} from 'svelte/transition'
-  import {faChevronUp,faChevronDown} from '@fortawesome/free-solid-svg-icons'
+  import {faChevronUp, faChevronDown, faHistory, faVideo} from '@fortawesome/free-solid-svg-icons'
   import Icon from 'fa-svelte'
+  import {ProgressCircular} from 'smelte'
 
   const api = new API()
+
+  let allCameras = [
+    {name: 'camera1', img: 'webkam1.jpg', id: '1'},
+    {name: 'camera2', img: 'camera2.jpg', id: '2'},
+    {name: 'camera3', img: 'webkam3.jpg', id: '3'},
+    {name: 'camera4', img: 'webkam4.jpg', id: '4'},
+    {name: 'camera5', img: 'webkam5.jpg', id: '5'},
+    {name: 'camera6', img: 'webkam6.jpg', id: '6'},
+    {name: 'camera7', img: 'webkam7.jpg', id: '7'},
+    {name: 'camera8', img: 'camera2.jpg', id: '8'}
+  ]
+
+  let lastOrder = null
+
+  let cameras = []
+
+  let processingTime = 300 // seconds
+
+  $: getCamerasForLastOrder($userStore.data)
 
   $: showLoginForm = $userStore.data == null
 
   let products = api.getProducts()
   let favoriteProducts = []
+
   let showOrdersDetails = false
+  let showCameras = true
+
+  // seconds since order
+  let runningTime = 0
+  $: days = Math.floor(runningTime / 60 / 60 / 24)
+  $: hours = Math.floor((runningTime - days * 24 * 60 * 60) / 60 / 60)
+  $: minutes = Math.floor((runningTime - days * 24 * 60 * 60 - hours * 60 * 60) / 60)
+  $: seconds = runningTime - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60
+
+  // https://stackoverflow.com/questions/1050720/adding-hours-to-javascript-date-object
+  let today = new Date()
+  today.setSeconds(0)
 
   onMount(() => {
     // TODO: if user is going to login - fix somehow favorites list
     // ...
+
+    const intervalId = setInterval(() => {
+      runningTime += 1
+      if (runningTime > processingTime) {
+        // https://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+        clearInterval(intervalId)
+        closeOrder()
+      }
+    }, 1000)
 
     if ($userStore.data == null) {
       setTimeout(() => {
@@ -32,6 +74,34 @@
       favoriteProducts = products.filter(product => $userStore.favoriteList.includes(product.productId))
     }
   })
+
+  // data == $userStore.data
+  function getCamerasForLastOrder(data) {
+    if (data == null) {
+      return
+    }
+
+    if (data.orders != null && data.orders.length > 0) {
+      lastOrder = data.orders[data.orders.length - 1]
+
+      const orderDate = new Date(lastOrder.date)
+      // https://futurestud.io/tutorials/get-number-of-seconds-since-epoch-in-javascript
+      const secondsFromOrderDate = Math.round(new Date().getTime() / 1000 - orderDate.getTime() / 1000)
+
+      runningTime = secondsFromOrderDate
+      console.log('secondsFromOrderDate', secondsFromOrderDate)
+
+      const orderItems = lastOrder.items
+      const orderProductIdList = orderItems.map(item => item.productData.productId)
+
+      cameras = allCameras.filter(camera => orderProductIdList.includes(camera.id))
+    }
+  }
+
+  function closeOrder () {
+    lastOrder.closed = true
+    api.updateUser($userStore.data)
+  }
 
   function closeHandler() {
     push('/')
@@ -46,40 +116,105 @@
   <SimpleHeader title="Mitt konto" icon={faUser} bgColor={"bg-primary-500"}
                 on:close={closeHandler}/>
 
+  <!--User orders =================================================
+ -->
   <div class="flex flex-col bg-gray-200">
 
-    <div class="bg-alert-50">
-      <div class="text-header4">
+    <div class="bg-alert-50 py-6">
+
+      <div class="">
+        <div class="text-text2 uppercase">
+          MINA ORDRAR
+        </div>
         Orderhistorik ({$userStore.data.orders.length})
+
         <div on:click={() => {showOrdersDetails = !showOrdersDetails}}>
           <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
         </div>
 
         {#if showOrdersDetails === true}
           <div transition:slide>
-          {#each $userStore.data.orders as order}
-            <div class="flex justify-center text-left">
-              <div class="w-64">{order.number}</div>
-              <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
-            </div>
-          {/each}
+            {#each $userStore.data.orders as order}
+              <div class="flex justify-center text-left">
+                <div class="w-64">{order.number}</div>
+                <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
+              </div>
+            {/each}
           </div>
         {/if}
       </div>
 
     </div>
 
-    <div class="bg-blue-50">
-      <div class="text-header4">
-        Mina webbkameror
-      </div>
-      <div class="flex justify-center mx-auto bg-red-500">
-        <div>CAMERA1</div>
-        <div>CAMERA2</div>
+    <!--User cams =================================================
+     -->
+    <div class="bg-white">
+      <div class="">
+        <div class="text-text2 uppercase py-6 bg-gray-300">
+          <!--          <Icon icon={faVideo}/>-->
+          Mina webbkameror
+        </div>
+
+        <div class="bg-gray-300" on:click={() => {showCameras = !showCameras}}>
+          <Icon icon={showCameras === true ? faChevronUp : faChevronDown}/>
+        </div>
+
+
+        {#if showCameras === true}
+          <div transition:slide>
+            {#if lastOrder.closed}
+              <div class="text-header4 py-5 text-gray-500">#{lastOrder.number} ORDER DELIVERED</div>
+            {:else}
+
+
+            <div>
+              {#if cameras.length === 0}
+                <ProgressCircular/>
+              {/if}
+
+              <div class="w-full">
+                INFO HERE ... DU HAR KÖPT ... DINA GRÖNA KoMMER SNART
+              </div>
+
+              <div class="text-header3 py-5 text-gray-500">
+                {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
+              </div>
+            </div>
+
+            <!--
+              GRID =================================================
+            -->
+            <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+              {#each cameras as item}
+                <div class="uppercase text-center">
+                  <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
+                       style={"background-image: url('./img/"+ item.img +"')"}>
+
+                    {#if item.img !== "camera2.jpg"}
+                      <div class="absolute bottom-0 right-0 pb-5 pr-5">
+                        <div class="p-1 text-alert-900 font-mono italic font-bold">
+                          {today.toLocaleString()}
+                        </div>
+                      </div>
+                    {/if}
+
+                  </div>
+
+                  {item.name}
+                </div>
+              {/each}
+            </div>
+
+              {/if} <!-- order delivered ? -->
+          </div>
+        {/if} <!-- show cameras ? -->
+
       </div>
     </div>
 
 
+    <!--User favs =================================================
+     -->
     <div class="bg-gray-200">
 
       <div class="text-header4">
@@ -93,12 +228,14 @@
             &nbsp
           </div>
           <div>{item.title}</div>
-<!--          <div>{item.subtitle}</div>-->
+          <!--          <div>{item.subtitle}</div>-->
         {/each}
       </div>
     </div>
   </div>
 
+  <!--User details =================================================
+ -->
   <div class="bg-alert-300">
     <div class="text-header4">
       Personal info
