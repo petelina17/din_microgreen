@@ -8,6 +8,9 @@
   import {productId} from './ProductCard.svelte'
   import {API} from '../api'
   import {onMount} from 'svelte'
+  import {slide} from 'svelte/transition'
+  import {faChevronUp,faChevronDown} from '@fortawesome/free-solid-svg-icons'
+  import Icon from 'fa-svelte'
 
   const api = new API()
 
@@ -15,6 +18,7 @@
 
   let products = api.getProducts()
   let favoriteProducts = []
+  let showOrdersDetails = false
 
   onMount(() => {
     // TODO: if user is going to login - fix somehow favorites list
@@ -45,42 +49,58 @@
   <div class="flex flex-col bg-gray-200">
 
     <div class="bg-alert-50">
-      <div class="">
-        Orderhistorik
-      </div>
+      <div class="text-header4">
+        Orderhistorik ({$userStore.data.orders.length})
+        <div on:click={() => {showOrdersDetails = !showOrdersDetails}}>
+          <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
+        </div>
 
-      <div>1</div>
+        {#if showOrdersDetails === true}
+          <div transition:slide>
+          {#each $userStore.data.orders as order}
+            <div class="flex justify-center text-left">
+              <div class="w-64">{order.number}</div>
+              <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
+            </div>
+          {/each}
+          </div>
+        {/if}
+      </div>
 
     </div>
 
     <div class="bg-blue-50">
-      <div class="">
+      <div class="text-header4">
         Mina webbkameror
       </div>
-      <div>1</div>
+      <div class="flex justify-center mx-auto bg-red-500">
+        <div>CAMERA1</div>
+        <div>CAMERA2</div>
+      </div>
     </div>
 
-    <div class="bg-alert-500">
 
-      <div class="text-header3">
+    <div class="bg-gray-200">
+
+      <div class="text-header4">
         Mina favoriter
       </div>
 
       <div class="">
         {#each favoriteProducts as item}
-          <div>{item.img}</div>
+          <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
+               style={"background-image: url('img/" + item.img + "');"}>
+            &nbsp
+          </div>
           <div>{item.title}</div>
+<!--          <div>{item.subtitle}</div>-->
         {/each}
       </div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
     </div>
-
   </div>
 
   <div class="bg-alert-300">
-    <div class="">
+    <div class="text-header4">
       Personal info
     </div>
     <div class="">
