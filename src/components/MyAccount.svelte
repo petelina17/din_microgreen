@@ -16,23 +16,25 @@
   const api = new API()
 
   let allCameras = [
-    {name: 'camera1', img: 'webkam1.jpg', id: '1'},
-    {name: 'camera2', img: 'camera2.jpg', id: '2'},
+    {name: 'camera1', img: 'webkam5.jpg', id: '1'},
+    {name: 'camera2', img: 'webkam11.jpg', id: '2'},
     {name: 'camera3', img: 'webkam3.jpg', id: '3'},
     {name: 'camera4', img: 'webkam4.jpg', id: '4'},
-    {name: 'camera5', img: 'webkam5.jpg', id: '5'},
+    {name: 'camera5', img: 'webkam1.jpg', id: '5'},
     {name: 'camera6', img: 'webkam6.jpg', id: '6'},
     {name: 'camera7', img: 'webkam7.jpg', id: '7'},
-    {name: 'camera8', img: 'camera2.jpg', id: '8'}
+    {name: 'camera8', img: 'webkam10.jpg', id: '8'}
   ]
 
   let lastOrder = null
 
   let cameras = []
 
-  let processingTime = 300 // seconds
+  // time from start to complete the order(24 hours)
+  let processingTime = 24 * 60 * 60 // seconds
 
   $: getCamerasForLastOrder($userStore.data)
+  $: setFavorites($userStore.favoriteList)
 
   $: showLoginForm = $userStore.data == null
 
@@ -41,6 +43,8 @@
 
   let showOrdersDetails = false
   let showCameras = true
+  let showFavorites = false
+  let showPersonalDetails = false
 
   // seconds since order
   let runningTime = 0
@@ -54,9 +58,6 @@
   today.setSeconds(0)
 
   onMount(() => {
-    // TODO: if user is going to login - fix somehow favorites list
-    // ...
-
     const intervalId = setInterval(() => {
       runningTime += 1
       if (runningTime > processingTime) {
@@ -65,15 +66,11 @@
         closeOrder()
       }
     }, 1000)
-
-    if ($userStore.data == null) {
-      setTimeout(() => {
-        favoriteProducts = products.filter(product => $userStore.favoriteList.includes(product.productId))
-      }, 500)
-    } else {
-      favoriteProducts = products.filter(product => $userStore.favoriteList.includes(product.productId))
-    }
   })
+
+  function setFavorites(favoriteList) {
+    favoriteProducts = products.filter(product => favoriteList.includes(product.productId))
+  }
 
   // data == $userStore.data
   function getCamerasForLastOrder(data) {
@@ -98,7 +95,7 @@
     }
   }
 
-  function closeOrder () {
+  function closeOrder() {
     lastOrder.closed = true
     api.updateUser($userStore.data)
   }
@@ -136,7 +133,7 @@
           <div transition:slide>
             {#each $userStore.data.orders as order}
               <div class="flex justify-center text-left">
-                <div class="w-64">{order.number}</div>
+                <div class="w-64">#{order.number}</div>
                 <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
               </div>
             {/each}
@@ -163,49 +160,50 @@
         {#if showCameras === true}
           <div transition:slide>
             {#if lastOrder.closed}
-              <div class="text-header4 py-5 text-gray-500">#{lastOrder.number} ORDER DELIVERED</div>
+              <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
             {:else}
 
 
-            <div>
-              {#if cameras.length === 0}
-                <ProgressCircular/>
-              {/if}
+              <div>
+                {#if cameras.length === 0}
+                  <ProgressCircular/>
+                {/if}
 
-              <div class="w-full">
-                INFO HERE ... DU HAR KÖPT ... DINA GRÖNA KoMMER SNART
-              </div>
-
-              <div class="text-header3 py-5 text-gray-500">
-                {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
-              </div>
-            </div>
-
-            <!--
-              GRID =================================================
-            -->
-            <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-              {#each cameras as item}
-                <div class="uppercase text-center">
-                  <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
-                       style={"background-image: url('./img/"+ item.img +"')"}>
-
-                    {#if item.img !== "camera2.jpg"}
-                      <div class="absolute bottom-0 right-0 pb-5 pr-5">
-                        <div class="p-1 text-alert-900 font-mono italic font-bold">
-                          {today.toLocaleString()}
-                        </div>
-                      </div>
-                    {/if}
-
-                  </div>
-
-                  {item.name}
+                <div class="w-full m-8 uppercase">
+                  Snart kommer växtlådor med ditt mikrogrönt visas här och du få
+                  bevaka din superfoodens utväxt när som helst inom 7 dagar. Ha det roligt!
                 </div>
-              {/each}
-            </div>
 
-              {/if} <!-- order delivered ? -->
+                <div class="text-header3 py-5 text-gray-500">
+                  {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
+                </div>
+              </div>
+
+              <!--
+                GRID =================================================
+              -->
+              <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+                {#each cameras as item}
+                  <div class="uppercase text-center">
+                    <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
+                         style={"background-image: url('./img/"+ item.img +"')"}>
+
+                      {#if item.img !== "camera2.jpg"}
+                        <div class="absolute bottom-0 right-0 pb-5 pr-5">
+                          <div class="p-1 text-alert-900 font-mono italic font-bold">
+                            {today.toLocaleString()}
+                          </div>
+                        </div>
+                      {/if}
+
+                    </div>
+
+                    {item.name}
+                  </div>
+                {/each}
+              </div>
+
+            {/if} <!-- order delivered ? -->
           </div>
         {/if} <!-- show cameras ? -->
 
@@ -216,23 +214,34 @@
     <!--User favs =================================================
      -->
     <div class="bg-gray-200">
-
       <div class="text-header4">
         Mina favoriter
       </div>
 
-      <div class="">
-        {#each favoriteProducts as item}
-          <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
-               style={"background-image: url('img/" + item.img + "');"}>
-            &nbsp
-          </div>
-          <div>{item.title}</div>
-          <!--          <div>{item.subtitle}</div>-->
-        {/each}
+      <div class="bg-gray-700" on:click={() => {showFavorites = !showFavorites}}>
+        <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
       </div>
+
+      {#if showFavorites === true}
+        <div transition:slide>
+
+
+          <div class="">
+            {#each favoriteProducts as item}
+              <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
+                   style={"background-image: url('img/" + item.img + "');"}>
+                &nbsp
+              </div>
+              <div>{item.title}</div>
+              <!--          <div>{item.subtitle}</div>-->
+            {/each}
+          </div>
+        </div>
+      {/if}
+
     </div>
   </div>
+
 
   <!--User details =================================================
  -->
@@ -240,14 +249,36 @@
     <div class="text-header4">
       Personal info
     </div>
-    <div class="">
-      <Button remove="text-sm uppercase"
-              add="rounded-full w-full h-12 text-base mb-4
-                  md:w-48 md:mr-8
-                  lg:h-16 lg:w-64 lg:text-header4"
-              on:click="">
-        Spara ändringar
-      </Button>
+
+    <div class="bg-red-200" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
+      <Icon icon={showPersonalDetails === true ? faChevronUp : faChevronDown}/>
     </div>
+
+    {#if showPersonalDetails === true}
+      <div transition:slide>
+
+    <div class="">
+      <div>Email</div>
+      <div>Namn</div>
+      <div>Efternamn</div>
+      <div>Adress</div>
+      <div>Ort</div>
+      <div>Postort</div>
+    </div>
+
+        <Button remove="text-sm uppercase"
+                add="rounded-full w-full h-12 text-base mb-4
+                    md:w-48 md:mr-8
+                    lg:h-16 lg:w-64 lg:text-header4"
+                on:click="">
+          Spara ändringar
+        </Button>
+
+      </div>
+
+      {/if}
   </div>
-{/if}
+
+
+
+  {/if}
