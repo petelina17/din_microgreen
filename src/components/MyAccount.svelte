@@ -1,7 +1,7 @@
 <script>
   import SimpleHeader from './SimpleHeader.svelte'
   import {userStore} from '../store'
-  import {faUser} from '@fortawesome/free-solid-svg-icons'
+  import {faUser, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
   import Button from 'smelte/src/components/Button'
   import Login from './Login.svelte'
@@ -130,7 +130,7 @@
         </div>
 
         {#if showOrdersDetails === true}
-          <div transition:slide>
+          <div in:slide>
             {#each $userStore.data.orders as order}
               <div class="flex justify-center text-left">
                 <div class="w-64">#{order.number}</div>
@@ -147,7 +147,7 @@
      -->
     <div class="bg-white">
       <div class="">
-        <div class="text-text2 uppercase py-6 bg-gray-300">
+        <div class="text-text2 uppercase py-3 bg-gray-300">
           <!--          <Icon icon={faVideo}/>-->
           Mina webbkameror
         </div>
@@ -158,7 +158,7 @@
 
 
         {#if showCameras === true}
-          <div transition:slide>
+<!--          <div transition:slide>-->
             {#if lastOrder.closed}
               <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
             {:else}
@@ -169,9 +169,9 @@
                   <ProgressCircular/>
                 {/if}
 
-                <div class="w-full m-8 uppercase">
+                <div class="w-full mx-auto m-8">
                   Snart kommer växtlådor med ditt mikrogrönt visas här och du få
-                  bevaka din superfoodens utväxt när som helst inom 7 dagar. Ha det roligt!
+                  bevaka din superfoodens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
                 </div>
 
                 <div class="text-header3 py-5 text-gray-500">
@@ -204,7 +204,7 @@
               </div>
 
             {/if} <!-- order delivered ? -->
-          </div>
+<!--          </div>-->
         {/if} <!-- show cameras ? -->
 
       </div>
@@ -218,15 +218,15 @@
         Mina favoriter
       </div>
 
-      <div class="bg-gray-700" on:click={() => {showFavorites = !showFavorites}}>
+      <div class="bg-gray-500 py-1" on:click={() => {showFavorites = !showFavorites}}>
         <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
       </div>
 
       {#if showFavorites === true}
-        <div transition:slide>
+<!--        <div transition:slide>-->
 
 
-          <div class="">
+          <div class="py1">
             {#each favoriteProducts as item}
               <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
                    style={"background-image: url('img/" + item.img + "');"}>
@@ -236,7 +236,7 @@
               <!--          <div>{item.subtitle}</div>-->
             {/each}
           </div>
-        </div>
+<!--        </div>-->
       {/if}
 
     </div>
@@ -246,8 +246,15 @@
   <!--User details =================================================
  -->
   <div class="bg-alert-300">
-    <div class="text-header4">
-      Personal info
+    <div class="">
+      <div class="text-header4">
+        Personal info
+      </div>
+      <div class="text-header5">
+        ändra
+        <Icon icon={faPencilAlt} style=""/>_
+      </div>
+
     </div>
 
     <div class="bg-red-200" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
@@ -255,16 +262,30 @@
     </div>
 
     {#if showPersonalDetails === true}
-      <div transition:slide>
+<!--      <div transition:slide>-->
+        {#if $userStore.data != null}
 
-    <div class="">
-      <div>Email</div>
-      <div>Namn</div>
-      <div>Efternamn</div>
-      <div>Adress</div>
-      <div>Ort</div>
-      <div>Postort</div>
-    </div>
+          <div class="">
+            <div class="">Email:
+              <div class="">{$userStore.data.email}</div>
+            </div>
+            <div class="">Namn:
+              <div class="">{$userStore.data.firstName}</div>
+            </div>
+            <div class="">Efternamn:
+              <div class="">{$userStore.data.secondName}</div>
+            </div>
+            <div class="">Adress:
+              <div class="">{$userStore.data.address}</div>
+            </div>
+            <div class="">Ort:
+              <div class="">{$userStore.data.city}</div>
+            </div>
+            <div class="">Postort:
+              <div class="">{$userStore.data.zip}</div>
+            </div>
+          </div>
+        {/if}
 
         <Button remove="text-sm uppercase"
                 add="rounded-full w-full h-12 text-base mb-4
@@ -274,11 +295,10 @@
           Spara ändringar
         </Button>
 
-      </div>
+<!--      </div>-->
 
-      {/if}
+    {/if}
   </div>
 
 
-
-  {/if}
+{/if}

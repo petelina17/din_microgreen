@@ -21,7 +21,7 @@
   // Routs for website
   const routes = {
     '/': Home,
-    '/live-cam': UnderConstruction,
+    '/live-cam': LiveCam,
     '/registration': Registration,
     '/account': MyAccount,
     '/cart': Cart,
