@@ -26,7 +26,8 @@
   </div>
 
   <div class="py-10 text-header4 text-gray-700">
-    Din ordernummer är: <span class="text-offblack">{$orderNumber}</span>
+    Din ordernummer är: <span class="text-offblack">{$orderNumber}.</span>
+    &nbsp;Nu är dina webbkameror aktiverade!
   </div>
 
   <div class="w-full text-center pb-12">
