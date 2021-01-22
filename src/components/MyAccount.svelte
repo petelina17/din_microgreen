@@ -30,6 +30,7 @@
 
   let cameras = []
 
+
   // time from start to complete the order(24 hours)
   let processingTime = 24 * 60 * 60 // seconds
 
@@ -120,7 +121,7 @@
     <div class="bg-alert-50 py-6">
 
       <div class="">
-        <div class="text-text2 uppercase">
+        <div class="text-header4">
           MINA ORDRAR
         </div>
         Orderhistorik ({$userStore.data.orders.length})
@@ -147,8 +148,7 @@
      -->
     <div class="bg-white">
       <div class="">
-        <div class="text-text2 uppercase py-3 bg-gray-300">
-          <!--          <Icon icon={faVideo}/>-->
+        <div class="text-header4 py-3 bg-gray-300">
           Mina webbkameror
         </div>
 
