@@ -25,7 +25,7 @@
     '/registration': Registration,
     '/account': MyAccount,
     '/cart': Cart,
-    '/recipes': UnderConstruction,
+    '/recipes': Recipes,
     '/recipe/new': RecipeForm,
     '/recipe/:id': RecipeForm,
     '/articles': UnderConstruction,
