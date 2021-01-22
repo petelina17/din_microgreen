@@ -4,7 +4,7 @@
 
   export let title = 'no title'
   export let icon = null
-  export let bgColor = 'bg-primary-600'
+  export let bgImage = 'fullmoon3-b.jpg'
   export let noClose = false
 
   let dispatch = createEventDispatcher()
@@ -14,7 +14,9 @@
   }
 </script>
 
-<div class={"h-32 text-offwhite " + bgColor}>
+<div class="h-24 text-offwhite font-medium bg-cover bg-center bg-opacity-25"
+     style={"background-image: url('/img/" + bgImage + "')"}>
+<!--<div class={"h-32 text-offwhite " + bgColor}>-->
   <div class="wrapper h-full flex items-center pl-8 ">
 
     {#if icon != null}
