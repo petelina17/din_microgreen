@@ -117,61 +117,57 @@
   <!--User orders =================================================
  -->
   <div class="flex flex-col">
-    <div class="py-4">
-
-      <div class="px-4">
-        <div class="flex">
-          <div class="text-header4 flex-grow text-left">
-            Mina ordrar <span class="text-text2 font-light leading-loose">({$userStore.data.orders.length})</span>
-          </div>
-
-          <div class="pt-1" on:click={() => {showOrdersDetails = !showOrdersDetails}}>
-            <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
-          </div>
+    <div class="px-4 py-4">
+      <div class="flex">
+        <div class="text-header4 flex-grow text-left">
+          Mina ordrar <span class="text-text2 font-light leading-loose">({$userStore.data.orders.length})</span>
         </div>
 
-        {#if showOrdersDetails === true}
-          <div class="pt-3" in:slide>
-            {#each $userStore.data.orders as order}
-              <div class="flex justify-center text-left">
-                <div class="w-64">#{order.number}</div>
-                <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
-              </div>
-            {/each}
-          </div>
-        {/if}
+        <div class="pt-1" on:click={() => {showOrdersDetails = !showOrdersDetails}}>
+          <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
+        </div>
       </div>
 
+      {#if showOrdersDetails === true}
+        <div class="pt-3" in:slide>
+          {#each $userStore.data.orders as order}
+            <div class="flex justify-center text-left">
+              <div class="w-64">#{order.number}</div>
+              <div class="w-64">{new Date(order.date).toLocaleDateString()}</div>
+            </div>
+          {/each}
+        </div>
+      {/if}
     </div>
 
     <!--User cams =================================================
      -->
     <div class="bg-white">
-      <div class="">
-        <div class="text-header4 py-3 bg-gray-300">
-          Mina webbkameror
-        </div>
+      <div class="px-4">
 
-        <div class="bg-gray-300" on:click={() => {showCameras = !showCameras}}>
-          <Icon icon={showCameras === true ? faChevronUp : faChevronDown}/>
-        </div>
+        <div class="flex bg-gray-300 py-4 -mx-4 px-4">
+          <div class="text-header4 flex-grow text-left">
+            Mina webbkameror
+          </div>
 
+          <div class="pt-1" on:click={() => {showCameras = !showCameras}}>
+            <Icon icon={showCameras === true ? faChevronUp : faChevronDown}/>
+          </div>
+        </div>
 
         {#if showCameras === true}
-          <!--          <div transition:slide>-->
           {#if lastOrder != null && lastOrder.closed}
             <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
           {:else}
-
 
             <div>
               {#if cameras.length === 0}
                 <ProgressCircular/>
               {/if}
 
-              <div class="w-full mx-auto m-8">
+              <div class="w-full mx-auto py-4 font-light">
                 Snart kommer växtlådor med ditt mikrogrönt visas här och du få
-                bevaka din superfoodens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
+                bevaka din-microgreens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
               </div>
 
               <div class="text-header3 py-5 text-gray-500">
@@ -185,7 +181,7 @@
             <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
               {#each cameras as item}
                 <div class="uppercase text-center">
-                  <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
+                  <div class="w-full h-84 bg-cover bg-center mx-auto bg-alert-300 relative"
                        style={"background-image: url('./img/"+ item.img +"')"}>
 
                     {#if item.img !== "camera2.jpg"}
@@ -198,7 +194,7 @@
 
                   </div>
 
-                  {item.name}
+                  <div class="py-2 text-gray-700 text-text1">{item.name}</div>
                 </div>
               {/each}
             </div>
