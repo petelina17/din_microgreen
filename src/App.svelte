@@ -17,6 +17,7 @@
   import Cart from './components/Cart.svelte'
   import {checkIfUserLoggedIn} from './authorization'
   import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
+	import Cookies from './components/Cookies.svelte'
 
   // Routs for website
   const routes = {
@@ -53,18 +54,21 @@
   }
 </script>
 
-<!--
+
 <Snackbar color="alert" top timeout={10000} bind:value={showAlert} noAction={false}
-					class="pointer-events-auto flex absolute py-2 px-4 z-30 mb-4 content-between mx-auto
-      rounded items-center elevation-2 h-32 px-10">
-	<div class="text-lg text-offblack" >
+					class="pointer-events-auto flex absolute pb-2 px-4 z-30 mb-4 content-between mx-3
+      rounded items-center elevation-2 h-48
+      md:mx-auto md:h-24">
+	<div class="md:text-lg text-offblack">
 		OBS! Detta är demoprojekt skapat för utbildningsändamål och är inte avsett för annat bruk
 	</div>
 	<div slot="action">
 		<Button  text on:click={() => (showAlert = false)}>Stäng</Button>
 	</div>
 </Snackbar>
--->
+
+<Cookies/>
+
 
 <main class="text-offblack">
   <Router {routes}/>
