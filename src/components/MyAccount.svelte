@@ -43,8 +43,8 @@
   let favoriteProducts = []
 
   let showOrdersDetails = false
-  let showCameras = false
-  let showFavorites = true
+  let showCameras = true
+  let showFavorites = false
   let showPersonalDetails = false
 
   // seconds since order
@@ -140,152 +140,156 @@
         </div>
       {/if}
     </div>
-
-    <!--
-      User cams =================================================
-     -->
-    <div class="bg-white">
-      <div class="px-4">
-
-        <div class="flex bg-gray-200 py-4 -mx-4 px-4">
-          <div class="text-header4 flex-grow text-left">
-            Mina webbkameror
-          </div>
-
-          <div class="pt-1" on:click={() => {showCameras = !showCameras}}>
-            <Icon icon={showCameras === true ? faChevronUp : faChevronDown}/>
-          </div>
-        </div>
-
-        {#if showCameras === true}
-          {#if lastOrder != null && lastOrder.closed}
-            <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
-          {:else}
-
-            <div>
-              {#if cameras.length === 0}
-                <ProgressCircular/>
-              {/if}
-
-              <div class="w-full mx-auto py-4 font-light">
-                Snart kommer växtlådor med ditt mikrogrönt visas här och du få
-                bevaka din-microgreens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
-              </div>
-
-              <div class="text-header3 py-5 text-gray-500">
-                {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
-              </div>
-            </div>
-
-            <!--
-              GRID =================================================
-            -->
-            <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-              {#each cameras as item}
-                <div class="uppercase text-center">
-                  <div class="w-full h-84 bg-cover bg-center mx-auto bg-alert-300 relative"
-                       style={"background-image: url('./img/"+ item.img +"')"}>
-
-                    {#if item.img !== "camera2.jpg"}
-                      <div class="absolute bottom-0 right-0 pb-5 pr-5">
-                        <div class="p-1 text-alert-900 font-mono italic font-bold">
-                          {today.toLocaleString()}
-                        </div>
-                      </div>
-                    {/if}
-
-                  </div>
-
-                  <div class="py-2 text-gray-700 text-text1">{item.name}</div>
-                </div>
-              {/each}
-            </div>
-
-          {/if} <!-- order delivered ? -->
-          <!--          </div>-->
-        {/if} <!-- show cameras ? -->
-
-      </div>
-    </div>
-
-    <!--
-      User favs =================================================
-     -->
-    <div class="px-4">
-      <div class="flex py-4 border-b">
-        <div class="text-header4 flex-grow text-left">
-          Mina favoriter
-        </div>
-
-        <div class="py-1" on:click={() => {showFavorites = !showFavorites}}>
-          <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
-        </div>
-      </div>
-
-      {#if showFavorites === true}
-        <div class="pb-4">
-
-          {#each favoriteProducts as item}
-            <div class="flex items-center">
-              <div class="w-16 h-16 rounded-full bg-cover img-placeholder mr-4"
-                   style={"background-image: url('img/" + item.img + "');"}>
-                &nbsp
-              </div>
-              <div class="pt-2 text-lg text-gray-700">
-                {item.title}
-              </div>
-            </div>
-          {/each}
-
-        </div>
-        <!--        </div>-->
-      {/if}
-    </div>
-
   </div>
 
+  <!--
+    User cams =================================================
+   -->
+  <div class="bg-white">
+    <div class="px-4">
 
-  <!--User details =================================================
- -->
-  <div class="bg-gray-300">
-    <div class="">
-      <div class="text-header4">
-        Personal info
+      <div class="flex bg-gray-200 py-4 -mx-4 px-4">
+        <div class="text-header4 flex-grow text-left">
+          Mina webbkameror
+        </div>
+
+        <div class="pt-1" on:click={() => {showCameras = !showCameras}}>
+          <Icon icon={showCameras === true ? faChevronUp : faChevronDown}/>
+        </div>
       </div>
-      <div class="text-header5">
-        ändra
-        <Icon icon={faPencilAlt} style=""/>
-        _
-      </div>
+
+      {#if showCameras === true}
+        {#if lastOrder != null && lastOrder.closed}
+          <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
+        {:else}
+
+          <div>
+            {#if cameras.length === 0}
+              <ProgressCircular/>
+            {/if}
+
+            <div class="w-full mx-auto py-4 font-light">
+              Snart kommer växtlådor med ditt mikrogrönt visas här och du få
+              bevaka din-microgreens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
+            </div>
+            <div class="text-lg text-blue-300">
+              Tillväxt pågår
+            </div>
+            <div class="text-header3 pb-5 font-light text-blue-300">
+              {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
+            </div>
+          </div>
+
+          <!--
+            GRID =================================================
+          -->
+          <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+            {#each cameras as item}
+              <div class="uppercase text-center">
+                <div class="w-full h-84 bg-cover bg-center mx-auto bg-alert-300 relative"
+                     style={"background-image: url('./img/"+ item.img +"')"}>
+
+                  {#if item.img !== "camera2.jpg"}
+                    <div class="absolute bottom-0 right-0 pb-5 pr-5">
+                      <div class="p-1 text-alert-900 font-mono italic font-bold">
+                        {today.toLocaleString()}
+                      </div>
+                    </div>
+                  {/if}
+
+                </div>
+
+                <div class="py-2 text-gray-600 text-lg">{item.name}</div>
+              </div>
+            {/each}
+          </div>
+
+        {/if} <!-- order delivered ? -->
+        <!--          </div>-->
+      {/if} <!-- show cameras ? -->
 
     </div>
+  </div>
 
-    <div class="bg-gray-300" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
-      <Icon icon={showPersonalDetails === true ? faChevronUp : faChevronDown}/>
+  <!--
+    User favs =================================================
+   -->
+  <div class="px-4">
+    <div class="flex py-4 border-b">
+      <div class="text-header4 flex-grow text-left">
+        Mina favoriter
+      </div>
+
+      <div class="py-1" on:click={() => {showFavorites = !showFavorites}}>
+        <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
+      </div>
+    </div>
+
+    {#if showFavorites === true}
+      <div class="pb-4">
+
+        {#each favoriteProducts as item}
+          <div class="flex items-center">
+            <div class="w-16 h-16 rounded-full bg-cover img-placeholder mr-4"
+                 style={"background-image: url('img/" + item.img + "');"}>
+              &nbsp
+            </div>
+            <div class="pt-2 text-lg text-gray-700">
+              {item.title}
+            </div>
+          </div>
+        {/each}
+
+      </div>
+      <!--        </div>-->
+    {/if}
+  </div>
+
+  <!--
+    User details =================================================
+  -->
+  <div class="px-4 text-left pb-5">
+    <div class="flex py-4 bg-gray-200 -mx-4 px-4">
+      <div class="text-header4 flex-grow">
+        Personal info
+      </div>
+      <div class="pt-1" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
+        <Icon icon={showPersonalDetails === true ? faChevronUp : faChevronDown}/>
+      </div>
     </div>
 
     {#if showPersonalDetails === true}
-      <!--      <div transition:slide>-->
       {#if $userStore.data != null}
 
-        <div class="">
-          <div class="">Email:
-            <div class="">{$userStore.data.email}</div>
+        <div class="py-3">
+          <div class="flex py-1">
+            <div class="w-1/2">Email:</div>
+            <div class="w-1/2 font-light">{$userStore.data.email}</div>
           </div>
-          <div class="">Namn:
-            <div class="">{$userStore.data.firstName}</div>
+
+          <div class="flex py-1">
+            <div class="w-1/2">Namn:</div>
+            <div class="w-1/2 font-light">{$userStore.data.firstName}</div>
           </div>
-          <div class="">Efternamn:
-            <div class="">{$userStore.data.secondName}</div>
+
+          <div class="flex py-1">
+            <div class="w-1/2">Efternamn:</div>
+            <div class="w-1/2 font-light">{$userStore.data.secondName}</div>
           </div>
-          <div class="">Adress:
-            <div class="">{$userStore.data.address}</div>
+
+          <div class="flex py-1">
+            <div class="w-1/2">Adress:</div>
+            <div class="w-1/2 font-light">{$userStore.data.address}</div>
           </div>
-          <div class="">Ort:
-            <div class="">{$userStore.data.city}</div>
+
+          <div class="flex py-1">
+            <div class="w-1/2">Ort:</div>
+            <div class="w-1/2 font-light">{$userStore.data.city}</div>
           </div>
-          <div class="">Postort:
-            <div class="">{$userStore.data.zip}</div>
+
+          <div class="flex py-1">
+            <div class="w-1/2">Postort:</div>
+            <div class="w-1/2 font-light">{$userStore.data.zip}</div>
           </div>
         </div>
       {/if}
