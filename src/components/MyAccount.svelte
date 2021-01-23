@@ -1,6 +1,6 @@
 <script>
   import SimpleHeader from './SimpleHeader.svelte'
-  import {userStore} from '../store'
+  import {userStore, loadingUser} from '../store'
   import {faUser, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
   import {push} from 'svelte-spa-router'
   import Button from 'smelte/src/components/Button'
@@ -37,7 +37,7 @@
   $: getCamerasForLastOrder($userStore.data)
   $: setFavorites($userStore.favoriteList)
 
-  $: showLoginForm = $userStore.data == null
+  $: showLoginForm = $loadingUser === false && $userStore.data == null
 
   let products = api.getProducts()
   let favoriteProducts = []
@@ -227,6 +227,10 @@
 
     {#if showFavorites === true}
       <div class="pb-4">
+
+        {#if favoriteProducts.length === 0}
+          <div class="text-lg pt-3 text-gray-400">Du har inga favoriter ännu</div>
+          {/if}
 
         {#each favoriteProducts as item}
           <div class="flex items-center">
