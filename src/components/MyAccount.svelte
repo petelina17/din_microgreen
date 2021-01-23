@@ -43,8 +43,8 @@
   let favoriteProducts = []
 
   let showOrdersDetails = false
-  let showCameras = true
-  let showFavorites = false
+  let showCameras = false
+  let showFavorites = true
   let showPersonalDetails = false
 
   // seconds since order
@@ -114,11 +114,12 @@
   <SimpleHeader title="Mitt konto" icon={faUser} bgColor={"bg-primary-500"}
                 on:close={closeHandler}/>
 
-  <!--User orders =================================================
- -->
+  <!--
+    User orders =================================================
+  -->
   <div class="flex flex-col">
-    <div class="px-4 py-4">
-      <div class="flex">
+    <div class="px-4 ">
+      <div class="flex py-4 border-b">
         <div class="text-header4 flex-grow text-left">
           Mina ordrar <span class="text-text2 font-light leading-loose">({$userStore.data.orders.length})</span>
         </div>
@@ -129,7 +130,7 @@
       </div>
 
       {#if showOrdersDetails === true}
-        <div class="pt-3" in:slide>
+        <div class="py-3" in:slide>
           {#each $userStore.data.orders as order}
             <div class="flex justify-center text-left">
               <div class="w-64">#{order.number}</div>
@@ -140,12 +141,13 @@
       {/if}
     </div>
 
-    <!--User cams =================================================
+    <!--
+      User cams =================================================
      -->
     <div class="bg-white">
       <div class="px-4">
 
-        <div class="flex bg-gray-300 py-4 -mx-4 px-4">
+        <div class="flex bg-gray-200 py-4 -mx-4 px-4">
           <div class="text-header4 flex-grow text-left">
             Mina webbkameror
           </div>
@@ -206,36 +208,40 @@
       </div>
     </div>
 
-
-    <!--User favs =================================================
+    <!--
+      User favs =================================================
      -->
-    <div class="">
-      <div class="text-header4">
-        Mina favoriter
-      </div>
+    <div class="px-4">
+      <div class="flex py-4 border-b">
+        <div class="text-header4 flex-grow text-left">
+          Mina favoriter
+        </div>
 
-      <div class="py-1" on:click={() => {showFavorites = !showFavorites}}>
-        <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
+        <div class="py-1" on:click={() => {showFavorites = !showFavorites}}>
+          <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
+        </div>
       </div>
 
       {#if showFavorites === true}
-        <!--        <div transition:slide>-->
+        <div class="pb-4">
 
-
-        <div class="py1">
           {#each favoriteProducts as item}
-            <div class="w-16 h-16 rounded-full bg-cover img-placeholder"
-                 style={"background-image: url('img/" + item.img + "');"}>
-              &nbsp
+            <div class="flex items-center">
+              <div class="w-16 h-16 rounded-full bg-cover img-placeholder mr-4"
+                   style={"background-image: url('img/" + item.img + "');"}>
+                &nbsp
+              </div>
+              <div class="pt-2 text-lg text-gray-700">
+                {item.title}
+              </div>
             </div>
-            <div>{item.title}</div>
-            <!--          <div>{item.subtitle}</div>-->
           {/each}
+
         </div>
         <!--        </div>-->
       {/if}
-
     </div>
+
   </div>
 
 
