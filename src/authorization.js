@@ -1,5 +1,5 @@
 import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
-import {userStore} from './store'
+import {userStore, loadingUser} from './store'
 import { get } from 'svelte/store'
 import { API } from './api'
 
@@ -42,6 +42,7 @@ export async function checkIfUserLoggedIn() {
 
   // and put updated firebaseUserData object to store
   userStore.set(user)
+  loadingUser.set(false)
   return user.data != null
 }
 

@@ -15,6 +15,8 @@ let user = {
 
 export let userStore = writable(user)
 
+export let loadingUser = writable(true)
+
 let searchText = ''
 export let search = writable(searchText)
 
