@@ -254,7 +254,7 @@
   -->
   <div class="px-4 text-left pb-5">
     <div class="flex py-4 bg-gray-200 -mx-4 px-4">
-      <div class="text-header4 flex-grow">
+      <div class="text-header4 flex-grow pb-2">
         Personal info
       </div>
       <div class="pt-1" on:click={() => {showPersonalDetails = !showPersonalDetails}}>

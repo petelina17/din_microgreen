@@ -54,10 +54,8 @@
 </script>
 
 
-
 <Header on:login={() => {showLoginForm = true}}
         on:cart={()=> {$userStore.buyProcess = 'cart'}}/>
-
 
 <TopBanner/>
 
