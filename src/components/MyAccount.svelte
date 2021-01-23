@@ -19,7 +19,7 @@
     {name: 'camera1', img: 'webkam5.jpg', id: '1'},
     {name: 'camera2', img: 'webkam11.jpg', id: '2'},
     {name: 'camera3', img: 'webkam3.jpg', id: '3'},
-    {name: 'camera4', img: 'webkam4.jpg', id: '4'},
+    {name: 'camera4', img: 'webkam7.jpg', id: '4'},
     {name: 'camera5', img: 'webkam1.jpg', id: '5'},
     {name: 'camera6', img: 'webkam6.jpg', id: '6'},
     {name: 'camera7', img: 'webkam7.jpg', id: '7'},
@@ -116,22 +116,22 @@
 
   <!--User orders =================================================
  -->
-  <div class="flex flex-col bg-gray-200">
+  <div class="flex flex-col">
+    <div class="py-4">
 
-    <div class="bg-alert-50 py-6">
+      <div class="px-4">
+        <div class="flex">
+          <div class="text-header4 flex-grow text-left">
+            Mina ordrar <span class="text-text2 font-light leading-loose">({$userStore.data.orders.length})</span>
+          </div>
 
-      <div class="">
-        <div class="text-header4">
-          MINA ORDRAR
-        </div>
-        Orderhistorik ({$userStore.data.orders.length})
-
-        <div on:click={() => {showOrdersDetails = !showOrdersDetails}}>
-          <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
+          <div class="pt-1" on:click={() => {showOrdersDetails = !showOrdersDetails}}>
+            <Icon icon={showOrdersDetails === true ? faChevronUp : faChevronDown}/>
+          </div>
         </div>
 
         {#if showOrdersDetails === true}
-          <div in:slide>
+          <div class="pt-3" in:slide>
             {#each $userStore.data.orders as order}
               <div class="flex justify-center text-left">
                 <div class="w-64">#{order.number}</div>
@@ -158,53 +158,53 @@
 
 
         {#if showCameras === true}
-<!--          <div transition:slide>-->
-            {#if lastOrder.closed}
-              <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
-            {:else}
+          <!--          <div transition:slide>-->
+          {#if lastOrder != null && lastOrder.closed}
+            <div class="text-5 py-5 text-gray-500">#{lastOrder.number} Levererad</div>
+          {:else}
 
 
-              <div>
-                {#if cameras.length === 0}
-                  <ProgressCircular/>
-                {/if}
+            <div>
+              {#if cameras.length === 0}
+                <ProgressCircular/>
+              {/if}
 
-                <div class="w-full mx-auto m-8">
-                  Snart kommer växtlådor med ditt mikrogrönt visas här och du få
-                  bevaka din superfoodens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
-                </div>
-
-                <div class="text-header3 py-5 text-gray-500">
-                  {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
-                </div>
+              <div class="w-full mx-auto m-8">
+                Snart kommer växtlådor med ditt mikrogrönt visas här och du få
+                bevaka din superfoodens utväxt när som helst inom 7 dagar.&nbsp; Ha det roligt!
               </div>
 
-              <!--
-                GRID =================================================
-              -->
-              <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                {#each cameras as item}
-                  <div class="uppercase text-center">
-                    <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
-                         style={"background-image: url('./img/"+ item.img +"')"}>
+              <div class="text-header3 py-5 text-gray-500">
+                {days} dagar {hours}:{('0' + minutes).slice(-2)}:{('0' + seconds).slice(-2)}
+              </div>
+            </div>
 
-                      {#if item.img !== "camera2.jpg"}
-                        <div class="absolute bottom-0 right-0 pb-5 pr-5">
-                          <div class="p-1 text-alert-900 font-mono italic font-bold">
-                            {today.toLocaleString()}
-                          </div>
+            <!--
+              GRID =================================================
+            -->
+            <div class="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+              {#each cameras as item}
+                <div class="uppercase text-center">
+                  <div class="h-96 w-96 bg-cover bg-center mx-auto bg-alert-300 relative"
+                       style={"background-image: url('./img/"+ item.img +"')"}>
+
+                    {#if item.img !== "camera2.jpg"}
+                      <div class="absolute bottom-0 right-0 pb-5 pr-5">
+                        <div class="p-1 text-alert-900 font-mono italic font-bold">
+                          {today.toLocaleString()}
                         </div>
-                      {/if}
+                      </div>
+                    {/if}
 
-                    </div>
-
-                    {item.name}
                   </div>
-                {/each}
-              </div>
 
-            {/if} <!-- order delivered ? -->
-<!--          </div>-->
+                  {item.name}
+                </div>
+              {/each}
+            </div>
+
+          {/if} <!-- order delivered ? -->
+          <!--          </div>-->
         {/if} <!-- show cameras ? -->
 
       </div>
@@ -213,30 +213,30 @@
 
     <!--User favs =================================================
      -->
-    <div class="bg-gray-200">
+    <div class="">
       <div class="text-header4">
         Mina favoriter
       </div>
 
-      <div class="bg-gray-500 py-1" on:click={() => {showFavorites = !showFavorites}}>
+      <div class="py-1" on:click={() => {showFavorites = !showFavorites}}>
         <Icon icon={showFavorites === true ? faChevronUp : faChevronDown}/>
       </div>
 
       {#if showFavorites === true}
-<!--        <div transition:slide>-->
+        <!--        <div transition:slide>-->
 
 
-          <div class="py1">
-            {#each favoriteProducts as item}
-              <div class="w-16 h-16 rounded-full bg-gray-200 bg-cover img-placeholder"
-                   style={"background-image: url('img/" + item.img + "');"}>
-                &nbsp
-              </div>
-              <div>{item.title}</div>
-              <!--          <div>{item.subtitle}</div>-->
-            {/each}
-          </div>
-<!--        </div>-->
+        <div class="py1">
+          {#each favoriteProducts as item}
+            <div class="w-16 h-16 rounded-full bg-cover img-placeholder"
+                 style={"background-image: url('img/" + item.img + "');"}>
+              &nbsp
+            </div>
+            <div>{item.title}</div>
+            <!--          <div>{item.subtitle}</div>-->
+          {/each}
+        </div>
+        <!--        </div>-->
       {/if}
 
     </div>
@@ -245,57 +245,58 @@
 
   <!--User details =================================================
  -->
-  <div class="bg-alert-300">
+  <div class="bg-gray-300">
     <div class="">
       <div class="text-header4">
         Personal info
       </div>
       <div class="text-header5">
         ändra
-        <Icon icon={faPencilAlt} style=""/>_
+        <Icon icon={faPencilAlt} style=""/>
+        _
       </div>
 
     </div>
 
-    <div class="bg-red-200" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
+    <div class="bg-gray-300" on:click={() => {showPersonalDetails = !showPersonalDetails}}>
       <Icon icon={showPersonalDetails === true ? faChevronUp : faChevronDown}/>
     </div>
 
     {#if showPersonalDetails === true}
-<!--      <div transition:slide>-->
-        {#if $userStore.data != null}
+      <!--      <div transition:slide>-->
+      {#if $userStore.data != null}
 
-          <div class="">
-            <div class="">Email:
-              <div class="">{$userStore.data.email}</div>
-            </div>
-            <div class="">Namn:
-              <div class="">{$userStore.data.firstName}</div>
-            </div>
-            <div class="">Efternamn:
-              <div class="">{$userStore.data.secondName}</div>
-            </div>
-            <div class="">Adress:
-              <div class="">{$userStore.data.address}</div>
-            </div>
-            <div class="">Ort:
-              <div class="">{$userStore.data.city}</div>
-            </div>
-            <div class="">Postort:
-              <div class="">{$userStore.data.zip}</div>
-            </div>
+        <div class="">
+          <div class="">Email:
+            <div class="">{$userStore.data.email}</div>
           </div>
-        {/if}
+          <div class="">Namn:
+            <div class="">{$userStore.data.firstName}</div>
+          </div>
+          <div class="">Efternamn:
+            <div class="">{$userStore.data.secondName}</div>
+          </div>
+          <div class="">Adress:
+            <div class="">{$userStore.data.address}</div>
+          </div>
+          <div class="">Ort:
+            <div class="">{$userStore.data.city}</div>
+          </div>
+          <div class="">Postort:
+            <div class="">{$userStore.data.zip}</div>
+          </div>
+        </div>
+      {/if}
 
-        <Button remove="text-sm uppercase"
-                add="rounded-full w-full h-12 text-base mb-4
-                    md:w-48 md:mr-8
-                    lg:h-16 lg:w-64 lg:text-header4"
-                on:click="">
-          Spara ändringar
-        </Button>
+      <!--        <Button remove="text-sm uppercase"-->
+      <!--                add="rounded-full w-full h-12 text-base mb-4-->
+      <!--                    md:w-48 md:mr-8-->
+      <!--                    lg:h-16 lg:w-64 lg:text-header4"-->
+      <!--                on:click="">-->
+      <!--          Spara ändringar-->
+      <!--        </Button>-->
 
-<!--      </div>-->
+      <!--      </div>-->
 
     {/if}
   </div>
