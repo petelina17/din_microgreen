@@ -190,7 +190,7 @@
           </div>
 
           <div class="w-1/3 text-header4 text-right" style="padding-right: 4.3rem">
-            {item.price.toFixed(2)} <span class="text-base">kr</span>
+            {item.price.toFixed(2).replace('.', ',')} <span class="text-base">kr</span>
           </div>
         </div>
       {/each}
@@ -277,7 +277,7 @@
 
         <div>Total:</div>
 
-        {totalSumma.toFixed(2)} kr
+        {totalSumma.toFixed(2).replace('.', ',')} kr
 
       </div>
 

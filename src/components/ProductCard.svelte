@@ -83,7 +83,7 @@
 
   <div class="text2">{subtitle}</div>
 
-  <div class="text-header3 mt-5 mb-4">{price.toFixed(2)} kr</div>
+  <div class="text-header3 mt-5 mb-4">{price.toFixed(2).replace('.', ',')} kr</div>
 
   <Button remove="text-sm uppercase" add="rounded-full w-64 h-16 text-header4 mb-4"
           on:click={cartHandler}>

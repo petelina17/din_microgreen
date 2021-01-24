@@ -45,7 +45,7 @@
 
     <div class="text-center lg:w-1/3 w-full">
 
-      <div class="text-header2 mb-8">{cartTotal.toFixed(2)} kr</div>
+      <div class="text-header2 mb-8">{cartTotal.toFixed(2).replace('.', ',')} kr</div>
 
       {#if $userStore.data == null}
         <Button remove="text-sm uppercase"

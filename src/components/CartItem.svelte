@@ -32,12 +32,12 @@
   </div>
 
   <div class="px-3 w-1/3 pt-4 md:w-1/6 md:pt-0">
-    <div class="text-header4">{unitPrice.toFixed(2)} <span class="text-base">kr</span></div>
+    <div class="text-header4">{unitPrice.toFixed(2).replace('.', ',')} <span class="text-base">kr</span></div>
     <div class="text-header4">{qty} <span class="text-base">st.</span></div>
   </div>
 
   <div class="px-3 w-1/3 pt-4 md:w-1/6 md:pt-0">
-    <div class="text-header4">{totalPrice.toFixed(2)} <span class="text-base">kr</span></div>
+    <div class="text-header4">{totalPrice.toFixed(2).replace('.', ',')} <span class="text-base">kr</span></div>
   </div>
 
   <div>
