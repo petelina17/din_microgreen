@@ -11,6 +11,7 @@ let user = {
   favoriteList: [],
   cartList: [],
   buyProcess: null,
+  isGuest: false
 }
 
 export let userStore = writable(user)

@@ -6,6 +6,7 @@
   import Button from 'smelte/src/components/Button'
   import {createEventDispatcher} from 'svelte'
   import Login from './Login.svelte'
+  import {Checkbox} from 'smelte'
 
   const dispatch = createEventDispatcher()
 
@@ -17,6 +18,11 @@
 
   function nextHandler() {
     dispatch('next')
+  }
+
+  function guestHandler(checked) {
+    $userStore.isGuest = checked.detail
+
   }
 </script>
 
@@ -50,15 +56,31 @@
       {#if $userStore.data == null}
         <Button remove="text-sm uppercase"
                 add="rounded-full w-64 h-16 text-header4 mb-4"
+                disabled={$userStore.isGuest === true}
                 on:click={()=>{showLoginForm = true}}>
           Logga in
         </Button>
+
+        <Checkbox class="text-lg" color="primary"
+                  label={"Fortsätt som gäst"}
+                  checked={false}
+                  on:change={(checked) => { guestHandler(checked) }}
+        />
+
+        <!--
+        <Button remove="text-sm uppercase"
+                color="secondary"
+                add="rounded-full w-64 h-16 text-header4 mb-4"
+                on:click={guestHandler}>
+          Som gäst
+        </Button>
+        -->
 
       {/if}
 
       <Button remove="text-sm uppercase"
               add="rounded-full w-64 h-16 text-header4 mb-4"
-              disabled={$userStore.data == null || $userStore.cartList.length === 0}
+              disabled={($userStore.data == null || $userStore.cartList.length === 0) && $userStore.isGuest === false}
               on:click={nextHandler}>
         Till kassan
       </Button>
@@ -72,9 +94,9 @@
 <Login bind:showDialog={showLoginForm}/>
 
 <style>
-  .main {
-    margin: auto;
-    /*background-color: #eafafc;*/
-  }
+    .main {
+        margin: auto;
+        /*background-color: #eafafc;*/
+    }
 
 </style>

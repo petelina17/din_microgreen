@@ -125,6 +125,7 @@
     }, 4000)
 
   }
+
   async function createOrder() {
     const number = Date.now().toString().substr(-6)
     $orderNumber = number
@@ -177,6 +178,18 @@
         />
       {/each}
 
+      <!--
+        if user is a GUEST =====================================================
+      -->
+      {#if $userStore.isGuest === true}
+        <div class="kassa text-header4 mt-8">Nödvändig info för leverans</div>
+
+        <div>
+          bla bla
+        </div>
+      {/if}
+
+
       <div class="kassa text-header4 mt-8">Välj leveranssätt</div>
 
       {#each deliveryOptions as item, i}
@@ -222,6 +235,7 @@
                   on:change={() => { swish = false }}
         />
       </div>
+
       {#if visa === true}
         <div class="py-3 w-full px-8">
           <div>
@@ -267,20 +281,14 @@
         </div>
       {/if}
 
-      <!--      <div class="kassa text-header4">Välj beställningsalternativ</div>-->
-
     </div>
 
     <div class="text-center lg:w-1/3 w-full">
 
       <div class="text-header3 mb-8">
-
         <div>Total:</div>
-
         {totalSumma.toFixed(2).replace('.', ',')} kr
-
       </div>
-
 
       <div>
         <Button remove="text-sm uppercase"
@@ -305,15 +313,15 @@
 
 <style>
 
-  .kassa {
-    background-color: oldlace;
-  }
+    .kassa {
+        background-color: oldlace;
+    }
 
-  .spinner {
-    /*background-color: blue;*/
-    width: 5rem;
-    margin-left: 9.5rem;
-    margin-top: 2rem;
-  }
+    .spinner {
+        /*background-color: blue;*/
+        width: 5rem;
+        margin-left: 9.5rem;
+        margin-top: 2rem;
+    }
 
 </style>

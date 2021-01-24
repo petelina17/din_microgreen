@@ -16,6 +16,7 @@ export function setUserLoggedIn(email, firebaseUserData) {
   // update firebaseUserData data in store from firebaseUserData
   const user = get(userStore)
   user.data = firebaseUserData
+  user.isGuest = false
   userStore.set(user)
 }
 
