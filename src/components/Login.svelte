@@ -66,7 +66,20 @@
 
 
 <Dialog bind:value={showDialog}>
-  <h5 slot="title">Login form</h5>
+  <h5 slot="title" class="relative pt-2">
+
+    <div class="absolute right-0 top-0 w-8 h-8 flex items-center justify-center text-gray-500"
+         on:click={closeHandler}>
+      <svg class="h-6 w-6 cursor-pointer"
+           xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+           stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </div>
+
+    Logga in
+
+  </h5>
 
   <div class="text-red-500">{loginError}</div>
 
@@ -77,17 +90,24 @@
                type="email"
                error={isEmailValid? false : 'Please check e-mail input'}/>
 
-    <TextField bind:value={password} label="password" outlined type="password"/>
+    <TextField bind:value={password} label="lösenord" outlined type="password"/>
+
+    <Button add="rounded-full w-full h-12 mb-4"
+        on:click={loginHandler}>
+      Logga in
+    </Button>
 
     eller
 
     <div class="text-blue-500 underline cursor-pointer">
-      <div on:click={registrationHandler}>Registrera dig</div>
+      <div on:click={registrationHandler}>Bli medlem</div>
     </div>
   </div>
 
+  <!--
   <div slot="actions" class="text-center w-full">
       <Button text on:click={loginHandler}>Logga in</Button>
       <Button text on:click={closeHandler}>Stäng</Button>
   </div>
+  -->
 </Dialog>
