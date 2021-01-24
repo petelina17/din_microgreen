@@ -9,7 +9,7 @@
   import Home from './components/Home.svelte'
   import LiveCam from './components/LiveCam.svelte'
   import Router from 'svelte-spa-router'
-  import Registration from './components/Registration.svelte'
+  import Registration from './components/registration/Registration.svelte'
   import MyAccount from './components/MyAccount.svelte'
   import Recipes from './components/Recipes.svelte'
   import RecipeForm from './components/RecipeForm.svelte'

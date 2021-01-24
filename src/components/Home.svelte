@@ -8,7 +8,7 @@
   import ProductCard from './ProductCard.svelte'
   import ProductBanner from './ProductBanner.svelte'
   import Login from './Login.svelte'
-  import Registration from './Registration.svelte'
+  import Registration from './registration/Registration.svelte'
   import CartPayment from './CartPayment.svelte'
   import CartFinal from './CartFinal.svelte'
   import {checkIfUserLoggedIn} from '../authorization'
