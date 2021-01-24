@@ -1,14 +1,17 @@
 import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
-import {userStore, loadingUser} from './store'
+import {userStore, loadingUser, cookiesAccepted} from './store'
 import { get } from 'svelte/store'
 import { API } from './api'
 
 // create cookie and update store
 export function setUserLoggedIn(email, firebaseUserData) {
-  // create cookie with email
-  const now = new Date()
-  now.setDate(now.getDate() + 1)
-  setCookie('userId', email, {path: '/', expires: now.toGMTString()})
+
+  if (get(cookiesAccepted)) {
+    // create cookie with email
+    const now = new Date()
+    now.setDate(now.getDate() + 1)
+    setCookie('userId', email, {path: '/', expires: now.toGMTString()})
+  }
 
   // update firebaseUserData data in store from firebaseUserData
   const user = get(userStore)

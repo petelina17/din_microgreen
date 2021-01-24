@@ -17,6 +17,8 @@ export let userStore = writable(user)
 
 export let loadingUser = writable(true)
 
+export let cookiesAccepted = writable(false)
+
 let searchText = ''
 export let search = writable(searchText)
 
@@ -72,7 +74,7 @@ export function loadFavorites() {
 
   const user = get(userStore)
   user.favoriteList = []
-  if (user.data.favorites != null) {
+  if (user.data != null && user.data.favorites != null) {
     user.favoriteList = user.data.favorites
   }
   userStore.set(user)
