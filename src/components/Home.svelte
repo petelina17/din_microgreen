@@ -7,7 +7,6 @@
   import LinkBanner from './LinkBanner.svelte'
   import ProductCard from './ProductCard.svelte'
   import ProductBanner from './ProductBanner.svelte'
-  import Footer from './Footer.svelte'
   import Login from './Login.svelte'
   import Registration from './Registration.svelte'
   import CartPayment from './CartPayment.svelte'
@@ -69,8 +68,10 @@
             img="fullmoon3-b.jpg" link="/live-cam"/>
 
 
-<div id="shop">
-  <ProductBanner/>
+<div>
+  <a id="shop">
+    <ProductBanner/>
+  </a>
 </div>
 
 
@@ -106,7 +107,6 @@
 {/if}
 
 
-<Footer/>
 
 
 

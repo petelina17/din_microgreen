@@ -59,22 +59,30 @@
 
 
 <Snackbar color="alert" top timeout={10000} bind:value={showAlert} noAction={false}
-					class="pointer-events-auto flex absolute pb-2 px-4 z-30 mb-4 content-between mx-3
+          class="pointer-events-auto flex absolute pb-2 px-4 z-30 mb-4 content-between mx-3
       rounded items-center elevation-2 h-48
       md:mx-auto md:h-24">
-	<div class="md:text-lg text-offblack">
-		OBS! Detta är demoprojekt skapat för utbildningsändamål och är inte avsett för annat bruk
-	</div>
-	<div slot="action">
-		<Button  text on:click={() => (showAlert = false)}>Stäng</Button>
-	</div>
+  <div class="md:text-lg text-offblack">
+    OBS! Detta är demoprojekt skapat för utbildningsändamål och är inte avsett för annat bruk
+  </div>
+  <div slot="action">
+    <Button text on:click={() => (showAlert = false)}>Stäng</Button>
+  </div>
 </Snackbar>
 
 <Cookies/>
 
 
-<main class="text-offblack">
-  <Router {routes}/>
+<main class="text-offblack flex flex-col h-screen">
+
+    <div class="flex-grow">
+      <Router {routes}/>
+    </div>
+
+    <div>
+      <Footer/>
+    </div>
+
 </main>
 
 <!--
@@ -89,89 +97,89 @@
 </div>
 
 <style>
-  :global(body) {
-    font-family: "Rubik", sans-serif;
-    /*background-color: lightgray;*/
-  }
+    :global(body) {
+        font-family: "Rubik", sans-serif;
+        /*background-color: lightgray;*/
+    }
 
-  main {
-    text-align: center;
-    margin: 0 auto;
-  }
+    main {
+        text-align: center;
+        margin: 0 auto;
+    }
 
-  :global(.user-avatar) {
-    font-size: 1.6rem;
-    color: #888888;
-    margin-right: 0.5rem;
-  }
+    :global(.user-avatar) {
+        font-size: 1.6rem;
+        color: #888888;
+        margin-right: 0.5rem;
+    }
 
-  :global(.wrapper) {
-    max-width: 1280px;
-    margin: auto;
-  }
-
-  /*
-  :global(.header1) {
-    font-size: 4rem;
-  }
-  :global(.header2) {
-    font-size: 3rem;
-  }
-  :global(.header3) {
-    font-size: 2.25rem;
-  }
-  :global(.header4) {
-    font-size: 1.5rem;
-  }
-
-   */
-  :global(.text1) {
-    font-size: 1.5rem;
-  }
-
-  :global(.text2) {
-    font-size: 1rem;
-  }
-
-  :global(.bg-logo) {
-    background-color: #9BE400;
-  }
-
-  :global(.logo) {
-    color: #9BE400;
-    font-family: "Prosto One", sans-serif;
-    /*font-size: 3rem;*/
-  }
-
-  :global(.text-offwhite) {
-    color: #FDFDFD;
-  }
-
-  :global(.text-offblack) {
-    color: #303030;
-  }
-
-  :global(.titleA) {
-    font-size: 7.625rem;
-    font-family: "Rubik", sans-serif;
-    line-height: 1;
-  }
-
-
-  @media (max-width: 1320px) {
     :global(.wrapper) {
-      padding-right: 1.5rem;
-      padding-left: 1.5rem;
+        max-width: 1280px;
+        margin: auto;
     }
 
     /*
-    :global(.titleA) {
-      font-size: 3.625rem;
-      font-family: "Rubik", sans-serif;
-      line-height: 1;
+    :global(.header1) {
+      font-size: 4rem;
     }
-   */
-  }
+    :global(.header2) {
+      font-size: 3rem;
+    }
+    :global(.header3) {
+      font-size: 2.25rem;
+    }
+    :global(.header4) {
+      font-size: 1.5rem;
+    }
+
+     */
+    :global(.text1) {
+        font-size: 1.5rem;
+    }
+
+    :global(.text2) {
+        font-size: 1rem;
+    }
+
+    :global(.bg-logo) {
+        background-color: #9BE400;
+    }
+
+    :global(.logo) {
+        color: #9BE400;
+        font-family: "Prosto One", sans-serif;
+        /*font-size: 3rem;*/
+    }
+
+    :global(.text-offwhite) {
+        color: #FDFDFD;
+    }
+
+    :global(.text-offblack) {
+        color: #303030;
+    }
+
+    :global(.titleA) {
+        font-size: 7.625rem;
+        font-family: "Rubik", sans-serif;
+        line-height: 1;
+    }
+
+
+    @media (max-width: 1320px) {
+        :global(.wrapper) {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        /*
+        :global(.titleA) {
+          font-size: 3.625rem;
+          font-family: "Rubik", sans-serif;
+          line-height: 1;
+        }
+       */
+    }
 
 
 </style>

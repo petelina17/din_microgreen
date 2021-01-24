@@ -16,7 +16,7 @@
     <div class="w-1/3 text-left flex mt-6 select-none">
       <nav class="flex flex-col text-header5 md:text-header4  text-gray-200 uppercase opacity-100">
         <div class="menu-item"><a href="/#/live-cam">Live kamera</a></div>
-        <div class="menu-item"><a href="/#shop">Butik</a></div>
+        <div class="menu-item"><a href="/index.html#shop">Butik</a></div>
         <div class="menu-item"><a href="/#/recipes">Recept</a></div>
         <div class="menu-item"><a href="/#/articles">Artiklar</a></div>
         <div class="menu-item"><a href="/#/forum">Forum</a></div>
