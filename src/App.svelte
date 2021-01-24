@@ -17,7 +17,9 @@
   import Cart from './components/Cart.svelte'
   import {checkIfUserLoggedIn} from './authorization'
   import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
-	import Cookies from './components/Cookies.svelte'
+  import Cookies from './components/Cookies.svelte'
+  import Page404 from './Page404.svelte'
+  import Footer from './components/Footer.svelte'
 
   // Routs for website
   const routes = {
@@ -31,7 +33,8 @@
     '/recipe/:id': RecipeForm,
     '/articles': UnderConstruction,
     '/articles/:id': UnderConstruction,
-    '/forum': UnderConstruction
+    '/forum': UnderConstruction,
+    '*': Page404
   }
 
   let showAlert = false
