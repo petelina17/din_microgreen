@@ -8,6 +8,8 @@
   import {createEventDispatcher} from 'svelte'
   import {ProgressCircular, TextField} from 'smelte'
   import {updateUser} from '../authorization'
+  import RegistrationInfoForm from './registration/RegistrationInfoForm.svelte'
+  import {isRegistrationInputError} from './registration/validation'
 
   const dispatch = createEventDispatcher()
 
@@ -50,8 +52,32 @@
   let holderErr = false
   let cvvErr = false
 
+  let values = {
+    email: '',
+    firstName: '',
+    secondName: '',
+    address: '',
+    city: '',
+    zip: ''
+  }
+
+  let registrationErrors = {
+    emailError: false,
+    firstNameError: false,
+    secondNameError: false,
+    addressError: false,
+    cityError: false,
+    zipError: false
+  }
+
+
   function isUserInputError() {
     let isError = false
+
+    if (isRegistrationInputError(values, registrationErrors)) {
+      isError = true
+      registrationErrors = {...registrationErrors}
+    }
 
     if (swish === true) {
       // verify mobile number
@@ -64,8 +90,6 @@
     }
 
     if (visa === true) {
-
-
       // verify card number
       if (visaData.number === '') {
         numberErr = 'vänligen ange kortnummer 10 siffror'
@@ -128,6 +152,7 @@
 
   async function createOrder() {
     const number = Date.now().toString().substr(-6)
+    let userKey = null
     $orderNumber = number
 
     const order = {
@@ -136,10 +161,17 @@
       // make "hard" copy cart items ==========================
       items: JSON.parse(JSON.stringify($userStore.cartList))
     }
+
+    if ($userStore.isGuest === true) {
+      $userStore.data = values
+      $userStore.data.orders = []
+      userKey = 'guest'
+    }
+
     $userStore.data.orders = [...$userStore.data.orders, order]
 
     // send user data with orders to firebase
-    await updateUser($userStore.data)
+    await updateUser($userStore.data, userKey)
   }
 
   // Make possible one check box active in a time
@@ -184,8 +216,8 @@
       {#if $userStore.isGuest === true}
         <div class="kassa text-header4 mt-8">Nödvändig info för leverans</div>
 
-        <div>
-          bla bla
+        <div class="pt-6 pb-3 w-full md:w-1/2">
+          <RegistrationInfoForm bind:values={values} bind:errors={registrationErrors} />
         </div>
       {/if}
 

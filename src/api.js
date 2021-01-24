@@ -181,10 +181,14 @@ export class API {
   // update USER data to Cloud Firestore
   //
   // https://firebase.google.com/docs/firestore/manage-data/add-data
-  async updateUser(user) {
+  async updateUser(user, key) {
     try {
+      if (key == null || key === '') {
+        key = user.email
+      }
+
       // write to firebase
-      const result = await db.collection('users').doc(user.email).set(user)
+      const result = await db.collection('users').doc(key).set(user)
       console.log('firebase save result:', result)
       return null
 

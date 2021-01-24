@@ -57,10 +57,14 @@ export async function createNewUser(userData) {
   return result
 }
 
-export async function updateUser(userData) {
+export async function updateUser(userData, key) {
+  if (key === 'guest') {
+    key = 'guest-' + new Date().toISOString()
+  }
+
   const api = new API()
   console.log('sending update user to firebase:', userData)
-  const result = await api.updateUser(userData)
+  const result = await api.updateUser(userData, key)
   return result
 }
 
