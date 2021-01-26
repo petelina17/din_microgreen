@@ -10,7 +10,7 @@ export function setUserLoggedIn(email, firebaseUserData) {
     // create cookie with email
     const now = new Date()
     now.setDate(now.getDate() + 1)
-    setCookie('userId', email, {path: '/', expires: now.toGMTString()})
+    setCookie('userId', email, {path: '/', expires: now.toGMTString(), secure: true})
   }
 
   // update firebaseUserData data in store from firebaseUserData

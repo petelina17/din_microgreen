@@ -26,7 +26,7 @@
   function essentialCookiesHandler() {
     const now = new Date()
     now.setDate(now.getDate() + 30)
-    setCookie('essential', 'true', {path: '/', expires: now.toGMTString()})
+    setCookie('essential', 'true', {path: '/', expires: now.toGMTString(), secure: true})
     closeHandler()
   }
 
