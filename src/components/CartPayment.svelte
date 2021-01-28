@@ -74,7 +74,7 @@
   function isUserInputError() {
     let isError = false
 
-    if (isRegistrationInputError(values, registrationErrors)) {
+    if ($userStore.isGuest && isRegistrationInputError(values, registrationErrors)) {
       isError = true
       registrationErrors = {...registrationErrors}
     }
