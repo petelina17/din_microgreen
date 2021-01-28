@@ -91,7 +91,8 @@ Ca 5 dl blandade skott, t.ex. <strong><a href="http://www.nelsongarden.se/swe/se
     img: img1,
     authorPhoto: ' Lennart Weibull',
     tags: ['rädisa', 'solros'],
-    author: 'källa: https://dinodlarvan.nelsongarden.se/gronsaker/recept-groddar-skott-och-mikrogront/',
+    source: 'https://dinodlarvan.nelsongarden.se/gronsaker/recept-groddar-skott-och-mikrogront/',
+    author: 'nata@gmail.com',
     authorName: 'Lina Walentinson',
     date: '2016-10-14T18:23:01.000Z'
   },
