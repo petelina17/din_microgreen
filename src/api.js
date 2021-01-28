@@ -226,8 +226,8 @@ export class API {
       }
 
       // write to firebase
-      const result = await db.collection('users').doc(key).set(user)
-      console.log('firebase save result:', result)
+      await db.collection('users').doc(key).set(user)
+      console.log('firebase save user')
       return null
 
     } catch (err) {
@@ -240,8 +240,28 @@ export class API {
     return products
   }
 
-  getRecipes() {
+  async getRecipes() {
     return recipes
+
+    // return recipes
+    //const collection = await db.collection('recipes').get()
+    //console.log('recipes', collection.docs)
+
+    //return collection.docs
+  }
+
+  async updateRecipe(recipe) {
+    try {
+      const key = recipe.id
+      // write to firebase
+      await db.collection('recipes').doc(key).set(recipe)
+      console.log('firebase save recipe')
+      return null
+
+    } catch (err) {
+      console.log('ERROR:', err)
+      return err.message
+    }
   }
 
 }

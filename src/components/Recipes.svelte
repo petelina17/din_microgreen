@@ -19,8 +19,9 @@
   // check if product already exists in favorite list in global state
   // $: isFavorite = $userStore.favoriteList.findIndex(x => x === productId) > -1
 
-  onMount(() => {
-    recipes = api.getRecipes()
+  onMount(async () => {
+    recipes = await api.getRecipes()
+
     recipes.forEach((r, i) => {
       recipes[i].show = false
     })
