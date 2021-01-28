@@ -1,0 +1,10 @@
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: *
+Disallow:
+
+User-agent: *
+Crawl-delay: 10
+
+
