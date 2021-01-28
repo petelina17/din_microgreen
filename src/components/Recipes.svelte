@@ -75,7 +75,7 @@
               <div class="h-10 w-48 bg-primary-500 py-1 text-center rounded-full text-white
                           text-lg font-medium cursor-pointer mr-3"
                    on:click={() => item.show = !item.show}>
-                {item.show ? 'Läsa mindre' : 'Läsa mer'}
+                {item.show ? 'Visa mindre' : 'Läsa mer'}
               </div>
 
               {#each item.tags as tag, i}

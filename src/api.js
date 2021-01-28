@@ -7,6 +7,7 @@
 
 import {userStore} from './store'
 import {img1, img2, img3} from './images'
+import {articles} from './articles'
 
 const products = [
   {
@@ -262,6 +263,10 @@ export class API {
       console.log('ERROR:', err)
       return err.message
     }
+  }
+
+  async getArticles () {
+    return articles
   }
 
 }
