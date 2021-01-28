@@ -6,7 +6,7 @@
 // }
 
 import {userStore} from './store'
-import {img1} from './images'
+import {img1, img2, img3} from './images'
 
 const products = [
   {
@@ -98,36 +98,73 @@ Ca 5 dl blandade skott, t.ex. <strong><a href="http://www.nelsongarden.se/swe/se
   },
   {
     id: '2',
-    title: 'DEF Receipt',
-    description: '',
-    text: '',
-    img: img1,
-    tags: ['', ''],
-    author: 'bob@bob.com',
-    authorName: 'Bob Black',
-    date: '2021-01-29T18:23:01.000Z'
+    title: 'Svarvad sallad med skott, chèvre och mandel',
+    description: 'Svarva mera! Av någon anledning är det mycket roligare att äta grönsaker i långa strimlor än rivna. Betor och morot är finfina smakkompisar till blandade skott.',
+    text: `<p><strong>4 personer</strong><br />
+5 dl blandade skott t.ex. <strong><a href="http://www.nelsongarden.se/swe/sek/p/gronsaker_120/rucola--sandsenap_91345" target="_blank" rel="noopener">rucola</a></strong>, <strong><a href="http://www.nelsongarden.se/swe/sek/p/micro-leaf_110/micro-leaf-bladsarepta_56860" target="_blank" rel="noopener">senap</a></strong> och <strong><a href="http://www.nelsongarden.se/swe/sek/p/micro-leaf_110/micro-leaf-bladradisa_56858" target="_blank" rel="noopener">rädisa</a></strong>.<br />
+1/2 dl flagad mandel<br />
+400 g blandade betor (t.ex. röd-, polka- och gulbeta)<br />
+2 morötter<br />
+2 msk olivolja<br />
+1 tsk flingsalt<br />
+1 krm malen svartpeppar<br />
+150 g chèvre</p>
+<p><strong>Dressing:</strong><br />
+1 msk färskpressad citronjuice<br />
+1/2 msk flytande honung<br />
+1 msk olivolja<br />
+1 krm salt</p>
+<p><strong>Så här gör du:</strong><br />
+<strong>1.</strong> Rosta mandeln i en torr stekpanna tills den får lite färg. Låt svalna.</p>
+<p><strong>2.</strong> Skala och svarva betor och morot på en grönsakssvarv (eller hyvla den med mandolin, det blir också tunt och gott). Klipp av banden några gånger med sax, annars är det svårt att servera salladen.</p>
+<p><strong>3.</strong> Blanda det svarvade med olja, flingsalt och peppar.</p>
+<p><strong>4.</strong> Varva svarvet med skott på ett fat eller i en skål. Strö över smulad chevrè och mandel.</p>
+<p><strong>5.</strong> Blanda citronjuice och honung med olja och salt till en dressing. Ringla över salladen.</p>`,
+    img: img2,
+
+    authorPhoto: ' Lennart Weibull',
+    tags: ['rädisa', 'solros'],
+    source: 'https://dinodlarvan.nelsongarden.se/gronsaker/recept-groddar-skott-och-mikrogront/',
+    author: 'nata@gmail.com',
+    authorName: 'Lina Walentinson',
+    date: '2016-10-14T18:23:01.000Z'
   },
   {
     id: '3',
-    title: 'DEF Receipt',
-    description: '',
-    text: '',
-    img: img1,
-    tags: ['', ''],
-    author: 'bob@bob.com',
-    authorName: 'Bob Black',
-    date: '2021-01-29T18:23:01.000Z'
-  },
-  {
-    id: '4',
-    title: 'DEF Receipt',
-    description: '',
-    text: '',
-    img: img1,
-    tags: ['', ''],
-    author: 'bob@bob.com',
-    authorName: 'Bob Black',
-    date: '2021-01-29T18:23:01.000Z'
+    title: 'Groddat fröbröd',
+    description: 'Ett bröd laddat med energi och nyttigheter. Låt helst brödet vila inlindat i en handduk några timmar innan det skärs upp. Då hinner det sätta sig ordentligt och håller ihop bra. Perfekt att skiva, förvara i frysen och rosta efterhand.',
+
+    text: `<p><strong>1 bröd</strong><br />
+200 g groddat bovete<br />
+1 msk fiberhusk<br />
+1 dl linsfrön<br />
+1 dl sesamfrön<br />
+2 dl kokande vatten<br />
+2 dl havremjöl<br />
+2 tsk bikarbonat<br />
+1 1/2 tsk salt<br />
+1 1/2 dl yoghurt (3%)<br />
+1 dl mörk sirap<br />
+1 dl rostade pumpakärnor (eller solrosfrön)<br />
+1 dl rostade hasselnötter<br />
+olja till formen<br />
+Havremjöl att strö över</p>
+<p><strong>Så här gör du:</strong><br />
+<strong>1.</strong> Blanda husk, linfrön och sesamfrön i en stor bunke. Häll över kokande vatten och blanda väl. Låt svälla i 10 minuter.</p>
+<p><strong>2.</strong> Tillsätt havremjöl, groddat bovete, bikarbonat, salt, yoghurt och sirap i fröblandningen. Blanda med elvisp ett par minuter så att allt blandas väl.</p>
+<p><strong>3.</strong> Blanda i pumpakärnor och nötter.</p>
+<p><strong>4.</strong> Sätt ugnen på 200 °C.</p>
+<p><strong>5.</strong> Häll smeten i en oljad brödform (cirka 2 liter). Strö havremjöl över. Låt vila övertäckt i cirka 30 minuter.</p>
+<p><strong>6.</strong> Grädda i nedre delen av ugnen i cirka en timme. Låt stå minst en halvtimme innan brödet stjälps upp.</p>
+<p><strong>TIPS:</strong> Gör gärna dubbelsats av brödet om du har groddar så att det räcker för två brödformar. Det är alltid smidigt att ha ett extra bröd i frysen.</p>`,
+
+    img: img3,
+    authorPhoto: ' Lennart Weibull',
+    tags: ['pumpakärnor'],
+    source: 'https://dinodlarvan.nelsongarden.se/gronsaker/recept-groddar-skott-och-mikrogront/',
+    author: 'nata@gmail.com',
+    authorName: 'Lina Walentinson',
+    date: '2016-10-14T18:23:01.000Z'
   }
 ]
 

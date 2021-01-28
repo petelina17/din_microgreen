@@ -54,7 +54,7 @@
 
           </div>
 
-          <div class="w-full pl-6 pr-3 text-left
+          <div class="w-full pl-6 pr-3 py-3 text-left
                       md:w-2/3">
             <div class="text-header3 leading-tight pt-2 pb-1 md:text-header3">{item.title}</div>
 
