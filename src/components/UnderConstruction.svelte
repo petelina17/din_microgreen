@@ -2,7 +2,7 @@
   import {pop} from 'svelte-spa-router'
   import SimpleHeader from './SimpleHeader.svelte'
   // import {faSmileWink, faUser} from '@fortawesome/free-solid-svg-icons'
-  import {faSmileWink} from '@fortawesome/free-regular-svg-icons'
+  import {faSmile} from '@fortawesome/free-regular-svg-icons'
   import {push} from 'svelte-spa-router'
 
 
@@ -15,7 +15,7 @@
   }
 </script>
 
-<SimpleHeader title="Kommer snart!" icon={faSmileWink} bgColor={"bg-primary-500"}
+<SimpleHeader title="Kommer snart!" icon={faSmile} bgColor={"bg-primary-500"}
               on:close={closeHandler}/>
 
 <!--<div class="my-10 text-header4">-->

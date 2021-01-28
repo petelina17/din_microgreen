@@ -20,6 +20,7 @@
   import Cookies from './components/Cookies.svelte'
   import Page404 from './Page404.svelte'
   import Footer from './components/Footer.svelte'
+  import Articles from'./components/Articles.svelte'
 
   // Routs for website
   const routes = {
@@ -31,8 +32,8 @@
     '/recipes': Recipes,
     '/recipe/new': RecipeForm,
     '/recipe/:id': RecipeForm,
-    '/articles': UnderConstruction,
-    '/articles/:id': UnderConstruction,
+    '/articles': Articles,
+    '/articles/:id': Articles,
     '/forum': UnderConstruction,
     '*': Page404
   }
