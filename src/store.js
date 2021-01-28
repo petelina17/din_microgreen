@@ -32,6 +32,8 @@ export let orderNumber = writable('')
 
 export function saveCartToCookie() {
   const user = get(userStore)
+  const now = new Date()
+  now.setDate(now.getDate() + 1)
   setCookie('cartList', JSON.stringify(user.cartList), {path: '/', expires: now.toGMTString(), secure: true})
 }
 
