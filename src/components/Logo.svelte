@@ -6,7 +6,7 @@
     </svg>
 
   </div>
-  <div class="logo text-lg md:text-xl lg:text-2xl xl:text-3xl">Din Microgreen</div>
+  <div class="logo md:text-xl lg:text-2xl xl:text-3xl">Din Microgreen</div>
 </div>
 
 

@@ -6,7 +6,10 @@
 <div class="w-full footer select-none">
   <div class="wrapper h-full flex flex-row relative">
 
-    <div class="absolute left-0 px-1 bottom-0 pl-8 pb-8 text-gray-500">&copy Natalia Petelina. Utbildningsproject 2020-2021</div>
+    <div class="absolute left-0 px-1 bottom-0 pl-8 pb-8 text-gray-500 text-sm
+               md:text-base">
+      &copy Natalia Petelina. Utbildningsproject 2020-2021
+    </div>
 
 
     <div class="w-2/3 text-left mt-6">

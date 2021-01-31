@@ -77,7 +77,7 @@
 <main class="text-offblack flex flex-col h-screen">
 
     <div class="flex-grow">
-      <Router {routes}/>
+      <Router {routes} restoreScrollState={true} />
     </div>
 
     <div>
