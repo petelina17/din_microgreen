@@ -1,5 +1,5 @@
 import {get, writable} from 'svelte/store'
-import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie'
+import {isCookieEnabled, getCookie, setCookie, removeCookie} from 'tiny-cookie'
 import {API} from './api'
 
 const api = new API()
@@ -7,7 +7,7 @@ const api = new API()
 let user = {
   data: null,
   cartNumber: 0,
-  favoriteNumber:0,
+  favoriteNumber: 0,
   favoriteList: [],
   cartList: [],
   buyProcess: null,
@@ -31,10 +31,12 @@ export let selectedProduct = writable({})
 export let orderNumber = writable('')
 
 export function saveCartToCookie() {
-  const user = get(userStore)
-  const now = new Date()
-  now.setDate(now.getDate() + 1)
-  setCookie('cartList', JSON.stringify(user.cartList), {path: '/', expires: now.toGMTString(), secure: true})
+  if (get(cookiesAccepted)) {
+    const user = get(userStore)
+    const now = new Date()
+    now.setDate(now.getDate() + 1)
+    setCookie('cartList', JSON.stringify(user.cartList), {path: '/', expires: now.toGMTString(), secure: true})
+  }
 }
 
 export function loadCartFromCookie() {
@@ -62,9 +64,11 @@ export function clearCart() {
 
 export function saveFavorites() {
   const user = get(userStore)
-  // setCookie('favorites', JSON.stringify(user.favoriteList))
-  user.data.favorites = user.favoriteList
-  api.updateUser(user.data)
+  if (user.data != null) {
+    // setCookie('favorites', JSON.stringify(user.favoriteList))
+    user.data.favorites = user.favoriteList
+    api.updateUser(user.data)
+  }
 }
 
 export function loadFavorites() {
