@@ -1,6 +1,26 @@
 # din microgreen app
 
-## Get started
+## Summary
+
+During my graduation work I planned and developed an accessible web application In the form of
+Single page application (SPA), dedicated to healthy eating lifestyle and designed to popularize
+microgreens as a way of loosing weight and remain healthy.
+
+
+
+## Installation requirements and preparations
+To be able to install the website, you need the smallest versions:
+• git 2.23.0+  
+• node js 14.15.4+  
+• docker 20.01+  
+• web-browser: IE 11+, MS EDGE v.84+, Firefox v.68+, Google Chrome v.76+
+
+#### Preparations:  
+• install git  
+• install node and nmp  
+• Install Docker (see https://docs.docker.com/engine/install/)
+
+## Get started locally
 
 Install the dependencies...
 
@@ -22,6 +42,10 @@ If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommen
 
 ## Building and running in production mode
 
+#### Overview
+
+![image](./docs/schema.jpg)
+
 To create an optimised version of the app:
 
 ```bash
@@ -30,53 +54,69 @@ npm run build
 
 You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
-PREPARE STEPS (first time only)
+#### PREPARE STEPS (first time only)
 
 1. (only if deploy to remote docker serwer) Copy SSH key “id_rsa” to local ssh folder
-   cp id_rsa ~/.ssh/
+   
+       cp id_rsa ~/.ssh/
+   
 2. Create docker file "Dockerfile" in project folder:
-   FROM nginx:alpine
-   COPY ./public/* /usr/share/nginx/html/
+   
+       FROM nginx:alpine
+       COPY ./public/* /usr/share/nginx/html/
 3. Create account in Docker Hub
+
 - www.dockerhub.com
 - verify e-mail
-  INSTALLATION STEPS
+  
+#### INSTALLATION STEPS
+
 1. git clone … din-microgreen
-2. go to project folder: cd din-microgreen
+   
+2. go to project folder:
+   
+       cd din-microgreen
 
 3. Install all javascript packages for project, defined in package.json:
-   npm install
-   4 . Build project, create “packet” to deploy:
-   npm run build
-5. Create docker image (change “”)
-   docker build -t <YOUR_DOCKER_ACCOUNT>/microgreen .
+   
+       npm install
+
+4. Build project, create “packet” to deploy: 
+
+       npm run build
+   
+5. Create docker image (change <YOUR_DOCKER_ACCOUNT>)
+   
+       docker build -t <YOUR_DOCKER_ACCOUNT>/microgreen .
+   
 6. Login to your docker hub account  (user:**** / password: ***):
-   docker login
-7. Upload docker image to Docker Hub registry:
-   docker push <YOUR_DOCKER_ACCOUNT>/microgreen
+   
+       docker login
+   
+7. Upload docker image to Docker Hub registry: 
+   
+       docker push <YOUR_DOCKER_ACCOUNT>/microgreen
+   
 8. (only if deploy to remote docker serwer) Go to server via SSH and update created app "image", and restart app.
    In Terminal window Login to remote server:
-   ssh -i ~/.ssh/id_rsa -p <port> <username>@<remote_server_ip_address>
+   
+       ssh -i ~/.ssh/id_rsa -p <port> <username>@<remote_server_ip_address>
+   
 9. Run docker container (works both for local installation and remote server)
+
 * Load image from Docker Hub, run in termimal:
-  docker pull <YOUR_DOCKER_ACCOUNT>/microgreen
+  
+      docker pull <YOUR_DOCKER_ACCOUNT>/microgreen
+  
 * Remove previosly installed container with web app (first time don't do it):
-  docker rm -f microgreen
+  
+      docker rm -f microgreen
+  
 * Create and run web-site app in docker container:
-  docker run --name=microgreen --network=home -p 8073:80 -d <YOUR_DOCKER_ACCOUNT>/microgreen
+  
+      docker run --name=microgreen --network=home -p 8073:80 -d <YOUR_DOCKER_ACCOUNT>/microgreen
 
 
-version krav:
-- git ???
-- node ???
-- docker 20.01+
-- browswers: IE 11+, MS EDGE ?, Firefox ?, Chrome ?
 
 
-Prepare
-install git
-install node and nmp
-1. Install Docker
-• https://docs.docker.com/engine/install/
-       
 
